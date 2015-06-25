@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>중복 체크</title>
-<script type="text/javascript" src="${root}/css/member/member.js"></script>
+<script type="text/javascript" src="${root}/js/member/member.js"></script>
 </head>
 <body>
 	<c:if test="${check!=null}">

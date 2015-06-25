@@ -67,6 +67,7 @@ public class TeamController {
 	 * @작성자:조영석
 	 * @설명문:팀원명 중복체크를 위한 이동 메소드 
 	 */
+	
 	@RequestMapping(value="/member/idCheckName.do",method=RequestMethod.GET)
 	 	public ModelAndView teamIdCheck(HttpServletRequest request,HttpServletResponse response){
 			ModelAndView mav=new ModelAndView();

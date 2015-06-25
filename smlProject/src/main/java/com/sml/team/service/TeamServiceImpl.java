@@ -85,7 +85,6 @@ public class TeamServiceImpl implements TeamService{
 		mav.addObject("teamName",teamName);
 		mav.addObject("teamCheck",teamCheck);
 		mav.setViewName("member/teamIdCheck");
-		
 	}
 	
 
