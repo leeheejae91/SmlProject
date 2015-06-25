@@ -17,6 +17,30 @@ public class TeamDaoImpl implements TeamDao{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	private HashMap<String , String> hMap;
+	
+	/**
+	 * @함수명:idCheck
+	 * @작성일:2015. 6. 23.
+	 * @작성자:조영석
+	 * @설명문:아이디 중복체크를 위한 데이터베이스연결
+	 */
+	@Override
+	public String idCheck(String teamId) {
+		
+		return sqlSession.selectOne("team.dao.TeamMapper.idCheckSelect",teamId);
+	}
+
+	/**
+	 * @함수명:teamIdCheck
+	 * @작성일:2015. 6. 23.
+	 * @작성자:조영석
+	 * @설명문:팀원명 중복체크를 위한 데이터베이스연결
+	 */
+	@Override
+	public String teamIdCheck(String teamName) {
+
+		return sqlSession.selectOne("team.dao.TeamMapper.teamIdCheck",teamName);
+	}
 
 	@Override
 	/**

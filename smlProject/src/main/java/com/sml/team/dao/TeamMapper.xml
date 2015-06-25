@@ -19,4 +19,13 @@
 	<insert id="searchMatching" parameterType="com.sml.team.dto.MatchingDto">
 		insert into MATCHING values (matching_matchingcode_sql.nextval , #{teamCode} , #{matchingSport} , #{matchingDistance} , #{matchingTime} , #{matchingState})
 	</insert>
+	
+ 	<select id="idCheckSelect" parameterType="String" resultType="String">
+ 		select teamId from team where teamId=#{teamId}
+ 	</select>
+ 	
+ 	<select id="teamIdCheck" parameterType="String" resultType="String">
+ 		select teamName from team where teamId=#{teamName}
+ 	</select>
+
 </mapper>

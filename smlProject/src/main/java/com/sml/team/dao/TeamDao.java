@@ -9,13 +9,11 @@ import com.sml.team.dto.TeamDto;
 
 
 public interface TeamDao {
-	/**
-	 * 
-	 * @함수명 : login
-	 * @작성일 : 2015. 6. 23.
-	 * @작성자 : 이한빈
-	 * @설명   :  
-	 */
+	
+	public String idCheck(String teamId);
+	
+	public String teamIdCheck(String teamName);
+	
 	public TeamDto login(String id, String password);
 
 	public List<TeamBoardDto> viewTeamBoard();
@@ -23,4 +21,5 @@ public interface TeamDao {
 	public List<ScheduleDto> viewSchedule();
 
 	public int searchMatching(MatchingDto matchingDto);
+
 }

@@ -22,6 +22,72 @@ public class TeamServiceImpl implements TeamService{
 	@Autowired
 	private TeamDao dao;
 	
+
+	/**
+	 * @함수명:registerTeam
+	 * @작성일:2015. 6. 23.
+	 * @작성자:조영석
+	 * @설명문:팀만들기를 위한 서비스메소드
+	 */
+	@Override
+	public void registerTeam(ModelAndView mav) {
+		Map<String,Object> map=mav.getModelMap();
+		
+		HttpServletRequest request=(HttpServletRequest)map.get("request");
+		String teamId=request.getParameter("teamId");
+		String teamPassword=request.getParameter("teamPassword");
+		String teamName=request.getParameter("teamName");
+		String sportType=request.getParameter("sportType");
+		
+		mav.addObject("teamId",teamId);
+		mav.addObject("teamPassword",teamPassword);
+		mav.addObject("teamName",teamName);
+		mav.addObject("sportType",sportType);
+		mav.setViewName("member/registerMember");
+		}
+	
+	/**
+	 * @함수명:idCheck
+	 * @작성일:2015. 6. 23.
+	 * @작성자:조영석
+	 * @설명문:아이디 중복체크를 위한 서비스메소드
+	 */
+	@Override
+	public void idCheck(ModelAndView mav) {
+		Map<String,Object> map=mav.getModelMap();
+		
+		HttpServletRequest request=(HttpServletRequest)map.get("request");
+		String teamId=request.getParameter("teamId");
+		
+		String check=dao.idCheck(teamId);
+		
+		mav.addObject("teamId",teamId);
+		mav.addObject("check",check);
+		mav.setViewName("member/idCheck");
+		
+	}
+
+	/**
+	 * @함수명:teamIdCheck
+	 * @작성일:2015. 6. 23.
+	 * @작성자:조영석
+	 * @설명문:팀이름 중복체크를 위한 서비스메소드
+	 */
+	@Override
+	public void teamIdCheck(ModelAndView mav) {
+		Map<String,Object> map=mav.getModelMap();
+		
+		HttpServletRequest request=(HttpServletRequest)map.get("request");
+		String teamName=request.getParameter("teamName");
+		
+		String teamCheck=dao.teamIdCheck(teamName);
+		
+		mav.addObject("teamName",teamName);
+		mav.addObject("teamCheck",teamCheck);
+		mav.setViewName("member/teamIdCheck");
+		
+	}
+	
 	@Override
 	/**
 	 * 

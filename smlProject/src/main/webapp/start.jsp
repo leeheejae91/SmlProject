@@ -29,7 +29,7 @@
 	
 	<div>
 		이부분에 이미지 슬라이더 넣어야함
-		<input type="button" value="팀생성"/>
+		<input type="button" value="팀등록" onclick="location.href='${root}/member/registerTeam.do'"/>
 		<input type="button" value="로그인" onclick="javascript:test()"/>
 	</div>
 	

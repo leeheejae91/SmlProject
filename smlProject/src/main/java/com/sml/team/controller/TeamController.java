@@ -1,6 +1,7 @@
 package com.sml.team.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,63 @@ public class TeamController {
 	@Autowired
 	private TeamService service;
 	
+	/**
+	 * @함수명:registerTeam
+	 * @작성일:2015. 6. 23.
+	 * @작성자:조영석
+	 * @설명문:팀등록 페이지로 이동하는 이동 메소드
+	 */
+	@RequestMapping(value="/member/registerTeam.do",method=RequestMethod.GET)
+		public String registerTeam(){
+			return "member/registerTeam";
+		}
+
+	/**
+	 * @함수명:registerTeamOK
+	 * @작성일:2015. 6. 23.
+	 * @작성자:조영석
+	 * @설명문:팀등록을 위한 이동 메소드 
+	 */
+	@RequestMapping(value="/member/registerTeam.do",method=RequestMethod.POST)
+		public ModelAndView registerTeamOK(HttpServletRequest request,HttpServletResponse response){
+		
+			ModelAndView mav=new ModelAndView();
+			mav.addObject("request",request);
+			service.registerTeam(mav);
+			return mav;
+		}
+
+	/**
+	 * @함수명:idCheck
+	 * @작성일:2015. 6. 23.
+	 * @작성자:조영석
+	 * @설명문:아이디 중복체크를 위한 이동 메소드
+	 */
+	@RequestMapping(value="/member/idCheck.do",method=RequestMethod.GET)
+	 	public ModelAndView idCheck(HttpServletRequest request,HttpServletResponse response){
+			ModelAndView mav=new ModelAndView();
+			
+			mav.addObject("request",request);
+			
+			service.idCheck(mav);
+			return mav;
+		}
+	
+	/**
+	 * @함수명:teamIdCheck
+	 * @작성일:2015. 6. 23.
+	 * @작성자:조영석
+	 * @설명문:팀원명 중복체크를 위한 이동 메소드 
+	 */
+	@RequestMapping(value="/member/idCheckName.do",method=RequestMethod.GET)
+	 	public ModelAndView teamIdCheck(HttpServletRequest request,HttpServletResponse response){
+			ModelAndView mav=new ModelAndView();
+			
+			mav.addObject("request",request);
+			
+			service.teamIdCheck(mav);
+			return mav;
+		}
 	/**
 	 * 
 	 * @함수명 : teamPage
