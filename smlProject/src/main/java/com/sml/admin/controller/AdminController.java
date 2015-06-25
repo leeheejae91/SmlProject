@@ -37,6 +37,16 @@ public class AdminController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/admin/manageTeamDelete.do",method=RequestMethod.GET)
+	public ModelAndView manageTeamDelete(HttpServletRequest request, HttpServletResponse response){
+		logger.info("manageTeamDelete-------------------");
+		ModelAndView mav=new ModelAndView();
+
+		mav.addObject("request",request);	
+		adminService.manageTeamDelete(mav);		
+		return mav;
+	}
+	
 	
 	
 }

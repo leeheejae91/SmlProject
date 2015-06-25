@@ -1,6 +1,7 @@
 package com.sml.admin.service;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,7 +51,7 @@ public class AdminServiceImpl implements AdminService{
 		manageMap.put("startRow", startRow);
 		manageMap.put("endRow", endRow);
 		
-		List<HashMap<String,Object>> containerList=null;
+		List<HashMap<String,Object>> containerList=new ArrayList<HashMap<String,Object>>();
 		containerList.add(manageMap);
 		
 		containerList=adminDao.getManageTeam();
@@ -61,6 +62,18 @@ public class AdminServiceImpl implements AdminService{
 		mav.addObject("boardSize",boardSize);
 		mav.addObject("currentPage",currentPage);
 		mav.setViewName("admin/manageTeam");
+	}
+
+	@Override
+	public void manageTeamDelete(ModelAndView mav) {
+		Map<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		
+		int teamCode=Integer.parseInt(request.getParameter("teamCode"));
+		int check=adminDao.manageTeamDelete(teamCode);
+		
+		mav.addObject("check",check);
+		mav.setViewName("admin/manageTeamDelete");
 	}
 
 		
