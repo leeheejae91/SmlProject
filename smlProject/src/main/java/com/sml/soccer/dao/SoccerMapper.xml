@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="dao.SoccerMapper">
+ 	<select id="teamSearch" parameterType="String" resultType="int">
+ 	<![CDATA[
+ 		select teamcode from team where teamname=#{teamname}
+ 	]]>
+ 	</select>	
+ 	
+ 	<select id="getAllTeamSearch" resultType="com.sml.team.dto.TeamDto">
+ 	<![CDATA[
+ 		select * from team where sporttype=#{sportType}
+ 	]]>
+ 	</select>	
+ </mapper>
