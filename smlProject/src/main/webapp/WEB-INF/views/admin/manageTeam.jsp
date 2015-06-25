@@ -37,7 +37,7 @@
 	
 	</c:if>	
 	
-	<c:forEach var="manageTeamList" items="${manageTeamList}">
+	<c:forEach var="manageTeamList" items="${manageMap}">
 		<select name="sportType" >
 				<option></option>				
 				<option value="전체">전체</option>

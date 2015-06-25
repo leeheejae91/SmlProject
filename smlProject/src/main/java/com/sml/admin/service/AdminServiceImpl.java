@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.admin.dao.AdminDao;
-
 import com.sml.member.dto.MemberDto;
 import com.sml.team.dto.TeamDto;
 
@@ -44,24 +43,20 @@ public class AdminServiceImpl implements AdminService{
 		logger.info("endRow"+endRow);		
 		
 		List<TeamDto> manageTeamList=null;	
-		List<MemberDto> manageMemberList=null;
+		List<MemberDto> manageMemberList=null;	
 		HashMap<String,Object> manageMap=new HashMap<String,Object>();
-		manageMap=adminDao.getManageList(manageTeamList,manageMemberList);
+		manageMap.put("manageTeamList", manageTeamList);
+		manageMap.put("manageMemberList", manageMemberList);
+		manageMap.put("startRow", startRow);
+		manageMap.put("endRow", endRow);
 		
+		List<HashMap<String,Object>> containerList=null;
+		containerList.add(manageMap);
 		
-		
-		
-		if(count>0){
-		manageTeamList=adminDao.getManageTeamList(startRow,endRow);
-		}
-		
-		if(count>0){
-			manageMemberList=adminDao.getManageMemberList(startRow,endRow);
-		}
+		containerList=adminDao.getManageTeam();
 			
-		
-		mav.addObject("manageTeamList",manageTeamList);
-		mav.addObject("manageMemberList",manageMemberList);
+		mav.addObject("containerList",containerList);
+		mav.addObject("manageMap",manageMap);		
 		mav.addObject("count",count);		
 		mav.addObject("boardSize",boardSize);
 		mav.addObject("currentPage",currentPage);

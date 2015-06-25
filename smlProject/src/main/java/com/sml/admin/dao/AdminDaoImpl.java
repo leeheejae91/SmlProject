@@ -2,11 +2,14 @@ package com.sml.admin.dao;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+
 
 
 
@@ -25,9 +28,17 @@ public class AdminDaoImpl implements AdminDao {
 	public int getManageTeamCount() {
 		
 		return sqlSession.selectOne("dao.adminDaoMapper.getManageTeamCount");
-	}	
-	
+	}
+
 	@Override
+	public List<HashMap<String, Object>> getManageTeam() {
+		
+		return sqlSession.selectList("dao.adminDaoMapper.getManageTeam");
+	}
+
+
+	
+/*	@Override
 	public List<TeamDto> getManageTeamList(int startRow, int endRow) {
 		Map<String,Integer> hMap=new HashMap<String,Integer>();
 		hMap.put("startRow", startRow);
@@ -44,7 +55,7 @@ public class AdminDaoImpl implements AdminDao {
 		hMap.put("endRow", endRow);
 		
 		return sqlSession.selectList("dao.adminDaoMapper.getManageMemberList",hMap);
-	}
+	}*/
 	
 
 
