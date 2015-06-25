@@ -21,7 +21,7 @@
 			<a href="${root}/soccer/soccerMain.do">홈</a>
 			<a href="${root}/soccer/soccerRule.do">경기규칙</a>
 			<a href="${root}/soccer/soccerTeamList.do">팀리스트</a>
-			<a href="${root}/soccer/soccerGameScore.do">기록리스트</a>
+			<a href="${root}/record/soccerGameScore.do">기록리스트</a>
 			<a href="${root}/referee/refereeList.do/">심판현황</a>
 		</h3>
 	</div>	

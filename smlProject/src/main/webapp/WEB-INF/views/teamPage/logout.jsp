@@ -9,8 +9,8 @@
 <title>Logout</title>
 </head>
 <body>
-	<c:remove var="leaderName" scope="session"/>
-	<c:remove var="grade" scope="session"/>
+	<c:remove var="teamGrade" scope="session"/>
+	<c:remove var="teamId" scope="session"/>
 	
 	<script>
 		alert("로그아웃 성공");

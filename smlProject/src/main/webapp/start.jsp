@@ -50,8 +50,6 @@
 		<h3>이메일 : smlKorea@sml.com</h3>
 	</div>
 	
-	
-	
 	<div>
 		<a href="${root}/admin/main.do">관리자페이지</a>
 	</div>

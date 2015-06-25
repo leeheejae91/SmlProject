@@ -32,6 +32,7 @@
 		  	<c:if test="${teamGrade == null }">
 				<li><a href="${root }/start.jsp">메인</a></li>
 				<li><a href="${root }/teamMemberInfo.do">팀원소개</a></li>
+				<li><a href="${root }/viewSchedule.do">팀 스케쥴</a></li>
 			</c:if>
 
 		</ul>

@@ -9,7 +9,6 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="${root}/js/external/jquery-1.11.3.min.js"></script>
 <body>
-
 	<c:set var="teamGrade" value="${teamGrade}" scope="session"></c:set>
 	<c:set var="teamId" value="${teamId}"  scope="session"></c:set>
 	
