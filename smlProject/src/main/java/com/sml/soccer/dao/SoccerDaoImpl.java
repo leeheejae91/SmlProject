@@ -1,8 +1,14 @@
 package com.sml.soccer.dao;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.sml.record.dto.RecordDto;
+import com.sml.record.dto.TodayMatchDto;
 
 @Component
 public class SoccerDaoImpl implements SoccerDao {
@@ -19,6 +25,11 @@ public class SoccerDaoImpl implements SoccerDao {
 	@Override
 	public int teamSearch(String teamName) {		
 		return sqlSession.selectOne("dao.SoccerMapper.teamSearch", teamName);
+	}
+
+	@Override
+	public List<HashMap<String, Object>> todayMatch() {
+		return sqlSession.selectList("dao.SoccerMapper.todayMatch");
 	}
 
 }
