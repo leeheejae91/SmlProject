@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sml.common.service.CommonService;
+import com.sml.admin.service.AdminService;
+
 @Controller
 public class AdminController {
 	final Logger logger=Logger.getLogger(this.getClass().getName());
 		
 	@Autowired
-	private CommonService commonService;
+	private AdminService adminService;
 	
 	@RequestMapping(value="/admin/main.do", method=RequestMethod.GET)
 	public String callmain(HttpServletRequest request, HttpServletResponse response){
@@ -28,11 +29,12 @@ public class AdminController {
 	
 	@RequestMapping(value="/admin/manageTeam.do",method=RequestMethod.GET)
 	public ModelAndView manageTeam(HttpServletRequest request, HttpServletResponse response){
-		logger.info("팀관리 컨트롤러------------");
+		logger.info("manageTeam-------------------");
 		ModelAndView mav=new ModelAndView();
-		
-		//commonService.manageTeam(mav);
-		return null;
+
+		mav.addObject("request",request);	
+		adminService.manageTeam(mav);		
+		return mav;
 	}
 	
 	
