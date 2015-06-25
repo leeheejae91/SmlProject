@@ -24,6 +24,7 @@
 				<value>classpath:com/sml/referee/dao/RefereeMapper.xml</value>
 				<value>classpath:com/sml/soccer/dao/SoccerMapper.xml</value>
 				<value>classpath:com/sml/record/dao/RecordMapper.xml</value>
+				<value>classpath:com/sml/member/dao/MemberMapper.xml</value>
 			</list>
 		</property>
 			<property name="dataSource" ref="dataSource"/>
