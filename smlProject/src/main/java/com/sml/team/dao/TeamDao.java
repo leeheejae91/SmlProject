@@ -21,5 +21,6 @@ public interface TeamDao {
 	public List<ScheduleDto> viewSchedule();
 
 	public int searchMatching(MatchingDto matchingDto);
+	
 
 }

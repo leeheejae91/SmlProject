@@ -12,10 +12,15 @@
 		insert into Team values(TEAM_TEAMCODE_SQL.nextval,#{teamName},#{teamReaderName},#{teamId},#{teamPassword},#{sportType},#{emblem},#{teamGrade})
 	</insert> 
 		
+	<delete id="Teamdelete" parameterType="int">
+		delete from Team where TEAMCODE=#{team}
+	</delete>
+	
 	<select id="TeamCodeSelect" parameterType="String" resultType="int">
 		select TEAMCODE from Team where teamid = #{teamId}
 	</select>
 	<insert id="memberInsert" parameterType="com.sml.member.dto.MemberDto">
 		insert into TeamMember values(TEAMMEMBER_MEMBERCODE_SQL.nextval,#{teamCode},#{memberName},#{memberBirth},#{memberRegion},#{memberEmail},#{memberPhone},#{memberGender})
 	</insert> 
+	
 </mapper>  

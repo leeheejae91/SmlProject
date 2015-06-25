@@ -13,18 +13,6 @@ import com.sml.member.dto.MemberDto;
 public class MemberDaoImpl implements MemberDao{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
-	@Override
-	/**
-	 * 
-	 * @함수명 : teamMemberInfo
-	 * @작성일 : 2015. 6. 23.
-	 * @작성자 : 이한빈
-	 * @설명   : 데이터베이스에 연결해서 팀맴버 목록을 반환받는 메소드
-	 */
-	public List<MemberDto> teamMemberInfo() {
-		return sqlSession.selectList("teamMemberList");
-	}
 
 	/**
 	 * @함수명:insertMember
@@ -49,21 +37,29 @@ public class MemberDaoImpl implements MemberDao{
 	    int value=0;
 	   
 	    	
-	    try{
-//	    	Connection con=sqlSession.getConnection();
-//	    	con.setAutoCommit(false);
-	    	
-	    	sqlSession.insert("dao.MemberMapper.TeamInsert",Hmap);
-	    	int team=sqlSession.selectOne("dao.MemberMapper.TeamCodeSelect",teamId);
-	    	memberDto.setTeamCode(team);
-	    	value=sqlSession.insert("dao.MemberMapper.memberInsert",memberDto);
+	    sqlSession.insert("member.dao.MemberMapper.TeamInsert",Hmap);
 	    
-//	    	con.commit();
-	    }catch(Exception e){
-	    	e.printStackTrace();
-//	    	sqlSession.rollback();
+	    int team=sqlSession.selectOne("member.dao.MemberMapper.TeamCodeSelect",teamId);
+	    memberDto.setTeamCode(team);	
+	    value=sqlSession.insert("member.dao.MemberMapper.memberInsert",memberDto);
+	   
+	    if(value==0){
+	    	sqlSession.delete("member.dao.MemberMapper.Teamdelete",team);
 	    }
 
 		return value;
 	}
+	
+	@Override
+	/**
+	 * 
+	 * @함수명 : teamMemberInfo
+	 * @작성일 : 2015. 6. 23.
+	 * @작성자 : 이한빈
+	 * @설명   : 데이터베이스에 연결해서 팀맴버 목록을 반환받는 메소드
+	 */
+	public List<MemberDto> teamMemberInfo() {
+		return sqlSession.selectList("teamMemberList");
+	}
+
 }

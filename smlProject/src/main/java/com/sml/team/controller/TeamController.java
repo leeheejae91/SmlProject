@@ -91,31 +91,44 @@ public class TeamController {
 	
 	/**
 	 * @함수명 : login
-	 * @작성일 : 2015. 6. 23.
-	 * @작성자 : 이한빈
-	 * @설명   :  로그인창 띄우는 메소드
+	 * @작성일 : 2015. 6. 25.
+	 * @작성자 : 조영석
+	 * @설명   : 로그인 입력창 이동 메소드
 	 */
-	@RequestMapping(value="/login.do" , method=RequestMethod.POST)
-	public ModelAndView login(HttpServletRequest request){
-		logger.info("TeamController login");
-		ModelAndView mav = new ModelAndView("teamPage/login");
-		mav.addObject("request" , request);
+	@RequestMapping(value="/teamPage/login.do" , method=RequestMethod.GET)
+	public String login(HttpServletRequest request){
+	
+		return "teamPage/login";
+	}
+	
+	/**
+	 * @함수명:login
+	 * @작성일:2015. 6. 25.
+	 * @작성자:조영석
+	 * @설명문:로그인 이동 메소드 
+	 */
+	@RequestMapping(value="/teamPage/login.do" , method=RequestMethod.POST)
+	public ModelAndView login(HttpServletRequest request,HttpServletResponse response){
+		
+		ModelAndView mav=new ModelAndView();
+		
+		mav.addObject("request",request);
+		
 		service.login(mav);
 		return mav;
 	}
 	
+	
 	/**
-	 * 
-	 * @함수명 : logout
-	 * @작성일 : 2015. 6. 23.
-	 * @작성자 : 이한빈
-	 * @설명   : 로그아웃하는 메소드
+	 * @함수명:logout
+	 * @작성일:2015. 6. 25.
+	 * @작성자:조영석
+	 * @설명문:로그아웃 이동 메소드
 	 */
-	@RequestMapping(value="/logout.do" , method=RequestMethod.POST)
-	public ModelAndView logout(HttpServletRequest request){
+	@RequestMapping(value="/teamPage/logout.do" , method=RequestMethod.GET)
+	public String logout(){
 		logger.info("TeamController logout");
-		ModelAndView mav = new ModelAndView("teamPage/logout");
-		return mav;
+		return "teamPage/logout";
 	}
 		
 	/**
@@ -194,5 +207,10 @@ public class TeamController {
 		
 		service.searchMatching(mav);
 		return mav;
+	}
+	
+	@RequestMapping(value="/teamPage/teamPageMain.do",method=RequestMethod.GET)
+	 public String teamPage(){
+		return "teamPage/teamPageMain";
 	}
 }

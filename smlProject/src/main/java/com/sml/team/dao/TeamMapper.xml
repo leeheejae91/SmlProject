@@ -4,12 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="team.dao.TeamMapper">
-	<select id="login" parameterType="java.util.HashMap" resultType="com.sml.team.dto.TeamDto">
-		select TEAMLEADERNAME , TEAMGRADE from team where TEAMID = #{id} and TEAMPASSWORD = #{password}
-	</select>
 	
+	<select id="loginOk" parameterType="java.util.HashMap" resultType="com.sml.team.dto.TeamDto">
+		select TEAMGRADE,TEAMID from team where TEAMID=#{id} and TEAMPASSWORD=#{password}
+	</select>
 	<select id="viewTeamBoardList" resultType="com.sml.team.dto.TeamBoardDto">
-		select * from TEAMBOARD;
+		select * from TEAMBOARD
 	</select>
 	
 	<select id="scheduleList" resultType="com.sml.team.dto.ScheduleDto">
@@ -27,5 +27,6 @@
  	<select id="teamIdCheck" parameterType="String" resultType="String">
  		select teamName from team where teamId=#{teamName}
  	</select>
+ 	
 
 </mapper>

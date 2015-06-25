@@ -30,7 +30,7 @@
 	<div>
 		이부분에 이미지 슬라이더 넣어야함
 		<input type="button" value="팀등록" onclick="location.href='${root}/member/registerTeam.do'"/>
-		<input type="button" value="로그인" onclick="javascript:test()"/>
+		<input type="button" value="로그인" onclick="location.href='${root}/teamPage/login.do'"/>
 	</div>
 	
 	<div>
@@ -50,15 +50,7 @@
 		<h3>이메일 : smlKorea@sml.com</h3>
 	</div>
 	
-	<form action="${root }/login.do" method="POST">
-		<div id="test2">
-			<label>아이디</label><input type="text" placeholder="id를 입력하세요" name="id"/><br/>
-			<label>비밀번호</label><input type="password" placeholder="비밀번호를 입력하세요" name="password"/><br/>
-			<a href="#">아이디를 잊으셨나요?</a><br/>
-			<a href="#">비밀번호를 잊으셨나요?</a><br/>
-			<input type="button" value="로그인"/>
-		</div>
-	</form>
+	
 	
 	<div>
 		<a href="${root}/admin/main.do">관리자페이지</a>

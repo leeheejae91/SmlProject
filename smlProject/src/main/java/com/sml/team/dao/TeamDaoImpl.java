@@ -16,7 +16,7 @@ import com.sml.team.dto.TeamDto;
 public class TeamDaoImpl implements TeamDao{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	private HashMap<String , String> hMap;
+	private HashMap<String , Object> hMap;
 	
 	/**
 	 * @함수명:idCheck
@@ -51,11 +51,17 @@ public class TeamDaoImpl implements TeamDao{
 	 * @설명   :  서비스에서 요청받은 값을 데이터베이스에 연결시켜 값을 반환받는 메소드
 	 */
 	public TeamDto login(String id, String password) {
-		hMap = new HashMap<String , String>();
+//		System.out.println("id"+id+"password"+password);
+		
+		hMap = new HashMap<String , Object>();
+		
 		hMap.put("id", id);
 		hMap.put("password", password);
-		
-		return sqlSession.selectOne("team.dao.TeamMapper.login" , hMap);
+
+		TeamDto srt=sqlSession.selectOne("team.dao.TeamMapper.loginOk", hMap);
+				
+		System.out.println("srt"+srt);
+		return srt;
 	}
 
 	@Override
@@ -92,7 +98,8 @@ public class TeamDaoImpl implements TeamDao{
 	 */
 	public int searchMatching(MatchingDto matchingDto) {
 		return sqlSession.insert("team.dao.TeamMapper.searchMatching" , matchingDto);
-	}	
+	}
+	
 	
 	
 }

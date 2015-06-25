@@ -9,14 +9,14 @@
 <title>팀페이지</title>
 </head>
 <body>
-	<c:set var="leaderName" value="${teamLeaderName }" scope="session"/>
-	<c:set var="grade" value="${teamGrade }" scope="session"/>
+	<c:set var="teamId" value="${teamId}" scope="session"/>
+	<c:set var="teamGrade" value="${teamGrade }" scope="session"/>
 
 	<div>
 		SML KOREA 
 		<ul>
-			<c:when test="${leaderName != null }">
-				<li>${leaderName }님</li>
+			<c:if test="${teamGrade != null }">
+				<li>${teamId }님</li>
 				<li><a href="${root }/start.jsp">메인</a></li>
 				<li><a href="${root }/teamMemberInfo.do">팀원소개</a></li>
 				<li><a href="${root }/viewSchedule.do">팀 스케쥴</a></li>
@@ -26,13 +26,14 @@
 				<li><a href="${root }/manageTeamSchedule.do">스케쥴관리</a></li>
 				<li><a href="${root }/startMatching.do">매칭관리</a></li>
 				<li>-----------</li>
-				<li><a href="${root}/logout.do">로그아웃</a></li>
-			</c:when>
-			<c:otherwise>
+				<li><a href="${root}/teamPage/logout.do?teamId='${teamId}'">로그아웃</a></li>
+		  	</c:if>
+		  	
+		  	<c:if test="${teamGrade == null }">
 				<li><a href="${root }/start.jsp">메인</a></li>
 				<li><a href="${root }/teamMemberInfo.do">팀원소개</a></li>
-				<li><a href="${root }/viewSchedule.do">팀 스케쥴</a></li>
-			</c:otherwise>
+			</c:if>
+
 		</ul>
 	</div>
 	

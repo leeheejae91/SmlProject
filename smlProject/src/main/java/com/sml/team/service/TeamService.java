@@ -11,5 +11,4 @@ public interface TeamService {
 	public void registerTeam(ModelAndView mav);
 	public void idCheck(ModelAndView mav);
 	public void teamIdCheck(ModelAndView mav);
-
 }

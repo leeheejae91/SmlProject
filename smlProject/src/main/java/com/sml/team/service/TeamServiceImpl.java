@@ -88,13 +88,12 @@ public class TeamServiceImpl implements TeamService{
 		
 	}
 	
-	@Override
+
 	/**
-	 * 
-	 * @함수명 : login
-	 * @작성일 : 2015. 6. 23.
-	 * @작성자 : 이한빈
-	 * @설명   : 팀컨트롤러에서 로그인 요청이 오면 실행되는 메소드
+	 * @함수명:login
+	 * @작성일:2015. 6. 25.
+	 * @작성자:조영석
+	 * @설명문:로그인 을위한 서비스 메소드
 	 */
 	public void login(ModelAndView mav) {
 		logger.info("Service Login");
@@ -103,13 +102,15 @@ public class TeamServiceImpl implements TeamService{
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
-		
+
 		TeamDto team = dao.login(id,password);
+		System.out.println("teamteamteamteamteam!!!"+team);
 		String teamGrade = team.getTeamGrade();
-		String teamLeaderName = team.getTeamLeaderName();
+		String teamId = team.getTeamId();
 		
 		mav.addObject("teamGrade" , teamGrade);
-		mav.addObject("teamLeaderName" , teamLeaderName);
+		mav.addObject("teamId" , teamId);
+		mav.setViewName("teamPage/loginOk");
 	}
 
 	@Override
@@ -169,6 +170,4 @@ public class TeamServiceImpl implements TeamService{
 		int check = dao.searchMatching(matchingDto);
 		mav.addObject("check" , check);
 	}
-	
-	
 }
