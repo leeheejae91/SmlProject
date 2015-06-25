@@ -17,11 +17,17 @@ public class MemberServiceImpl implements MemberService{
 	private MemberDao dao;
 	
 	@Override
+	/**
+	 * 
+	 * @함수명 : teamMemberInfo
+	 * @작성일 : 2015. 6. 23.
+	 * @작성자 : 이한빈
+	 * @설명   :  팀컨트롤러에서 팀게시판에서 팀맴버소개 및 관리 요청이 오면 실행되는 메소드
+	 */
 	public void teamMemberInfo(ModelAndView mav) {	
 		logger.info("MemberService teamMemberInfo");
 		
 		List<MemberDto> member = dao.teamMemberInfo();
 		mav.addObject("member" , member);
-	}
-	
+	}	
 }

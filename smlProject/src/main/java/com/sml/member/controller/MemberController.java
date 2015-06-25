@@ -16,10 +16,17 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 	
+	/**
+	 * 
+	 * @함수명 : teamMemberInfo
+	 * @작성일 : 2015. 6. 23.
+	 * @작성자 : 이한빈
+	 * @설명   : 팀페이지에서 팀원소개 및 팀원관리 메소드 (구분은 JSP페이지에서 처리해야할듯)
+	 */
 	@RequestMapping(value="/teamMemberInfo.do" , method=RequestMethod.GET)
 	public ModelAndView teamMemberInfo(){
 		logger.info("MemberController teamMemberInfo");
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView("teamPage/teamMemberInfo");
 		service.teamMemberInfo(mav);
 		return mav;
 	}
