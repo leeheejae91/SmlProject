@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.record.dto.RecordDto;
-import com.sml.record.dto.TodayMatchDto;
 import com.sml.soccer.dao.SoccerDao;
 
 @Component
@@ -33,9 +32,9 @@ public class SoccerServiceImpl implements SoccerService {
 		Map <String, Object> map=mav.getModel();		
 		//HttpServletRequest request=(HttpServletRequest) map.get("request");	
 		
-//		List<TodayMatchDto> todayMatchList=soccerDao.todayMatch();
+		List<HashMap<String, Object>> todayMatchList=soccerDao.todayMatch();
 		
-//		mav.addObject("todayMatchList", todayMatchList);
+		mav.addObject("todayMatchList", todayMatchList);
 		mav.setViewName("soccer/soccerMain");
 	}
 

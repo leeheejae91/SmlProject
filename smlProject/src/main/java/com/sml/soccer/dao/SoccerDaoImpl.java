@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.sml.record.dto.RecordDto;
-import com.sml.record.dto.TodayMatchDto;
 
 @Component
 public class SoccerDaoImpl implements SoccerDao {
