@@ -11,4 +11,6 @@ public interface TeamService {
 	public void registerTeam(ModelAndView mav);
 	public void idCheck(ModelAndView mav);
 	public void teamIdCheck(ModelAndView mav);
+	public void goTeamPage(ModelAndView mav);
+	public void viewTeamMemberInfo(ModelAndView mav);
 }

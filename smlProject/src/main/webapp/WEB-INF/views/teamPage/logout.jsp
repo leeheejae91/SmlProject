@@ -11,6 +11,7 @@
 <body>
 	<c:remove var="teamGrade" scope="session"/>
 	<c:remove var="teamId" scope="session"/>
+	<c:remove var="teamName" scope="session"/>
 	
 	<script>
 		alert("로그아웃 성공");

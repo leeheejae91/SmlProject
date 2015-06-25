@@ -1,5 +1,6 @@
 package com.sml.team.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sml.member.dto.MemberDto;
 import com.sml.team.dao.TeamDao;
 import com.sml.team.dto.MatchingDto;
 import com.sml.team.dto.ScheduleDto;
@@ -103,27 +105,64 @@ public class TeamServiceImpl implements TeamService{
 		String password = request.getParameter("password");
 
 		TeamDto team = dao.login(id,password);
-		System.out.println("teamteamteamteamteam!!!"+team);
-		String teamGrade = team.getTeamGrade();
-		String teamId = team.getTeamId();
 		
-		mav.addObject("teamGrade" , teamGrade);
-		mav.addObject("teamId" , teamId);
+		if(team!=null){
+			System.out.println("teamteamteamteamteam!!!"+team);
+			String teamGrade = team.getTeamGrade();
+			String teamId = team.getTeamId();
+			String teamName= team.getTeamName();
+			
+			mav.addObject("teamGrade" , teamGrade);
+			mav.addObject("teamId" , teamId);
+			mav.addObject("teamName" , teamName);
+		}
+		
 		mav.setViewName("teamPage/loginOk");
 	}
 
 	@Override
 	/**
 	 * 
-	 * @함수명 : viewTeamBoard
-	 * @작성일 : 2015. 6. 23.
-	 * @작성자 : 이한빈
-	 * @설명   : 팀컨트롤러에서 팀공지사항 보기 요청이 오면 실행되는 메소드 
+	 * @함수명 : viewSchedule
+	 * @작성일 : 2015. 6. 25.
+	 * @작성자 : 이희재
+	 * @설명   : 팀컨트롤러에서 팀스케쥴보기 요청이 오면 실행되는 메소드
 	 */
 	public void viewTeamBoard(ModelAndView mav) {
 		logger.info("Service viewTeamBoard");
-		List<TeamBoardDto> teamBoardList = dao.viewTeamBoard();
+		HashMap<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		String teamName=request.getParameter("teamName");
+		System.out.println(teamName);
+		
+		int count=dao.getBoardCount(teamName);
+		// 팀 전체 게시물 수
+		
+		int boardSize=3;
+		// 한 블록 당 출력될 게시물 수
+		
+		int blockSize=2;
+		// 한 페이지당 들어갈 블록
+		
+		int currentPage=1;
+		if(request.getParameter("currentPage")!=null){
+			currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		int startRow=(currentPage-1)*boardSize+1;
+		int endRow=startRow+boardSize-1;
+		
+		List<TeamBoardDto> teamBoardList = dao.viewTeamBoard(teamName,startRow,endRow);
+		// 팀 게시물 전체 가져오기
+		System.out.println(teamBoardList.size());
+		
+		mav.addObject("teamName",teamName);
+		mav.addObject("count", count);
+		mav.addObject("boardSize", boardSize);
+		mav.addObject("blockSize", blockSize);
+		mav.addObject("currentPage",currentPage);
 		mav.addObject("teamBoardList" , teamBoardList);
+		mav.setViewName("teamPage/teamBoard");
 	}
 	
 	@Override
@@ -168,5 +207,45 @@ public class TeamServiceImpl implements TeamService{
 		
 		int check = dao.searchMatching(matchingDto);
 		mav.addObject("check" , check);
+	}
+
+	/**
+	 * @name : teamPage
+	 * @date : 2015. 6. 25.
+	 * @author : 이희재
+	 * @description : 팀 페이지로 이동하는 함수
+	 * 					팀 명에 따라 페이지가 달라지는 함수
+	 */
+	
+	@Override
+	public void goTeamPage(ModelAndView mav) {
+		Map<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		String teamName=request.getParameter("teamName");
+		logger.info(request.getParameter("teamName"));
+		TeamDto team=dao.getTeamInfo(teamName);
+		
+		mav.addObject("team",team);
+		mav.setViewName("teamPage/teamPageMain");
+	}
+
+	/**
+	 * @name : teamPage
+	 * @date : 2015. 6. 25.
+	 * @author : 이희재
+	 * @description : 팀 멤버 페이지를 볼 수 있는 함수
+	 */
+	@Override
+	public void viewTeamMemberInfo(ModelAndView mav) {
+		Map<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		
+		String teamName=request.getParameter("teamName");
+		List<MemberDto> memberList=dao.getTeamMemberList(teamName);
+		
+		mav.addObject("teamName",teamName);
+		mav.addObject("memberList", memberList);
+		mav.setViewName("teamPage/teamMemberInfo");
+		
 	}
 }

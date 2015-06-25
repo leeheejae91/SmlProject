@@ -84,11 +84,11 @@ public class TeamController {
 	 * @작성자 : 이한빈
 	 * @설명   :  스타트페이지에서 메인페이지로 이동하는 메소드
 	 */
-	@RequestMapping(value="/teamPage.do" , method=RequestMethod.GET)
-	public String teamPage(HttpServletRequest request){
-		logger.info("TeamController teamPage");
-		return "teamPage/teamPageMain";
-	}
+//	@RequestMapping(value="/teamPage.do" , method=RequestMethod.GET)
+//	public String teamPage(HttpServletRequest request){
+//		logger.info("TeamController teamPage");
+//		return "teamPage/teamPageMain";
+//	}
 	
 	/**
 	 * @함수명 : login
@@ -139,12 +139,14 @@ public class TeamController {
 	 * @작성자 : 이한빈
 	 * @설명   :  팀게시판 보는 메소드 (팀장이랑 비회원 구분은  JSP페이지에서 JSTL로 구분 해야할듯)
 	 */
-	@RequestMapping(value="/viewTeamBoard.do" , method=RequestMethod.GET)
-	public ModelAndView viewTeamBoard(){
+	@RequestMapping(value="/teamPage/viewTeamBoard.do" , method=RequestMethod.GET)
+	public ModelAndView viewTeamBoard(HttpServletRequest request){
 		logger.info("TeamController viewTeamBoard");
-		ModelAndView mav = new ModelAndView("teamPage/teamBoard");
 		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request",request);
 		service.viewTeamBoard(mav);
+		
 		return mav;
 	}
 	
@@ -210,8 +212,37 @@ public class TeamController {
 		return mav;
 	}
 	
+	
+	/**
+	 * @name : teamPage
+	 * @date : 2015. 6. 25.
+	 * @author : 이희재
+	 * @description : 팀 페이지로 이동하는 함수
+	 * 					팀 명에 따라 달라지는 함수
+	 */
 	@RequestMapping(value="/teamPage/teamPageMain.do",method=RequestMethod.GET)
-	 public String teamPage(){
-		return "teamPage/teamPageMain";
+	 public ModelAndView teamPage(HttpServletRequest request){
+		ModelAndView mav=new ModelAndView();
+		
+		mav.addObject("request",request);
+		service.goTeamPage(mav);
+		
+		return mav;
+	}
+	
+	/**
+	 * @name : teamPage
+	 * @date : 2015. 6. 25.
+	 * @author : 이희재
+	 * @description : 팀 멤버를 볼 수 있는 페이지로 이동
+	 */
+	@RequestMapping(value="/teamPage/teamMemberInfo.do",method=RequestMethod.GET)
+	 public ModelAndView teamMemberInfo(HttpServletRequest request){
+		ModelAndView mav=new ModelAndView();
+		
+		mav.addObject("request",request);
+		service.viewTeamMemberInfo(mav);
+		
+		return mav;
 	}
 }
