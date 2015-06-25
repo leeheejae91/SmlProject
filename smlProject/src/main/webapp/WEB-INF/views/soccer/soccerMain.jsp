@@ -53,19 +53,27 @@
 				
 		</ul>	
 		
+		<c:forEach var="todayMatch" items="${todayMatchList }">
 		<ul>				
 			<li> 	
-				<span id="team1">
-					<a href=""><img alt="팀1" src=""/></a>
+				<span id="teamCode">
+					<a href=""><img alt="팀엠블럼1:${todayMatch.emblem1 }" src="${todayMatch.emblem1 }"/></a>
 				</span>
+				<span>${todayMatch.teamName1 }</span>
+				
 				<span>
 					vs
 				</span>
-				<span id="team2">
-					<a href=""><img alt="팀2" src=""/></a>
+				
+				<span id="teamcode2">
+					<a href=""><img alt="팀엠블럼2:${todayMatch.emblem2 }" src="${todayMatch.emblem2 }"/></a>
 				</span>
+				<span>${todayMatch.teamName2 }</span>
+				
+				<a href=""><span>${todayMatch.gamePlace }</span></a>
 			</li>		
 		</ul>
+		</c:forEach>
 	</div>
 	
 	

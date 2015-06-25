@@ -7,4 +7,11 @@
  	<select id="teamSearch" parameterType="String" resultType="int">
  		select teamcode from team where teamname=#{teamname}
  	</select>	
+ 	
+ 	<select id="todayMatch" resultType="java.util.HashMap">
+ 		<![CDATA[
+ 			select t1.EMBLEM as emblem1, t1.teamname as teamName1, t2.EMBLEM as emblem2, t2.teamname as teamName2, g.GAMEPLACE as gamePlace	from gamerecord g, team t1 , team t2 	where g.TEAMCODE=t1.TEAMCODE and g.TEAMCODE2=t2.TEAMCODE and g.sporttype='축구'
+ 		]]>
+ 	</select>
+ 	
  </mapper>
