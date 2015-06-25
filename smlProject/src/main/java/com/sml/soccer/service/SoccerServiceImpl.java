@@ -1,5 +1,7 @@
 package com.sml.soccer.service;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -9,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sml.record.dto.RecordDto;
+import com.sml.record.dto.TodayMatchDto;
 import com.sml.soccer.dao.SoccerDao;
 
 @Component
@@ -27,7 +31,11 @@ public class SoccerServiceImpl implements SoccerService {
 	@Override
 	public void soccerMain(ModelAndView mav) {
 		Map <String, Object> map=mav.getModel();		
-		//HttpServletRequest request=(HttpServletRequest) map.get("request");			
+		//HttpServletRequest request=(HttpServletRequest) map.get("request");	
+		
+//		List<TodayMatchDto> todayMatchList=soccerDao.todayMatch();
+		
+//		mav.addObject("todayMatchList", todayMatchList);
 		mav.setViewName("soccer/soccerMain");
 	}
 

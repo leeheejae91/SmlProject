@@ -21,6 +21,29 @@
 	<input type="button" value="전남"/>
 	<br/><br/>
 	
+	<div>
+		<span>경기 일자</span>
+		<span>경기 상태</span>
+		<span>Team A</span>
+		<span>Team B</span>
+		<span>경기 결과</span>
+		<span>경기장</span>
+		<span>심판 이름</span>
+	</div>
+	<br/><br/>
+	
+	<c:forEach var="record" items="${recordList}">
+		<c:set var="temp" value="${record}"></c:set>
+		<div>
+			<span>${temp.GAMEDATE}</span>
+			<span>${temp.GAMESTATE}</span>
+			<span><a href="">${temp.TEAM1}</a></span>
+			<span><a href="">${temp.TEAM2}</a></span>
+			<span>${temp.GAMERESULT}</span>
+			<span>${temp.GAMEPLACE}</span>
+			<span>${temp.REFEREENAME}</span>
+		</div>
+	</c:forEach>
 	
 </body>
 </html>

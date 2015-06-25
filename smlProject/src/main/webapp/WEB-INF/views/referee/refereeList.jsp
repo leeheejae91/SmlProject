@@ -36,18 +36,24 @@
 	</div>
 	
 	<!-- Referee List -->
-	<div>	
-		<c:forEach var="referee" items="${refereeList}">				
-			<div>
-				<ul>
-					<li><img alt="${referee.refereePicture }" src=""/></li>
-					<li>심판이름 ${referee.refereeName }</li>
-					<li>심판나이 ${referee.refereeBirth }</li>
-					<li>심판지역 ${referee.refereeAddress }</li>
-				</ul>			
-			</div>
-		</c:forEach>															
-	</div>
+	<c:if test="${teamList==null}">
+		<div>존재하는 심판이 없습니다.</div>
+	</c:if>
+	
+	<c:if test="${refereeList!=null}">
+		<div>	
+			<c:forEach var="referee" items="${refereeList}">				
+				<div>
+					<ul>
+						<li><img alt="${referee.refereePicture }" src=""/></li>
+						<li>심판이름 ${referee.refereeName }</li>
+						<li>심판나이 ${referee.refereeBirth }</li>
+						<li>심판지역 ${referee.refereeAddress }</li>
+					</ul>			
+				</div>
+			</c:forEach>															
+		</div>	
+	</c:if>
 	
 	<!-- 페이지 번호 -->
 	<center>
