@@ -7,19 +7,9 @@
 	
 	<select id="getManageTeamCount" resultType="int">
 		select count(*) from team
-	</select>
-	
-	<select id="getManageTeamList" resultType="com.sml.team.dto.TeamDto">
-		<![CDATA[
-			select * from 
-				(select rownum rnum,a.* from
-					(select * from team order by teamCode desc)a)
-				where rnum>=#{startRow} and rnum<=#{endRow}
-		]]>
-	
 	</select>	
 	
-	<select id="getManageMemberList" resultType="com.sml.member.dto.MemberDto">
+	<select id="getManageMap" resultType="java.util.HashMap">
 		<![CDATA[
 			select * from 
 				(select rownum rnum,a.* from
