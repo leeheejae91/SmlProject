@@ -33,9 +33,9 @@ public class SoccerServiceImpl implements SoccerService {
 		Map <String, Object> map=mav.getModel();		
 		//HttpServletRequest request=(HttpServletRequest) map.get("request");	
 		
-		List<TodayMatchDto> todayMatchList=soccerDao.todayMatch();
+//		List<TodayMatchDto> todayMatchList=soccerDao.todayMatch();
 		
-		mav.addObject("todayMatchList", todayMatchList);
+//		mav.addObject("todayMatchList", todayMatchList);
 		mav.setViewName("soccer/soccerMain");
 	}
 
