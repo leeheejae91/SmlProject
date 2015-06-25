@@ -1,5 +1,11 @@
 package com.sml.referee.dto;
 
+/**
+ * @name : RefereeDto
+ * @date : 2015. 6. 23.
+ * @author : 변형린
+ * @description : 심판 정보 DTO
+ */
 public class RefereeDto {
 	private int refereeNumber;
 	private String refereeName;

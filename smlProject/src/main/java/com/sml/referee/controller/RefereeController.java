@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sml.referee.dto.RefereeDto;
 import com.sml.referee.service.RefereeService;
 
+
 @Controller
 public class RefereeController {
 	private final Logger logger=Logger.getLogger(this.getClass().getName());
@@ -21,6 +22,12 @@ public class RefereeController {
 	@Autowired
 	private RefereeService refereeService;	
 	
+	/**
+	 * @name : refereeList
+	 * @date : 2015. 6. 23.
+	 * @author : 변형린
+	 * @description : 심판 현황 페이지 이동 메소드
+	 */
 	@RequestMapping(value="/referee/refereeList.do", method=RequestMethod.GET)
 	public ModelAndView refereeList(HttpServletRequest request, HttpServletResponse response){
 		logger.info("Controller/refereeList---------");
@@ -32,7 +39,14 @@ public class RefereeController {
 		
 		return mav;
 	}	
-		
+	
+	
+	/**
+	 * @name : registerReferee
+	 * @date : 2015. 6. 23.
+	 * @author : 변형린
+	 * @description : 심판 등록 신청 페이지로 이동하는 메소드
+	 */
 	@RequestMapping(value="/referee/registerReferee.do", method=RequestMethod.GET)
 	public ModelAndView registerReferee(HttpServletRequest request, HttpServletResponse response){
 		logger.info("Controller/registerReferee---------");
@@ -45,6 +59,13 @@ public class RefereeController {
 		return mav;
 	}	
 	
+	
+	/**
+	 * @name : registerRefereeOk
+	 * @date : 2015. 6. 23.
+	 * @author : 변형린
+	 * @description : 심판 등록 신청 정보를 DB로 보내는 메소드
+	 */
 	@RequestMapping(value="/referee/registerReferee.do", method=RequestMethod.POST)
 	public ModelAndView registerRefereeOk(HttpServletRequest request, HttpServletResponse response, RefereeDto refereeDto){
 		logger.info("Controller/registerRefereeOk---------");
