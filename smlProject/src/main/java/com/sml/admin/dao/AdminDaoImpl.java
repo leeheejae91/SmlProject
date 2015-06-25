@@ -26,14 +26,15 @@ public class AdminDaoImpl implements AdminDao {
 	
 	@Override
 	public int getManageTeamCount() {
-		
 		return sqlSession.selectOne("dao.adminDaoMapper.getManageTeamCount");
 	}
 
 	@Override
-	public List<HashMap<String, Object>> getManageTeam() {
-		
-		return sqlSession.selectList("dao.adminDaoMapper.getManageTeam");
+	public List<HashMap<String, Object>> getManageTeam(int startRow,int endRow){
+		HashMap<String,Object> hMap=new HashMap<String,Object>();
+		hMap.put("startRow", startRow);
+		hMap.put("endRow", endRow);
+		return sqlSession.selectList("dao.adminDaoMapper.getManageTeam",hMap);
 	}
 
 	@Override

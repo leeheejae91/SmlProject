@@ -11,9 +11,13 @@
 		]]>
 	</select>	
 	
-	<select id="getManageTeam" resultType="java.util.HashMap">
+	<select id="getManageTeam" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		<![CDATA[
-			select * from team t,teammember m where t.teamcode=m.teamcode order by t.teamcode
+		select * from
+		(select rownum as rnum, c.* from
+			(select a.emblem,a.teamname,a.teamleadername, b.* from team a, teamMember b 
+				where a.teamcode=b.teamcode) c)
+					where rnum>=#{startRow} and rnum<=#{endRow}
 		]]>
 	
 	</select>

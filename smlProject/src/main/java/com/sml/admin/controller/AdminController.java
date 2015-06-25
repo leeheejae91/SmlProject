@@ -2,6 +2,7 @@ package com.sml.admin.controller;
 
 import java.util.logging.Logger;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,7 +14,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.admin.service.AdminService;
 
+
+
 @Controller
+
 public class AdminController {
 	final Logger logger=Logger.getLogger(this.getClass().getName());
 		
@@ -37,7 +41,14 @@ public class AdminController {
 		return mav;
 	}
 	
+	/**
+	 * @함수명: manageTeamDelete
+	 * @작성일: 2015. 6. 25.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
 	@RequestMapping(value="/admin/manageTeamDelete.do",method=RequestMethod.GET)
+	
 	public ModelAndView manageTeamDelete(HttpServletRequest request, HttpServletResponse response){
 		logger.info("manageTeamDelete-------------------");
 		ModelAndView mav=new ModelAndView();
@@ -45,6 +56,12 @@ public class AdminController {
 		mav.addObject("request",request);	
 		adminService.manageTeamDelete(mav);		
 		return mav;
+	}
+	
+	@RequestMapping(value="/admin/createLeague.do",method=RequestMethod.GET)
+	public String createLeague(){
+		
+		return "admin/createLeague";
 	}
 	
 	

@@ -24,7 +24,8 @@ public class AdminServiceImpl implements AdminService{
 	@Autowired
 	private AdminDao adminDao;
 	
-	@Override
+	@Override	
+	
 	public void manageTeam(ModelAndView mav) {
 		Map<String,Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
@@ -54,7 +55,7 @@ public class AdminServiceImpl implements AdminService{
 		List<HashMap<String,Object>> containerList=new ArrayList<HashMap<String,Object>>();
 		containerList.add(manageMap);
 		
-		containerList=adminDao.getManageTeam();
+		containerList=adminDao.getManageTeam(startRow,endRow);
 			
 		mav.addObject("containerList",containerList);
 		mav.addObject("manageMap",manageMap);		
