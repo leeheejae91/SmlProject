@@ -29,7 +29,6 @@ public class RefereeDaoImpl implements RefereeDao{
 
 	@Override
 	public int refereeCount() {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne("dao.RefereeMapper.refereeCount");
 	}
 

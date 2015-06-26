@@ -26,7 +26,6 @@ public class RecordServiceImpl implements RecordService {
 	 * @description : 축구에 대한 전체 기록을 출력해오기 위함
 	 * 					하나의 dao의 함수를 이용하여 종목만 다르게하여 출력.
 	 */
-	
 	@Override
 	public void soccerGameScore(ModelAndView mav) {
 		HashMap<String, Object> hMap=mav.getModelMap();

@@ -16,12 +16,13 @@ public interface TeamDao {
 	public List<TeamBoardDto> viewTeamBoard(String teamName, int startRow, int endRow);
 	public List<ScheduleDto> viewSchedule();
 	public int searchMatching(MatchingDto matchingDto);
-
 	public int editSchedule(ScheduleDto scheduleDto,String teamId);
-	
 	public TeamDto getTeamInfo(String teamName);
-	
-	public List<MemberDto> getTeamMemberList(String teamName);
-	
+	public List<MemberDto> getTeamMemberList(String teamName,int startRow, int endRow);
 	public int getBoardCount(String teamName);
+	public TeamBoardDto getBoardDto(int boardNumber);
+	public int writeTeamBoard(TeamBoardDto board);
+	public int deleteTeamBoard(int boardNumber);
+	public int updateTeamBoard(TeamBoardDto board);
+	public int getTeamMemberCount(String name);
 }

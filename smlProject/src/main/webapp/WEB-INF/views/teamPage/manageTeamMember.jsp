@@ -41,6 +41,7 @@
 	
 	<h1>팀원 소개</h1>
 	<br/>
+	<input type="button" value="팀원 추가"/>
 	<div>
 		<span>번호</span>
 		<span>이름</span>
@@ -50,7 +51,6 @@
 		<span>전화번호</span>
 		<span>성별</span>
 	</div>
-	<br/>
 	<c:set var="count" value="${count}"></c:set>
 	<c:set var="boardSize" value="${boardSize}"></c:set>
 	<c:set var="blockSize" value="${blockSize}"></c:set>
@@ -60,6 +60,7 @@
 	<c:set var="startBlock" value="${rs*blockSize+1 }"></c:set>
 	<c:set var="endBlock" value="${startBlock+blockSize-1}"></c:set>
 	
+	<br/>
 	<c:forEach var="member" items="${teamMemberList}">
 		<div>
 			<span>${member.memberCode}</span>
@@ -69,6 +70,7 @@
 			<span>${member.memberEmail}</span>
 			<span>${member.memberPhone}</span>
 			<span>${member.memberGender}</span>
+			<span><input type="button" value="삭제" onclick=""/></span>
 		</div>
 	</c:forEach>
 	

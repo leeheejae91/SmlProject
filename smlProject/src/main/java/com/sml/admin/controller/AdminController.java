@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.admin.service.AdminService;
@@ -49,7 +48,7 @@ public class AdminController {
 	 * @함수명: manageTeamDelete
 	 * @작성일: 2015. 6. 25.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 팀관리 페이지에서 팀 삭제 기능
 	 */
 	@RequestMapping(value="/admin/manageTeamDelete.do",method=RequestMethod.GET)
 	
@@ -62,11 +61,12 @@ public class AdminController {
 		return mav;
 	}
 	
+	
 	/**
 	 * @name : manageReferee
 	 * @date : 2015. 6. 25.
 	 * @author : 변형린
-	 * @description : 
+	 * @description : 심판 관리 페이지
 	 */
 	@RequestMapping(value="/admin/manageReferee.do",method=RequestMethod.GET)
 	public ModelAndView manageReferee(HttpServletRequest request, HttpServletResponse response){
@@ -78,14 +78,13 @@ public class AdminController {
 		return mav;
 	}
 	
-	
-		/**
-		 * @name : manageReferee
-		 * @date : 2015. 6. 25.
-		 * @author : 변형린
-		 * @description : 심판관리자 페이지에서 심판 삭제
-		 */
-		@RequestMapping(value="/admin/refereeDelete.do",method=RequestMethod.GET)
+	/**
+	 * @name : manageReferee
+	 * @date : 2015. 6. 25.
+	 * @author : 변형린
+	 * @description : 심판관리자 페이지에서 심판 삭제
+	 */
+	@RequestMapping(value="/admin/refereeDelete.do",method=RequestMethod.GET)
 	public ModelAndView refereeDelete(HttpServletRequest request, HttpServletResponse response){
 		logger.info("refereeDelete-------------------");
 		ModelAndView mav=new ModelAndView();

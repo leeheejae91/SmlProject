@@ -22,6 +22,12 @@ public class AdminDaoImpl implements AdminDao {
 		return sqlSession.selectOne("dao.adminDaoMapper.getManageTeamCount");
 	}
 
+	/**
+	 * @함수명: manageTeamDelete
+	 * @작성일: 2015. 6. 25.
+	 * @작성자: 정성남
+	 * @설명 : 팀 정보 가져오기
+	 */
 	@Override
 	public List<HashMap<String, Object>> getManageTeam(int startRow,int endRow){
 		HashMap<String,Object> hMap=new HashMap<String,Object>();
@@ -30,6 +36,7 @@ public class AdminDaoImpl implements AdminDao {
 		return sqlSession.selectList("dao.adminDaoMapper.getManageTeam",hMap);
 	}
 
+	
 	@Override
 	public int manageTeamDelete(int teamCode) {
 		// TODO Auto-generated method stub
@@ -41,7 +48,7 @@ public class AdminDaoImpl implements AdminDao {
 	 * @name : refereeCount
 	 * @date : 2015. 6. 25.
 	 * @author : 변형린
-	 * @description : 심판 명수
+	 * @description : 심판 명수 가져오기
 	 */
 	@Override
 	public int refereeCount() {

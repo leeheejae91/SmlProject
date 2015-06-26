@@ -21,6 +21,7 @@ import com.sml.team.dto.ScheduleDto;
 import com.sml.team.dto.TeamBoardDto;
 import com.sml.team.dto.TeamDto;
 
+
 @Service
 public class TeamServiceImpl implements TeamService{
 	private Logger logger = Logger.getLogger(TeamServiceImpl.class.getName());
@@ -129,7 +130,7 @@ public class TeamServiceImpl implements TeamService{
 	 * @함수명 : viewSchedule
 	 * @작성일 : 2015. 6. 25.
 	 * @작성자 : 이희재
-	 * @설명   : 팀컨트롤러에서 팀스케쥴보기 요청이 오면 실행되는 메소드
+	 * @설명   : 팀 게시판에서 팀 공지사항 보기
 	 */
 	public void viewTeamBoard(ModelAndView mav) {
 		logger.info("Service viewTeamBoard");
@@ -152,6 +153,7 @@ public class TeamServiceImpl implements TeamService{
 			currentPage=Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
+		int blockCount=count/boardSize + (count%boardSize==0? 0:1);
 		int startRow=(currentPage-1)*boardSize+1;
 		int endRow=startRow+boardSize-1;
 		
@@ -159,6 +161,7 @@ public class TeamServiceImpl implements TeamService{
 		// 팀 게시물 전체 가져오기
 		System.out.println(teamBoardList.size());
 		
+		mav.addObject("blockCount", blockCount);
 		mav.addObject("teamName",teamName);
 		mav.addObject("count", count);
 		mav.addObject("boardSize", boardSize);
@@ -260,14 +263,267 @@ public class TeamServiceImpl implements TeamService{
 	 */
 	@Override
 	public void viewTeamMemberInfo(ModelAndView mav) {
+		logger.info("Service manageTeamMember");
+		HashMap<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		String teamName=request.getParameter("teamName");
+		
+		int count=dao.getTeamMemberCount(teamName);
+		// 팀 멤버 전체 수 출력
+		
+		int boardSize=3;
+		// 한 블록 당 출력될 게시물 수
+		
+		int blockSize=2;
+		// 한 페이지당 들어갈 블록
+		
+		int currentPage=1;
+		if(request.getParameter("currentPage")!=null){
+			currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		int blockCount=count/boardSize + (count%boardSize==0? 0:1);
+		int startRow=(currentPage-1)*boardSize+1;
+		int endRow=startRow+boardSize-1;
+		
+		List<MemberDto> teamMemberList = dao.getTeamMemberList(teamName,startRow,endRow);
+		
+		mav.addObject("blockCount", blockCount);
+		mav.addObject("teamName",teamName);
+		mav.addObject("count", count);
+		mav.addObject("boardSize", boardSize);
+		mav.addObject("blockSize", blockSize);
+		mav.addObject("currentPage",currentPage);
+		mav.addObject("teamMemberList" , teamMemberList);
+		mav.setViewName("teamPage/teamMemberInfo");
+	}
+
+	/**
+	 * @name : teamPage
+	 * @date : 2015. 6. 26.
+	 * @author : 이희재
+	 * @description : 게시판 읽기 함수
+	 */
+	@Override
+	public void readTeamBoard(ModelAndView mav) {
 		Map<String,Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
 		
 		String teamName=request.getParameter("teamName");
-		List<MemberDto> memberList=dao.getTeamMemberList(teamName);
+		int currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		int boardNumber=Integer.parseInt(request.getParameter("boardNumber"));
 		
-		mav.addObject("teamName",teamName);
-		mav.addObject("memberList", memberList);
-		mav.setViewName("teamPage/teamMemberInfo");
+		TeamBoardDto board=dao.getBoardDto(boardNumber);
+		
+		mav.addObject("board",board);
+		mav.addObject("teamName", teamName);
+		mav.addObject("currentPage", currentPage);
+		mav.setViewName("teamPage/readTeamBoard");
 	}
+	
+	/**
+	 * @name : TeamServiceImpl
+	 * @date : 2015. 6. 26.
+	 * @author : 이희재
+	 * @description : 팀 게시판에서 팀 관리 페이지로 이동
+	 */
+	public void manageTeamBoard(ModelAndView mav) {
+		logger.info("Service viewTeamBoard");
+		HashMap<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		String teamName=request.getParameter("teamName");
+		
+		int count=dao.getBoardCount(teamName);
+		// 팀 전체 게시물 수
+		
+		int boardSize=3;
+		// 한 블록 당 출력될 게시물 수
+		
+		int blockSize=2;
+		// 한 페이지당 들어갈 블록
+		
+		int currentPage=1;
+		if(request.getParameter("currentPage")!=null){
+			currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		int blockCount=count/boardSize + (count%boardSize==0? 0:1);
+		int startRow=(currentPage-1)*boardSize+1;
+		int endRow=startRow+boardSize-1;
+		
+		List<TeamBoardDto> teamBoardList = dao.viewTeamBoard(teamName,startRow,endRow);
+		// 팀 게시물 전체 가져오기
+		
+		mav.addObject("blockCount", blockCount);
+		mav.addObject("teamName",teamName);
+		mav.addObject("count", count);
+		mav.addObject("boardSize", boardSize);
+		mav.addObject("blockSize", blockSize);
+		mav.addObject("currentPage",currentPage);
+		mav.addObject("teamBoardList" , teamBoardList);
+		mav.setViewName("teamPage/manageTeamBoard");
+	}
+
+	/**
+	 * @name : TeamServiceImpl
+	 * @date : 2015. 6. 26.
+	 * @author : 이희재
+	 * @description : 팀 게시판에서 공지 쓰기
+	 */
+	@Override
+	public void writeTeamBoard(ModelAndView mav) {
+		logger.info("Service viewTeamBoard");
+		HashMap<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		String teamName=request.getParameter("teamName");
+		int currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		TeamDto dto=dao.getTeamInfo(teamName);
+		
+		mav.addObject("writer",dto.getTeamLeaderName());
+		mav.addObject("teamName",teamName);
+		mav.addObject("currentPage", currentPage);
+		mav.setViewName("teamPage/writeTeamBoard");
+	}
+	
+	/**
+	 * @name : TeamServiceImpl
+	 * @date : 2015. 6. 26.
+	 * @author : 이희재
+	 * @description : 팀 게시판에서 공지 쓰기 완료
+	 */
+	@Override
+	public void writeOkTeamBoard(ModelAndView mav) {
+		logger.info("Service writeOkTeamBoard");
+		HashMap<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		String teamName=request.getParameter("teamName");
+		int currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		
+		int teamCode=dao.getTeamInfo(teamName).getTeamCode();
+		
+		TeamBoardDto board=(TeamBoardDto) map.get("teamBoardDto");
+		board.setTeamCode(teamCode);
+		board.setBoardDate(new Date());
+		int value=dao.writeTeamBoard(board);
+		System.out.println(value);
+		
+		mav.addObject("writeValue",value);
+		mav.addObject("teamName",teamName);
+		mav.addObject("currentPage", currentPage);
+		mav.setViewName("teamPage/okTeamBoard");
+	}
+
+	/**
+	 * @name : TeamServiceImpl
+	 * @date : 2015. 6. 26.
+	 * @author : 이희재
+	 * @description : 팀 게시판에서 공지 삭제
+	 */
+	
+	@Override
+	public void deleteTeamBoard(ModelAndView mav) {
+		HashMap<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		String teamName=request.getParameter("teamName");
+		int currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		int boardNumber=Integer.parseInt(request.getParameter("boardNumber"));
+		
+		int deleteValue=dao.deleteTeamBoard(boardNumber);
+		
+		mav.addObject("teamName", teamName);
+		mav.addObject("deleteValue", deleteValue);
+		mav.addObject("currentPage",currentPage);
+		mav.setViewName("teamPage/okTeamBoard");
+	}
+
+	/**
+	 * @name : TeamServiceImpl
+	 * @date : 2015. 6. 26.
+	 * @author : 이희재
+	 * @description : 팀 게시판에서 공지 수정을 위한 불러오기
+	 */
+	
+	@Override
+	public void updateTeamBoard(ModelAndView mav) {
+		HashMap<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		String teamName=request.getParameter("teamName");
+		int currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		int boardNumber=Integer.parseInt(request.getParameter("boardNumber"));
+		
+		TeamBoardDto board=dao.getBoardDto(boardNumber);
+		mav.addObject("teamName", teamName);
+		mav.addObject("board", board);
+		mav.addObject("currentPage",currentPage);
+		mav.setViewName("teamPage/writeTeamBoard");
+	}
+
+	/**
+	 * @name : TeamServiceImpl
+	 * @date : 2015. 6. 26.
+	 * @author : 이희재
+	 * @description : 팀 게시판에서 공지 수정완료
+	 */
+	@Override
+	public void updateOkTeamBoard(ModelAndView mav) {
+		HashMap<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		
+		String teamName=request.getParameter("teamName");
+		int currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		TeamBoardDto board=(TeamBoardDto) map.get("board");
+		board.setBoardDate(new Date());
+		
+		int updateValue=dao.updateTeamBoard(board);
+		mav.addObject("teamName", teamName);
+		mav.addObject("updateValue", updateValue);
+		mav.addObject("currentPage",currentPage);
+		mav.setViewName("teamPage/okTeamBoard");
+	}
+
+	/**
+	 * @name : TeamServiceImpl
+	 * @date : 2015. 6. 26.
+	 * @author : 이희재
+	 * @description : 팀 멤버 페이지로 이동
+	 */
+	
+	@Override
+	public void manageTeamMember(ModelAndView mav) {
+		logger.info("Service manageTeamMember");
+		HashMap<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		String teamName=request.getParameter("teamName");
+		
+		int count=dao.getTeamMemberCount(teamName);
+		// 팀 멤버 전체 수 출력
+		
+		int boardSize=3;
+		// 한 블록 당 출력될 멤버 수
+		
+		int blockSize=2;
+		// 한 페이지당 들어갈 블록
+		
+		int currentPage=1;
+		if(request.getParameter("currentPage")!=null){
+			currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		int blockCount=count/boardSize + (count%boardSize==0? 0:1);
+		int startRow=(currentPage-1)*boardSize+1;
+		int endRow=startRow+boardSize-1;
+		
+		List<MemberDto> teamMemberList = dao.getTeamMemberList(teamName,startRow,endRow);
+		// 팀 멤버 해당 순으로 가져오기
+		
+		mav.addObject("blockCount", blockCount);
+		mav.addObject("teamName",teamName);
+		mav.addObject("count", count);
+		mav.addObject("boardSize", boardSize);
+		mav.addObject("blockSize", blockSize);
+		mav.addObject("currentPage",currentPage);
+		mav.addObject("teamMemberList" , teamMemberList);
+		mav.setViewName("teamPage/manageTeamMember");
+	}
+	
 }
