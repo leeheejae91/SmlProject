@@ -19,7 +19,7 @@
 		<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
 		<property name="mapperLocations">
 			<list>
-				<value>classpath:com/sml/team/dao/TeamMapper.xml</value>
+			
 
 			</list>
 		</property>

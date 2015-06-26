@@ -66,7 +66,10 @@
 	
 	<br/><br/>
 	<span>리그요일</span>
-	<input type="text" id="startLeagueDay"></input>
+	<span>Sat</span>
+	<input type="radio" id="leagueDay1" value="sat">
+	<span>Sun</span>
+	<input type="radio" id="leagueDay2" value="sun">
 	<br/><br/>
 	
 	<span>리그시간</span>
