@@ -1,6 +1,9 @@
 package com.sml.team.service;
 
+
+import java.util.Date;
 import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
@@ -210,13 +213,33 @@ public class TeamServiceImpl implements TeamService{
 	}
 
 	/**
+	 * @함수명:editSchedule
+	 * @작성일:2015. 6. 25.
+	 * @작성자:조영석
+	 * @설명문:일정 입력 데이터처리를 위한 메소드 
+	 */
+	@Override
+	public void editSchedule(ModelAndView mav) {
+		Map<String , Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		ScheduleDto scheduleDto=(ScheduleDto)map.get("scheduleDto");
+		
+		String teamId=request.getParameter("teamId");
+		
+		System.out.println("teamIdteamIdteamId:"+teamId);
+		scheduleDto.setScheduleDate(new Date());
+		
+		int check=dao.editSchedule(scheduleDto,teamId);
+		System.out.println("editCheck::"+check);
+	}
+	
+	/**
 	 * @name : teamPage
 	 * @date : 2015. 6. 25.
 	 * @author : 이희재
 	 * @description : 팀 페이지로 이동하는 함수
 	 * 					팀 명에 따라 페이지가 달라지는 함수
 	 */
-	
 	@Override
 	public void goTeamPage(ModelAndView mav) {
 		Map<String,Object> map=mav.getModelMap();
@@ -246,6 +269,5 @@ public class TeamServiceImpl implements TeamService{
 		mav.addObject("teamName",teamName);
 		mav.addObject("memberList", memberList);
 		mav.setViewName("teamPage/teamMemberInfo");
-		
 	}
 }

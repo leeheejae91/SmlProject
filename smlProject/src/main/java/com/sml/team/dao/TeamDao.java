@@ -16,7 +16,12 @@ public interface TeamDao {
 	public List<TeamBoardDto> viewTeamBoard(String teamName, int startRow, int endRow);
 	public List<ScheduleDto> viewSchedule();
 	public int searchMatching(MatchingDto matchingDto);
+
+	public int editSchedule(ScheduleDto scheduleDto,String teamId);
+	
 	public TeamDto getTeamInfo(String teamName);
+	
 	public List<MemberDto> getTeamMemberList(String teamName);
+	
 	public int getBoardCount(String teamName);
 }

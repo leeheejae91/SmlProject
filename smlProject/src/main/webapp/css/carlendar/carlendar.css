@@ -1,0 +1,19 @@
+@CHARSET "UTF-8";
+
+td,div,input,textarea,select,iframe{
+	  font-size:12; font-family:나눔고딕; color:#400040;
+}
+.sfont { 
+	font-family:tahoma; font-size:10; 
+}
+.sgfont { 
+	font-family:tahoma; font-size:10; color:#bbbbbb; 
+}
+
+.srfont { 
+	font-family:tahoma; font-size:10; color:#ff0000; 
+}
+
+.srgfont {
+	font-family:tahoma; font-size:10; color:#ff8989; 
+}

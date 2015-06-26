@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.team.dto.MatchingDto;
+import com.sml.team.dto.ScheduleDto;
 import com.sml.team.service.TeamService;
 
 @Controller
@@ -212,6 +213,47 @@ public class TeamController {
 		return mav;
 	}
 	
+	
+	/**
+	 * @함수명:teamSchedule
+	 * @작성일:2015. 6. 25.
+	 * @작성자:조영석
+	 * @설명문:스케쥴관리용 달력 jsp페이지 이동 메소드
+	 */
+	@RequestMapping(value="/teamPage/teamScheduleEdit.do",method=RequestMethod.GET)	
+	public String teamSchedule(){
+		return "teamPage/teamSchedule";
+	}
+	
+	
+	/**
+	 * @함수명:Schedule
+	 * @작성일:2015. 6. 25.
+	 * @작성자:조영석
+	 * @설명문:스케쥴 세부관리용 jsp 페이지 이동메소드
+	 */
+	@RequestMapping(value="/teamPage/Schedule.do",method=RequestMethod.GET)
+	 public String Schedule(){
+		return "teamPage/editSchedule";
+	}
+	
+	
+	/**
+	 * @함수명:editSchedule
+	 * @작성일:2015. 6. 25.
+	 * @작성자:조영석
+	 * @설명문:스케쥴 일정 입력용 서비스 이동 메소드
+	 */
+	@RequestMapping(value="/teamPage/editSchedule.do",method=RequestMethod.GET)
+	public ModelAndView editSchedule(HttpServletRequest request,HttpServletResponse response,ScheduleDto scheduleDto){
+		ModelAndView mav=new ModelAndView();
+		
+		mav.addObject("request",request);
+		mav.addObject("scheduleDto",scheduleDto);
+		service.editSchedule(mav);
+		
+		return mav;
+	}
 	
 	/**
 	 * @name : teamPage
