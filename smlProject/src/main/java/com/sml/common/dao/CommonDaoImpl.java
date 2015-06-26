@@ -18,13 +18,11 @@ public class CommonDaoImpl implements CommonDao {
 
 	@Override
 	public int addCommonBoard(CommonBoardDto commonBoardDto) {
-		
 		return sqlSession.insert("dao.BoardMapper.addCommonBoard",commonBoardDto);
 	}
 
 	@Override
 	public int getCommonBoardCount() {
-		
 		return sqlSession.selectOne("dao.BoardMapper.getCommonBoardCount");
 	}
 
@@ -39,25 +37,21 @@ public class CommonDaoImpl implements CommonDao {
 
 	@Override
 	public int deleteCommonBoard(int boardNumber) {
-		
 		return sqlSession.delete("dao.BoardMapper.deleteCommonBoard",boardNumber);
 	}
 
 	@Override
 	public CommonBoardDto readCommonBoard(int boardNumber) {
-		
 		return sqlSession.selectOne("dao.BoardMapper.readCommonBoard",boardNumber);
 	}
 
 	@Override
 	public CommonBoardDto updateCommonBoardSelect(int boardNumber) {
-		
 		return sqlSession.selectOne("dao.BoardMapper.updateCommonBoardSelect",boardNumber);
 	}
 
 	@Override
 	public int updateCommonBoardOk(CommonBoardDto commonBoard) {
-		
 		return sqlSession.update("dao.BoardMapper.updateCommonBoardOk",commonBoard);
 	}
 }

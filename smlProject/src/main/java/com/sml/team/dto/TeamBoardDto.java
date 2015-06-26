@@ -9,7 +9,14 @@ public class TeamBoardDto {
 	private Date boardDate;
 	private String boardTitle;
 	private String boardContent;
+	private int rnum;
 	
+	public int getRnum() {
+		return rnum;
+	}
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
+	}
 	public int getBoardNumber() {
 		return boardNumber;
 	}

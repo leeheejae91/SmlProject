@@ -20,24 +20,21 @@ public class RecordController {
 	
 	@Autowired
 	private RecordService recordService;
+	/**
+	 * @name : RecordController
+	 * @date : 2015. 6. 23.
+	 * @author : 이희재
+	 * @description : 축구 전체 기록 출력하기.
+	 */
 	
 	@RequestMapping(value="/record/soccerGameScore.do", method=RequestMethod.GET)
 	public ModelAndView soccerGameScore(HttpServletRequest request, HttpServletResponse response){
-
-		/**
-		 * @name : RecordController
-		 * @date : 2015. 6. 23.
-		 * @author : 이희재
-		 * @description : 축구 전체 기록 출력하기.
-		 */
-		
 		logger.info("Controller/soccerGameScore---------");
 		
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("request", request);
 		
 		recordService.soccerGameScore(mav);
-		
 		return mav;
 	}
 }

@@ -36,9 +36,7 @@ public class MemberDaoImpl implements MemberDao{
 		
 	    int value=0;
 	   
-	    	
 	    sqlSession.insert("member.dao.MemberMapper.TeamInsert",Hmap);
-	    
 	    int team=sqlSession.selectOne("member.dao.MemberMapper.TeamCodeSelect",teamId);
 	    memberDto.setTeamCode(team);	
 	    value=sqlSession.insert("member.dao.MemberMapper.memberInsert",memberDto);

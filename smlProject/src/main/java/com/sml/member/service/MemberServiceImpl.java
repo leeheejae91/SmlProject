@@ -41,7 +41,6 @@ public class MemberServiceImpl implements MemberService{
 		String teamGrade="AA";
 		
 		int check=dao.insertMember(memberDto,teamId,teamPassword,teamName,sportType,teamGrade,teamReaderName,emblem);
-		//System.out.println("check:::::::::::"+check);
 		mav.addObject("check"+check);
 		mav.setViewName("member/registerResult");
 	}

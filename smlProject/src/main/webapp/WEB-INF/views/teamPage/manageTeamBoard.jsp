@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="${root }/js/teamPage/teamPage.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -39,18 +40,15 @@
 		<li><a href="${root }/viewSchedule.do">팀 스케쥴</a></li>
 	</c:if>
 	
-	<h1>팀원 소개</h1>
+	<h1>공지사항</h1>
 	<br/>
+	<input type="button" value="글 쓰기" onclick="location.href='${root}/teamPage/writeTeamBoard.do?teamName=${teamName}&currentPage=${currentPage}'"/>
 	<div>
-		<span>번호</span>
-		<span>이름</span>
-		<span>생년월일</span>
-		<span>지역</span>
-		<span>이메일</span>
-		<span>전화번호</span>
-		<span>성별</span>
+		<span>글 번호</span>
+		<span>작성자</span>
+		<span>글 제목</span>
+		<span>작성일</span>
 	</div>
-	<br/>
 	<c:set var="count" value="${count}"></c:set>
 	<c:set var="boardSize" value="${boardSize}"></c:set>
 	<c:set var="blockSize" value="${blockSize}"></c:set>
@@ -60,20 +58,20 @@
 	<c:set var="startBlock" value="${rs*blockSize+1 }"></c:set>
 	<c:set var="endBlock" value="${startBlock+blockSize-1}"></c:set>
 	
-	<c:forEach var="member" items="${teamMemberList}">
+	<c:forEach var="board" items="${teamBoardList}">
 		<div>
-			<span>${member.memberCode}</span>
-			<span>${member.memberName}</span>
-			<span>${member.memberBirth}</span>
-			<span>${member.memberRegion}</span>
-			<span>${member.memberEmail}</span>
-			<span>${member.memberPhone}</span>
-			<span>${member.memberGender}</span>
+			<span>${board.rnum}</span>
+			<span>${board.boardWriter}</span>
+			<span><a href="${root }/teamPage/readTeamBoard.do?teamName=${teamName}&currentPage=${currentPage}&boardNumber=${board.boardNumber}">${board.boardTitle}</a></span>
+			<span>${board.boardDate}</span>
+			<c:if test="${teamGrade != null }">
+				<input type="button" value="삭제" onclick="deleteBoard('${root}','${teamName}','${currentPage}','${board.boardNumber}')"/>
+			</c:if>
 		</div>
 	</c:forEach>
 	
 	<c:if test="${startBlock>blockSize}">
-		<a href="${root }/teamPage/teamMemberInfo.do?teamName=${teamName}&currentPage=${startBlock-blockSize}">[이전]</a>
+		<a href="${root }/teamPage/manageTeamBoard.do?teamName=${teamName}&currentPage=${startBlock-blockSize}">[이전]</a>
 	</c:if>
 	
 	<c:if test="${endBlock>blockCount}">
@@ -81,13 +79,12 @@
 	</c:if>
 	
 	<c:forEach var="blockNumber" begin="${startBlock}" end="${endBlock}">
-		<a href="${root }/teamPage/teamMemberInfo.do?teamName=${teamName}&currentPage=${blockNumber}">[${blockNumber}]</a>
+		<a href="${root }/teamPage/manageTeamBoard.do?teamName=${teamName}&currentPage=${blockNumber}">[${blockNumber}]</a>
 	</c:forEach>
 	
 	<c:if test="${endBlock<blockCount}">
-		<a href="${root }/teamPage/teamMemberInfo.do?teamName=${teamName}&currentPage=${startBlock+blockSize}">[다음]</a>
+		<a href="${root }/teamPage/manageTeamBoard.do?teamName=${teamName}&currentPage=${startBlock+blockSize}">[다음]</a>
 	</c:if>
-	
 	
 </body>
 </html>

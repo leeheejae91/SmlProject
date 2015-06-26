@@ -5,7 +5,6 @@ import java.util.List;
 import com.sml.referee.dto.RefereeDto;
 
 public interface RefereeDao {	
-	
 	public int refereeRegister(RefereeDto refereeDto);
 	public int refereeCount();
 	public List<RefereeDto> refereeList(int startRow, int endRow);

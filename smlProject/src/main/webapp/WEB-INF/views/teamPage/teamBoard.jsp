@@ -23,8 +23,8 @@
 		<li><a href="${root }/viewTeamRecord">팀 기록</a></li>
 		<li><a href="${root }/viewSchedule.do">팀 스케쥴</a></li>
 		<li>----------</li>
-		<li><a href="${root }/viewTeamBoard.do">공지사항관리</a></li>
-		<li><a href="${root }/manageTeamMember.do">팀원관리</a></li>
+		<li><a href="${root }/teamPage/manageTeamBoard.do?teamName=${teamName}">공지사항관리</a></li>
+		<li><a href="${root }/teamPage/manageTeamMember.do?teamName=${teamName}">팀원관리</a></li>
 		<li><a href="${root }/manageTeamSchedule.do">스케쥴관리</a></li>
 		<li><a href="${root }/startMatching.do">매칭관리</a></li>
 		<li>-----------</li>
@@ -50,7 +50,7 @@
 	<c:set var="count" value="${count}"></c:set>
 	<c:set var="boardSize" value="${boardSize}"></c:set>
 	<c:set var="blockSize" value="${blockSize}"></c:set>
-	<c:set var="blockCount" value="${count/boardSize + (count%boardSize==0? 0:1)}"></c:set>
+	<c:set var="blockCount" value="${blockCount}"></c:set>
 	<fmt:parseNumber var="rs" value="${(currentPage-1)/blockSize}" integerOnly="true"></fmt:parseNumber>
 	
 	<c:set var="startBlock" value="${rs*blockSize+1 }"></c:set>
@@ -58,9 +58,9 @@
 	
 	<c:forEach var="board" items="${teamBoardList}">
 		<div>
-			<span>${board.boardNumber}</span>
+			<span>${board.rnum}</span>
 			<span>${board.boardWriter}</span>
-			<span><a href="">${board.boardTitle}</a></span>
+			<span><a href="${root }/teamPage/readTeamBoard.do?teamName=${teamName}&currentPage=${currentPage}&boardNumber=${board.boardNumber}">${board.boardTitle}</a></span>
 			<span>${board.boardDate}</span>
 		</div>
 	</c:forEach>
@@ -74,13 +74,12 @@
 	</c:if>
 	
 	<c:forEach var="blockNumber" begin="${startBlock}" end="${endBlock}">
-		<a href="">[${blockNumber}]</a>
+		<a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}&currentPage=${blockNumber}">[${blockNumber}]</a>
 	</c:forEach>
 	
 	<c:if test="${endBlock<blockCount}">
 		<a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}&currentPage=${startBlock+blockSize}">[다음]</a>
 	</c:if>
-	
 	
 </body>
 </html>

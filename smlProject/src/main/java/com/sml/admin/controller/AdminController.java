@@ -45,7 +45,7 @@ public class AdminController {
 	 * @함수명: manageTeamDelete
 	 * @작성일: 2015. 6. 25.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 팀관리 페이지에서 팀 삭제 기능
 	 */
 	@RequestMapping(value="/admin/manageTeamDelete.do",method=RequestMethod.GET)
 	
@@ -58,6 +58,13 @@ public class AdminController {
 		return mav;
 	}
 	
+	/**
+	 * @함수명: manageTeamDelete
+	 * @작성일: 2015. 6. 25.
+	 * @작성자: 정성남
+	 * @설명 : 리그 개설 페이지
+	 */
+	
 	@RequestMapping(value="/admin/createLeague.do",method=RequestMethod.GET)
 	public String createLeague(){
 		
@@ -68,7 +75,7 @@ public class AdminController {
 	 * @name : manageReferee
 	 * @date : 2015. 6. 25.
 	 * @author : 변형린
-	 * @description : 
+	 * @description : 심판 관리 페이지
 	 */
 	@RequestMapping(value="/admin/manageReferee.do",method=RequestMethod.GET)
 	public ModelAndView manageReferee(HttpServletRequest request, HttpServletResponse response){
@@ -80,14 +87,13 @@ public class AdminController {
 		return mav;
 	}
 	
-	
-		/**
-		 * @name : manageReferee
-		 * @date : 2015. 6. 25.
-		 * @author : 변형린
-		 * @description : 심판관리자 페이지에서 심판 삭제
-		 */
-		@RequestMapping(value="/admin/refereeDelete.do",method=RequestMethod.GET)
+	/**
+	 * @name : manageReferee
+	 * @date : 2015. 6. 25.
+	 * @author : 변형린
+	 * @description : 심판관리자 페이지에서 심판 삭제
+	 */
+	@RequestMapping(value="/admin/refereeDelete.do",method=RequestMethod.GET)
 	public ModelAndView refereeDelete(HttpServletRequest request, HttpServletResponse response){
 		logger.info("refereeDelete-------------------");
 		ModelAndView mav=new ModelAndView();
