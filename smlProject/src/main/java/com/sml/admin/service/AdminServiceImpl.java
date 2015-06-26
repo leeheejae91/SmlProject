@@ -1,6 +1,7 @@
 package com.sml.admin.service;
 
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,9 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.admin.dao.AdminDao;
+import com.sml.league.dto.LeagueDto;
 import com.sml.member.dto.MemberDto;
 import com.sml.referee.dto.RefereeDto;
 import com.sml.team.dto.TeamDto;
@@ -179,5 +183,24 @@ public class AdminServiceImpl implements AdminService{
 		
 		mav.addObject("refereeList", refereeList);
 		mav.setViewName("admin/manageReferee");	
+	}
+
+	/**
+	 * @함수명: createLeague
+	 * @작성일: 2015. 6. 26.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	public void createLeague(ModelAndView mav){
+		Map<String , Object> map = mav.getModelMap();		
+		LeagueDto leagueDto = (LeagueDto) map.get("leagueDto");
+		logger.info("createLeague---------------------");
+		
+		
+		int check = adminDao.createLeague(leagueDto);
+		logger.info("check : " + check);
+		
+		mav.addObject("check" , check);
+		mav.setViewName("admin/createLeagueOk");
 	}
 }

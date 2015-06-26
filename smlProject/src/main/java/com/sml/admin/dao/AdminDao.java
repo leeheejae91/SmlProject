@@ -3,13 +3,8 @@ package com.sml.admin.dao;
 import java.util.HashMap;
 import java.util.List;
 
-
-
-
-
-import com.sml.member.dto.MemberDto;
+import com.sml.league.dto.LeagueDto;
 import com.sml.referee.dto.RefereeDto;
-import com.sml.team.dto.TeamDto;
 
 
 public interface AdminDao {
@@ -21,4 +16,5 @@ public interface AdminDao {
 	public int refereeDelete(int refereeNumber);
 	public int refereeAccept(int refereeNumber);
 	public List<RefereeDto> refereeSearch(String refereeName);
+	public int createLeague(LeagueDto leagueDto);
 }

@@ -11,4 +11,7 @@ public interface AdminService {
 	public void refereeDelete(ModelAndView mav);
 	public void refereeAccept(ModelAndView mav);
 	public void refereeSearch(ModelAndView mav);
+	
+	public void createLeague(ModelAndView mav);
+	
 }
