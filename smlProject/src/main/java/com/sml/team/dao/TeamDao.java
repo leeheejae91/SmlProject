@@ -22,5 +22,7 @@ public interface TeamDao {
 
 	public int searchMatching(MatchingDto matchingDto);
 	
+	public int editSchedule(ScheduleDto scheduleDto,String teamId);
+	
 
 }

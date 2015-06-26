@@ -1,5 +1,6 @@
 package com.sml.team.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -169,5 +170,26 @@ public class TeamServiceImpl implements TeamService{
 		
 		int check = dao.searchMatching(matchingDto);
 		mav.addObject("check" , check);
+	}
+
+	/**
+	 * @함수명:editSchedule
+	 * @작성일:2015. 6. 25.
+	 * @작성자:조영석
+	 * @설명문:일정 입력 데이터처리를 위한 메소드 
+	 */
+	@Override
+	public void editSchedule(ModelAndView mav) {
+		Map<String , Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		ScheduleDto scheduleDto=(ScheduleDto)map.get("scheduleDto");
+		
+		String teamId=request.getParameter("teamId");
+		
+		System.out.println("teamIdteamIdteamId:"+teamId);
+		scheduleDto.setScheduleDate(new Date());
+		
+		int check=dao.editSchedule(scheduleDto,teamId);
+		
 	}
 }

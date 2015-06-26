@@ -9,28 +9,47 @@
 <title>팀페이지</title>
 </head>
 <body>
-	<c:set var="teamId" value="${teamId}" scope="session"/>
-	<c:set var="teamGrade" value="${teamGrade }" scope="session"/>
-
+	<c:if test="${team!=null}">
+		<c:set var="teamId" value="${teamId}" scope="session"/>
+		<c:set var="teamGrade" value="${teamGrade }" scope="session"/>
+		<c:set var="teamName" value="${teamName }" scope="session"/>
+	</c:if>
+	
+	<div>
+		<a href="${root}/start.jsp"><img alt="logo" src=""></a>
+		<a href="${root}/start.jsp">SML Korea</a>
+	</div>
+	
+	<c:if test="${team==null}">
+		<div style="text-align:center;">
+			<h1>SML KOREA</h1>
+			<br/>
+			<h6>해당 팀이 존재하지 않습니다.</h6>
+		</div>
+	</c:if>
+	
 	<div>
 		SML KOREA 
 		<ul>
 			<c:if test="${teamGrade != null }">
 				<li>${teamId }님</li>
-				<li><a href="${root }/start.jsp">메인</a></li>
-				<li><a href="${root }/teamMemberInfo.do">팀원소개</a></li>
-				<li><a href="${root }/viewSchedule.do">팀 스케쥴</a></li>
+				<li><a href="${root }/teamPage/teamPageMain.do?teamName=${team.teamName}">메인</a></li>
+				<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${team.teamName}">팀 공지사항</a></li>
+				<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}">팀원소개</a></li>
+				<li><a href="${root }/teamPage/teamSchedule.do">팀 스케쥴</a></li>
 				<li>----------</li>
 				<li><a href="${root }/viewTeamBoard.do">공지사항관리</a></li>
 				<li><a href="${root }/manageTeamMember.do">팀원관리</a></li>
-				<li><a href="${root }/manageTeamSchedule.do">스케쥴관리</a></li>
+				<li><a href="${root }/teamPage/teamScheduleEdit.do">스케쥴관리</a></li>
 				<li><a href="${root }/startMatching.do">매칭관리</a></li>
 				<li>-----------</li>
 				<li><a href="${root}/teamPage/logout.do?teamId='${teamId}'">로그아웃</a></li>
 		  	</c:if>
 		  	
 		  	<c:if test="${teamGrade == null }">
-				<li><a href="${root }/start.jsp">메인</a></li>
+				<li><a href="${root }/teamPage/teamPageMain.do?teamName=${team.teamName}">메인</a></li>
+				<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${team.teamName}">팀 공지사항</a></li>
+				<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}">팀원소개</a></li>
 				<li><a href="${root }/teamMemberInfo.do">팀원소개</a></li>
 			</c:if>
 

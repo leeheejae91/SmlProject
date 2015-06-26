@@ -8,6 +8,7 @@
 	<select id="loginOk" parameterType="java.util.HashMap" resultType="com.sml.team.dto.TeamDto">
 		select TEAMGRADE,TEAMID from team where TEAMID=#{id} and TEAMPASSWORD=#{password}
 	</select>
+	
 	<select id="viewTeamBoardList" resultType="com.sml.team.dto.TeamBoardDto">
 		select * from TEAMBOARD
 	</select>
@@ -28,5 +29,11 @@
  		select teamName from team where teamId=#{teamName}
  	</select>
  	
-
+ 	<select id="scheduleTeamid" parameterType="String" resultType="int">
+ 		select teamCode from TEAMSCHEDULE where teamId=#{teamId}
+ 	</select>
+ 	
+	<insert id="insertSchedule" parameterType="com.sml.team.dto.MatchingDto">
+		insert into TEAMSCHEDULE values(teamschedule_num_sql.nextval,#{teamCode},#{scheduleType},#{scheduleDate},#{scheduleTitle},#{scheduleContent})
+	</insert>
 </mapper>
