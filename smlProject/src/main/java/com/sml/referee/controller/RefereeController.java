@@ -36,7 +36,6 @@ public class RefereeController {
 		mav.addObject("request", request);
 		
 		refereeService.refereeList(mav);
-		
 		return mav;
 	}	
 	
@@ -55,7 +54,6 @@ public class RefereeController {
 		mav.addObject("request", request);
 		
 		refereeService.registerReferee(mav);
-		
 		return mav;
 	}	
 	
@@ -75,7 +73,6 @@ public class RefereeController {
 		mav.addObject("refereeDto", refereeDto);
 		
 		refereeService.registerRefereeOk(mav);
-		
 		return mav;
 	}	
 }

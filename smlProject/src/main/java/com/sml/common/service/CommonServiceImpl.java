@@ -26,7 +26,14 @@ public class CommonServiceImpl implements CommonService {
 		mav.setViewName("/board/addCommonBoard");
 		
 	}
-
+	
+	/**
+	 * @name : CommonServiceImpl
+	 * @date : 2015. 6. 23.
+	 * @author : 정성남 
+	 * @description : 공통 게시판 글 작성 완료하기
+	 */
+	
 	@Override
 	public void addCommonBoardOk(ModelAndView mav) {
 		logger.info("writeOk-------------");
@@ -40,6 +47,13 @@ public class CommonServiceImpl implements CommonService {
 		
 	}
 
+	/**
+	 * @name : CommonServiceImpl
+	 * @date : 2015. 6. 23.
+	 * @author : 정성남 
+	 * @description : 공통 게시판 글 목록 출력
+	 */
+	
 	@Override
 	public void adminBoard(ModelAndView mav) {
 		Map<String,Object> map=mav.getModelMap();
@@ -74,6 +88,13 @@ public class CommonServiceImpl implements CommonService {
 		mav.setViewName("board/adminBoard");
 	}
 
+	/**
+	 * @name : CommonServiceImpl
+	 * @date : 2015. 6. 23.
+	 * @author : 정성남 
+	 * @description : 공통 게시판 글 삭제하기
+	 */
+	
 	@Override
 	public void deleteCommonBoard(ModelAndView mav) {
 		Map<String,Object> map=mav.getModelMap();
@@ -86,6 +107,12 @@ public class CommonServiceImpl implements CommonService {
 		mav.setViewName("board/deleteCommonBoard");
 	}
 
+	/**
+	 * @name : CommonServiceImpl
+	 * @date : 2015. 6. 23.
+	 * @author : 정성남 
+	 * @description : 공통 게시판 글 읽기
+	 */
 	@Override
 	public void readCommonBoard(ModelAndView mav) {
 		Map<String,Object> map=mav.getModelMap();
@@ -101,6 +128,13 @@ public class CommonServiceImpl implements CommonService {
 		mav.setViewName("board/readCommonBoard");
 	}
 
+	/**
+	 * @name : CommonServiceImpl
+	 * @date : 2015. 6. 23.
+	 * @author : 정성남 
+	 * @description : 공통 게시판 글 수정하기
+	 */
+	
 	@Override
 	public void updateCommonBoardSelect(ModelAndView mav) {	
 		Map<String,Object> map=mav.getModelMap();
@@ -116,6 +150,13 @@ public class CommonServiceImpl implements CommonService {
 		mav.setViewName("board/updateCommonBoard");
 	}
 
+	/**
+	 * @name : CommonServiceImpl
+	 * @date : 2015. 6. 23.
+	 * @author : 정성남 
+	 * @description : 공통 게시판 글 수정 완료하기
+	 */
+	
 	@Override
 	public void updateCommonBoardOk(ModelAndView mav) {
 		logger.info("UpdateOKOKOKOKOK---------");

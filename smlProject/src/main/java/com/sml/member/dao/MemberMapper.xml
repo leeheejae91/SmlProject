@@ -23,4 +23,11 @@
 		insert into TeamMember values(TEAMMEMBER_MEMBERCODE_SQL.nextval,#{teamCode},#{memberName},#{memberBirth},#{memberRegion},#{memberEmail},#{memberPhone},#{memberGender})
 	</insert> 
 	
+	<select id="teamReader" parameterType="com.sml.member.dto.MemberDto">
+		select teamLeaderName from team where TEAMCODE=#{TeamCode}
+	</select>
+	
+	<insert id="updateTeamReader" parameterType="java.util.HashMap">
+		update team from set teamLeaderName=#{teamLeaderName} where TEAMCODE=#{team}
+	</insert>
 </mapper>  

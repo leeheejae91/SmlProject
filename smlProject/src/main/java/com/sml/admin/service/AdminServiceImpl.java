@@ -18,6 +18,7 @@ import com.sml.member.dto.MemberDto;
 import com.sml.referee.dto.RefereeDto;
 import com.sml.team.dto.TeamDto;
 
+
 @Component
 public class AdminServiceImpl implements AdminService{
 	final Logger logger=Logger.getLogger(this.getClass().getName());
@@ -25,8 +26,14 @@ public class AdminServiceImpl implements AdminService{
 	@Autowired
 	private AdminDao adminDao;
 	
-	@Override	
+	/**
+	 * @name : AdminServiceImpl
+	 * @date : 2015. 6. 26.
+	 * @author : 정성남
+	 * @description : 팀 관리 페이지
+	 */
 	
+	@Override	
 	public void manageTeam(ModelAndView mav) {
 		Map<String,Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
@@ -66,6 +73,13 @@ public class AdminServiceImpl implements AdminService{
 		mav.setViewName("admin/manageTeam");
 	}
 
+	/**
+	 * @name : AdminServiceImpl
+	 * @date : 2015. 6. 26.
+	 * @author : 정성남
+	 * @description : 팀 삭제 기능 하는 함수
+	 */
+	
 	@Override
 	public void manageTeamDelete(ModelAndView mav) {
 		Map<String,Object> map=mav.getModelMap();
@@ -134,8 +148,7 @@ public class AdminServiceImpl implements AdminService{
 		
 		mav.addObject("check", check);
 		mav.addObject("pageNumber", pageNumber);
-		mav.setViewName("referee/refereeDelete");		
-		
+		mav.setViewName("referee/refereeDelete");
 	}
 
 	/**

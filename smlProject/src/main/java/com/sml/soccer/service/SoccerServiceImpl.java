@@ -23,7 +23,6 @@ public class SoccerServiceImpl implements SoccerService {
 	
 	@Autowired
 	private SoccerDao soccerDao;
-	
 	private CommonDao commonDao;
 	
 	/**
@@ -38,7 +37,7 @@ public class SoccerServiceImpl implements SoccerService {
 		//HttpServletRequest request=(HttpServletRequest) map.get("request");	
 		
 		//금주매치
-				List<HashMap<String, Object>> todayMatchList=soccerDao.todayMatch();
+		List<HashMap<String, Object>> todayMatchList=soccerDao.todayMatch();
 				
 		//공통공지사항
 		int startRow=1;

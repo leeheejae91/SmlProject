@@ -27,7 +27,6 @@ public class TeamDaoImpl implements TeamDao{
 	 */
 	@Override
 	public String idCheck(String teamId) {
-		
 		return sqlSession.selectOne("team.dao.TeamMapper.idCheckSelect",teamId);
 	}
 
@@ -39,7 +38,6 @@ public class TeamDaoImpl implements TeamDao{
 	 */
 	@Override
 	public String teamIdCheck(String teamName) {
-
 		return sqlSession.selectOne("team.dao.TeamMapper.teamIdCheck",teamName);
 	}
 
@@ -52,10 +50,7 @@ public class TeamDaoImpl implements TeamDao{
 	 * @설명   :  서비스에서 요청받은 값을 데이터베이스에 연결시켜 값을 반환받는 메소드
 	 */
 	public TeamDto login(String id, String password) {
-//		System.out.println("id"+id+"password"+password);
-		
 		hMap = new HashMap<String , Object>();
-		
 		hMap.put("id", id);
 		hMap.put("password", password);
 		
@@ -116,12 +111,9 @@ public class TeamDaoImpl implements TeamDao{
 	@Override
 	public int editSchedule(ScheduleDto scheduleDto,String teamId) {
 		int value=0;
-		
 		int teamCode=sqlSession.selectOne("team.dao.TeamMapper.scheduleTeamid",teamId);
 		scheduleDto.setTeamCode(teamCode);
-		
 		value=sqlSession.insert("team.dao.TeamMapper.insertSchedule",scheduleDto);
-		
 		return value;
 	}
 
@@ -144,9 +136,13 @@ public class TeamDaoImpl implements TeamDao{
 	 * @description : 팀 멤버 리스트를 갖고 오기 위한 함수
 	 */
 	@Override
-	public List<MemberDto> getTeamMemberList(String teamName) {
+	public List<MemberDto> getTeamMemberList(String teamName, int startRow, int endRow) {
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("teamName", teamName);
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
 		
-		return sqlSession.selectList("team.dao.TeamMapper.getTeamMemberList",teamName);
+		return sqlSession.selectList("team.dao.TeamMapper.getTeamMemberList",map);
 	}
 
 	
@@ -158,8 +154,64 @@ public class TeamDaoImpl implements TeamDao{
 	 */
 	@Override
 	public int getBoardCount(String teamName) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne("team.dao.TeamMapper.getBoardCount",teamName);
+	}
+
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 6. 26.
+	 * @author : 이희재
+	 * @description : boardNumber를 이용한 게시물 읽기
+	 */
+	@Override
+	public TeamBoardDto getBoardDto(int boardNumber) {
+		return sqlSession.selectOne("team.dao.TeamMapper.getBoardDto", boardNumber);
+	}
+
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 6. 26.
+	 * @author : 이희재
+	 * @description : teamName과 TeamBoardDto를 이용한 공지 작성
+	 */
+	@Override
+	public int writeTeamBoard(TeamBoardDto board) {
+		return sqlSession.insert("team.dao.TeamMapper.writeTeamBoard",board);
+	}
+
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 6. 26.
+	 * @author : 이희재
+	 * @description : 팀 게시판 공지 지우기
+	 */
+	
+	@Override
+	public int deleteTeamBoard(int boardNumber) {
+		return sqlSession.delete("team.dao.TeamMapper.deleteTeamBoard", boardNumber);
+	}
+
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 6. 26.
+	 * @author : 이희재
+	 * @description : 팀 게시판 수정 완료
+	 */
+	@Override
+	public int updateTeamBoard(TeamBoardDto board) {
+		return sqlSession.update("team.dao.TeamMapper.updateTeamBoard", board);
+	}
+
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 6. 26.
+	 * @author : 이희재
+	 * @description : 팀 멤버 전체 수 출력
+	 */
+	
+	@Override
+	public int getTeamMemberCount(String name) {
+		return sqlSession.selectOne("team.dao.TeamMapper.getTeamMemberCount", name);
 	}
 	
 	

@@ -21,19 +21,6 @@
 	</div>
 	
 	<c:if test="${team==null}">
-		<div style="text-align:center;">
-			<h1>SML KOREA</h1>
-			<br/>
-			<h6>해당 팀이 존재하지 않습니다.</h6>
-		</div>
-	</c:if>
-	
-	<div>
-		<a href="${root}/start.jsp"><img alt="logo" src=""></a>
-		<a href="${root}/start.jsp">SML Korea</a>
-	</div>
-	
-	<c:if test="${team==null}">
 	<div style="text-align:center;">
 		<h1>SML KOREA</h1>
 		<br/>
@@ -52,13 +39,11 @@
 				<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${team.teamName}">팀 공지사항</a></li>
 				<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}">팀원소개</a></li>
 				<li><a href="${root }/teamPage/teamSchedule.do">팀 스케쥴</a></li>
-
 				<li><a href="${root }/viewTeamRecord">팀 기록</a></li>
-				<li><a href="${root }/viewSchedule.do">팀 스케쥴</a></li>
 
 				<li>----------</li>
-				<li><a href="${root }/viewTeamBoard.do">공지사항관리</a></li>
-				<li><a href="${root }/manageTeamMember.do">팀원관리</a></li>
+				<li><a href="${root }/teamPage/manageTeamBoard.do?teamName=${team.teamName}">공지사항관리</a></li>
+				<li><a href="${root }/teamPage/manageTeamMember.do?teamName=${team.teamName}">팀원관리</a></li>
 				<li><a href="${root }/teamPage/teamScheduleEdit.do">스케쥴관리</a></li>
 				<li><a href="${root }/startMatching.do">매칭관리</a></li>
 				<li>-----------</li>
@@ -69,11 +54,8 @@
 				<li><a href="${root }/teamPage/teamPageMain.do?teamName=${team.teamName}">메인</a></li>
 				<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${team.teamName}">팀 공지사항</a></li>
 				<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}">팀원소개</a></li>
-
-				<li><a href="${root }/teamMemberInfo.do">팀원소개</a></li>
 				<li><a href="${root }/viewSchedule.do">팀 기록</a></li>
 				<li><a href="${root }/viewSchedule.do">팀 스케쥴</a></li>
-
 			</c:if>
 
 		</ul>
