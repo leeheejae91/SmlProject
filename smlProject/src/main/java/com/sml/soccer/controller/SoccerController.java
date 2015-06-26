@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sml.common.service.CommonService;
 import com.sml.soccer.service.SoccerService;
 
 @Controller
@@ -19,7 +20,6 @@ public class SoccerController{
 	
 	@Autowired
 	private SoccerService soccerService;	
-	
 	
 	/**
 	 * @name : soccerMain
@@ -129,4 +129,17 @@ public class SoccerController{
 		
 		return mav;
 	}
+	
+	
+	@RequestMapping(value="/soccer/readCommonBoard.do", method=RequestMethod.GET)
+	public ModelAndView readCommonBoard(HttpServletRequest request, HttpServletResponse response){
+		logger.info("Controller/readCommonBoard---------");
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request", request);
+		
+		soccerService.readCommonBoard(mav);
+		
+		return mav;
+	}	
 }

@@ -58,10 +58,11 @@ public class SoccerDaoImpl implements SoccerDao {
 	 * @description : 축구페이지에 공지사항 가져오는 DAO
 	 */
 	@Override
-	public List<CommonBoardDto> commonBoard(int startRow, int endRow) {
+	public List<CommonBoardDto> commonBoard(int startRow, int endRow, int sportCode) {
 		Map<String, Integer> hMap=new HashMap<String, Integer>();
 		hMap.put("startRow", startRow);
 		hMap.put("endRow", endRow);
+		hMap.put("sportCode", sportCode);
 		return sqlSession.selectList("dao.SoccerMapper.commonBoard", hMap);
 	}
 }

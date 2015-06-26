@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.referee.dto.RefereeDto;
@@ -67,7 +68,7 @@ public class RefereeController {
 	 * @description : 심판 등록 신청 정보를 DB로 보내는 메소드
 	 */
 	@RequestMapping(value="/referee/registerReferee.do", method=RequestMethod.POST)
-	public ModelAndView registerRefereeOk(HttpServletRequest request, HttpServletResponse response, RefereeDto refereeDto){
+	public ModelAndView registerRefereeOk(MultipartHttpServletRequest request, RefereeDto refereeDto){
 		logger.info("Controller/registerRefereeOk---------");
 		
 		ModelAndView mav=new ModelAndView();

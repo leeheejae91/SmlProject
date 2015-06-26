@@ -10,4 +10,5 @@ public interface SoccerService {
 	public void soccerGameScore(ModelAndView mav);
 	public void soccerRefereeList(ModelAndView mav);
 	public void commonBoard(ModelAndView mav);
+	public void readCommonBoard(ModelAndView mav);
 }

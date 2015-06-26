@@ -12,7 +12,7 @@
 	<h3>심판 등록</h3>
 	
 	<div>
-		<form action="${root}/referee/registerReferee.do" method="post" >
+		<form action="${root}/referee/registerReferee.do" method="post" enctype="multipart/form-data">
 			<div>
 				<label class="title">지원종목</label>
 				<span class="content">
@@ -74,11 +74,12 @@
 					<input type="text" name="refereeAddress"/>
 				</span>
 			</div>
-			
+		
+			<!-- refereePicture -->
 			<div class="line">
-				<label  class="title">사진</label>
-				<span>
-					<input type="text" name="refereePicture"/>
+				<label class="title">파일명</label>
+				<span class="content">
+					<input type="file" name="file"/>
 				</span>
 			</div>
 			

@@ -1,5 +1,6 @@
 package com.sml.referee.service;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -8,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.referee.dao.RefereeDao;
@@ -64,8 +67,7 @@ public class RefereeServiceImpl implements RefereeService{
 	 */
 	@Override
 	public void registerReferee(ModelAndView mav) {
-		mav.setViewName("referee/refereeRegister");
-		
+		mav.setViewName("referee/refereeRegister");		
 	}
 
 	/**
@@ -78,9 +80,35 @@ public class RefereeServiceImpl implements RefereeService{
 	public void registerRefereeOk(ModelAndView mav) {
 		// TODO Auto-generated method stub
 		Map <String, Object> map= mav.getModelMap();
-		RefereeDto refereeDto=(RefereeDto)map.get("refereeDto");
+		MultipartHttpServletRequest request=(MultipartHttpServletRequest)map.get("request");
 		
+		RefereeDto refereeDto=(RefereeDto)map.get("refereeDto");		
 		refereeDto.setRefereeYes(0);//default=0; 수락거부
+		
+		MultipartFile upFile=request.getFile("file");
+		String fileName=upFile.getOriginalFilename();
+		String timeName=Long.toString(System.currentTimeMillis()) + "_" + fileName;
+		long fileSize=upFile.getSize();
+		
+		logger.info("fileName" + fileName);
+		logger.info("fileSize" + fileSize);
+		logger.info("timeName" + timeName);
+		
+		if(fileSize!=0){
+			try{
+				String dir="C:\\Users\\kosta\\git\\SmlProject\\smlProject\\src\\main\\webapp\\img\\refereeImg";
+				//String dir=request.getSession().getServletContext().getRealPath("/img/refereeImg");
+				
+				logger.info("dir" + dir);
+				
+				File file=new File(dir, timeName);	
+				upFile.transferTo(file);
+				refereeDto.setRefereePicture(file.getName());
+				logger.info("file.getPath() : " + file.getName());
+			}catch(Exception e){
+				logger.info("파일 입출력 에러:" + e);
+			}
+		}
 		int check=refereeDao.refereeRegister(refereeDto);
 		
 		mav.addObject("check", check);

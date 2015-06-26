@@ -24,7 +24,7 @@
  	
  	<select resultType="com.sml.common.dto.CommonBoardDto" parameterType="java.util.Map" id="commonBoard">
 		<![CDATA[ 
-			select * from (select rownum rnum, a.* from (select * from board order by boardDate desc)a) where rnum >=#{startRow} and rnum <=#{endRow} 
+			select * from (select rownum rnum, a.* from (select * from board where sportCode=#{sportCode} order by boardDate desc)a) where rnum >=#{startRow} and rnum <=#{endRow} 
 		]]>
 	</select>
  </mapper>

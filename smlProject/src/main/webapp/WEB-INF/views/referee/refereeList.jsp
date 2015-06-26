@@ -36,7 +36,7 @@
 	</div>
 	
 	<!-- Referee List -->
-	<c:if test="${teamList==null}">
+	<c:if test="${refereeList==null}">
 		<div>존재하는 심판이 없습니다.</div>
 	</c:if>
 	
@@ -45,7 +45,8 @@
 			<c:forEach var="referee" items="${refereeList}">				
 				<div>
 					<ul>
-						<li><img alt="${referee.refereePicture }" src=""/></li>
+						<img src="${root }/img/refereeImg/${referee.refereePicture}" alt="" />
+						<img src="${root }/mainTemplate/img/portfolio/1.jpg" alt="" />
 						<li>심판이름 ${referee.refereeName }</li>
 						<li>심판나이 ${referee.refereeBirth }</li>
 						<li>심판지역 ${referee.refereeAddress }</li>

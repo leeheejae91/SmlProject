@@ -10,5 +10,6 @@ public interface SoccerDao {
 	public int teamSearch(String teamName);
 	public List<HashMap<String, Object>> todayMatch();
 	public List<TeamDto> getAllTeamList(String sportType);
-	public List<CommonBoardDto> commonBoard(int startRow, int endRow);
+	public List<CommonBoardDto> commonBoard(int startRow, int endRow, int sportCode);
+	
 }
