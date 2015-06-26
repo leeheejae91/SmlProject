@@ -230,6 +230,7 @@ public class TeamServiceImpl implements TeamService{
 		scheduleDto.setScheduleDate(new Date());
 		
 		int check=dao.editSchedule(scheduleDto,teamId);
+		System.out.println("editCheck::"+check);
 	}
 	
 	/**
