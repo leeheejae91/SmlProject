@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<c:set var="root" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
@@ -39,47 +38,29 @@
 		<li><a href="${root }/viewSchedule.do">팀 스케쥴</a></li>
 	</c:if>
 	
-	<h1>공지사항</h1>
+	<h1>팀원 소개</h1>
 	<br/>
 	<div>
-		<span>글 번호</span>
-		<span>작성자</span>
-		<span>글 제목</span>
-		<span>작성일</span>
+		<span>번호</span>
+		<span>이름</span>
+		<span>생년월일</span>
+		<span>지역</span>
+		<span>이메일</span>
+		<span>전화번호</span>
+		<span>성별</span>
 	</div>
-	<c:set var="count" value="${count}"></c:set>
-	<c:set var="boardSize" value="${boardSize}"></c:set>
-	<c:set var="blockSize" value="${blockSize}"></c:set>
-	<c:set var="blockCount" value="${count/boardSize + (count%boardSize==0? 0:1)}"></c:set>
-	<fmt:parseNumber var="rs" value="${(currentPage-1)/blockSize}" integerOnly="true"></fmt:parseNumber>
-	
-	<c:set var="startBlock" value="${rs*blockSize+1 }"></c:set>
-	<c:set var="endBlock" value="${startBlock+blockSize-1}"></c:set>
-	
-	<c:forEach var="board" items="${teamBoardList}">
+	<br/>
+	<c:forEach var="member" items="${memberList}">
 		<div>
-			<span>${board.boardNumber}</span>
-			<span>${board.boardWriter}</span>
-			<span><a href="">${board.boardTitle}</a></span>
-			<span>${board.boardDate}</span>
+			<span>${member.memberCode}</span>
+			<span>${member.memberName}</span>
+			<span>${member.memberBirth}</span>
+			<span>${member.memberRegion}</span>
+			<span>${member.memberEmail}</span>
+			<span>${member.memberPhone}</span>
+			<span>${member.memberGender}</span>
 		</div>
 	</c:forEach>
-	
-	<c:if test="${startBlock>blockSize}">
-		<a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}&currentPage=${startBlock-blockSize}">[이전]</a>
-	</c:if>
-	
-	<c:if test="${endBlock>blockCount}">
-		<c:set var="endBlock" value="${blockCount}"></c:set>
-	</c:if>
-	
-	<c:forEach var="blockNumber" begin="${startBlock}" end="${endBlock}">
-		<a href="">[${blockNumber}]</a>
-	</c:forEach>
-	
-	<c:if test="${endBlock<blockCount}">
-		<a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}&currentPage=${startBlock+blockSize}">[다음]</a>
-	</c:if>
 	
 	
 </body>

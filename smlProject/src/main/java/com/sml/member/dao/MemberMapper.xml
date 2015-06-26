@@ -5,7 +5,7 @@
 
 <mapper namespace="member.dao.MemberMapper">
 	<select id="teamMemberList" resultType="com.sml.member.dto.MemberDto">
-		select * from TEAMMEMBER;
+		select * from TEAMMEMBER
 	</select>
 	
 	<insert id="TeamInsert" parameterType="java.util.HashMap">

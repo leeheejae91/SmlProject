@@ -7,10 +7,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>팀장 정보 입력</title>
-<script type="text/javascript" src="${root}/css/member/jquery.js"></script>
-<script type="text/javascript" src="${root}/css/member/jquery-ui.js"></script>
+<script type="text/javascript" src="${root}/js/member/jquery.js"></script>
+<script type="text/javascript" src="${root}/js/member/member.js"></script>
+<script type="text/javascript" src="${root}/js/member/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css"  href="${root}/css/member/jquery-ui.css"/>
-<script type="text/javascript" src="${root}/css/member/member.js"></script>
 <script type="text/javascript">
  	$(function(){
 		$("#date1").datepicker({
@@ -18,7 +18,7 @@
 			monthNames:["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
 			dayNamesMin:["일","월","화","수","목","금","토"],
 			showOn:"button",
-			buttonImage:"${root}/css/member/달력.PNG",
+			buttonImage:"${root}/js/member/달력.PNG",
 			buttonImageOnly:true,
 			changeYear:true,
 			changeMonth:true

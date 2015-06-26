@@ -37,55 +37,18 @@
 	
 	</c:if>	
 	
-	<c:forEach var="manageTeamList" items="${manageMap}">
-		<select name="sportType" >
-				<option></option>				
-				<option value="전체">전체</option>
-				<option value="축구">축구</option>
-				<option value="야구">야구</option>
-				<option value="족구">족구</option>
-				<option value="풋살">풋살</option>	
-			</select>
-		
-			<c:if test="${manageTeamList.sportType=='전체'}">
-				<script type="text/javascript">					
-				$("option:eq(0)").text("전체");					
-				</script>
-			</c:if>
-			
-			<c:if test="${manageTeamList.sportType=='축구'}">
-				<script type="text/javascript">					
-				$("option:eq(0)").text("축구");					
-				</script>
-			</c:if>
-			
-			<c:if test="${manageTeamList.sportType=='야구'}">
-				<script type="text/javascript">					
-				$("option:eq(0)").text("야구");					
-				</script>
-			</c:if>
-			
-			<c:if test="${manageTeamList.sportType=='족구'}">
-				<script type="text/javascript">					
-				$("option:eq(0)").text("족구");					
-				</script>
-			</c:if>
-			
-			<c:if test="${manageTeamList.sportType=='풋살'}">
-				<script type="text/javascript">					
-				$("option:eq(0)").text("풋살");					
-				</script>
-			</c:if>			
+	<c:forEach var="containerList" items="${containerList}">
+			<span>${containerList.SPORTTYPE}</span>
 			&nbsp;&nbsp;&nbsp;
-			<span>${manageTeamList.emblem}</span>&nbsp;&nbsp;&nbsp;		
-			<span><a href="${root }/teamPage/teamPageMain.do?teamCode=${manageTeamList.teamCode}">${manageTeamList.teamName}</a></span>&nbsp;&nbsp;&nbsp;	
-			<span>${manageTeamList.teamLeaderName}</span>&nbsp;&nbsp;&nbsp;	
-			<span>${manageTeamList.memberBirth}</span>&nbsp;&nbsp;&nbsp;	
-			<span>${manageTeamList.memberRegion}</span>&nbsp;&nbsp;&nbsp;	
-			<span>${manageTeamList.memberEmail}</span>&nbsp;&nbsp;&nbsp;	
-			<span>${manageTeamList.memberPhone}</span>&nbsp;&nbsp;&nbsp;	
-			<span>${manageTeamList.memberGender}</span>&nbsp;&nbsp;&nbsp;	
-			<a href="${root }/admin/manageTeamDelete.do?teamCode=${manageTeamList.teamCode}">[삭제]</a>	
+			<span>${containerList.EMBLEM}</span>&nbsp;&nbsp;&nbsp;		
+			<span><a href="${root }/teamPage/teamPageMain.do?teamCode=${containerList.TEAMCODE}">${containerList.TEAMNAME}</a></span>&nbsp;&nbsp;&nbsp;	
+			<span>${containerList.TEAMLEADERNAME}</span>&nbsp;&nbsp;&nbsp;	
+			<span>${containerList.MEMBERBIRTH}</span>&nbsp;&nbsp;&nbsp;	
+			<span>${containerList.MEMBERREGION}</span>&nbsp;&nbsp;&nbsp;	
+			<span>${containerList.MEMBEREMAIL}</span>&nbsp;&nbsp;&nbsp;	
+			<span>${containerList.MEMBERPHONE}</span>&nbsp;&nbsp;&nbsp;	
+			<span>${containerList.MEMBERGENDER}</span>&nbsp;&nbsp;&nbsp;	
+			<a href="${root }/admin/manageTeamDelete.do?teamCode=${containerList.TEAMCODE}">[삭제]</a>	
 			<br/>
 			<br/>
 	</c:forEach>

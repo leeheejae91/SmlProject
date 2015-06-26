@@ -57,20 +57,20 @@
 		<ul>				
 			<li> 	
 				<span id="teamCode">
-					<a href=""><img alt="팀엠블럼1:${todayMatch.emblem1 }" src="${todayMatch.emblem1 }"/></a>
+					<a href=""><img alt="팀엠블럼1:${todayMatch.EMBLEM1 }" src="${todayMatch.EMBLEM1 }"/></a>
 				</span>
-				<span>${todayMatch.teamName1 }</span>
+				<span>${todayMatch.TEAMNAME1 }</span>
 				
 				<span>
 					vs
 				</span>
 				
 				<span id="teamcode2">
-					<a href=""><img alt="팀엠블럼2:${todayMatch.emblem2 }" src="${todayMatch.emblem2 }"/></a>
+					<a href=""><img alt="팀엠블럼2:${todayMatch.EMBLEM2 }" src="${todayMatch.EMBLEM2 }"/></a>
 				</span>
-				<span>${todayMatch.teamName2 }</span>
+				<span>${todayMatch.TEAMNAME2 }</span>
 				
-				<a href=""><span>${todayMatch.gamePlace }</span></a>
+				<a href=""><span>${todayMatch.GAMEPLACE }</span></a>
 			</li>		
 		</ul>
 		</c:forEach>

@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.record.dto.RecordDto;
-import com.sml.record.dto.TodayMatchDto;
 import com.sml.soccer.dao.SoccerDao;
+import com.sml.team.dto.TeamDto;
 
 @Component
 public class SoccerServiceImpl implements SoccerService {
@@ -33,9 +33,9 @@ public class SoccerServiceImpl implements SoccerService {
 		Map <String, Object> map=mav.getModel();		
 		//HttpServletRequest request=(HttpServletRequest) map.get("request");	
 		
-//		List<TodayMatchDto> todayMatchList=soccerDao.todayMatch();
+		List<HashMap<String, Object>> todayMatchList=soccerDao.todayMatch();
 		
-//		mav.addObject("todayMatchList", todayMatchList);
+		mav.addObject("todayMatchList", todayMatchList);
 		mav.setViewName("soccer/soccerMain");
 	}
 
@@ -72,15 +72,18 @@ public class SoccerServiceImpl implements SoccerService {
 	}
 
 	/**
-	 * @name : soccerTeamList
+	 * @name : SoccerServiceImpl
 	 * @date : 2015. 6. 23.
-	 * @author : 변형린
-	 * @description : 축구팀 페이지로 이동시키는 Service 메소드
+	 * @author : 이희재
+	 * @description : 페이지 눌렀을때 전체 팀 리스트 먼저 가져오는 함수
 	 */
 	@Override
 	public void soccerTeamList(ModelAndView mav) {
-		// TODO Auto-generated method stub
 		Map <String, Object> map=mav.getModel();
+		
+		List<TeamDto> teamList=soccerDao.getAllTeamList("축구");
+		logger.info("size: " + teamList.size());
+		mav.addObject("teamList",teamList);
 		mav.setViewName("soccer/soccerTeamList");
 	}
 
@@ -92,7 +95,6 @@ public class SoccerServiceImpl implements SoccerService {
 	 */
 	@Override
 	public void soccerGameScore(ModelAndView mav) {
-		// TODO Auto-generated method stub
 		Map <String, Object> map=mav.getModel();
 		mav.setViewName("soccer/soccerGameScore");
 	}

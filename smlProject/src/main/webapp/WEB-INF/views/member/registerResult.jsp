@@ -7,13 +7,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="${root}/css/member/member.js"></script>
+<script type="text/javascript" src="${root}/js/member/member.js"></script>
 </head>
 <body>
 	<h3>결과</h3>
 		<c:if test="${check>0}">
 			<script type="text/javascript">
 				alert("가입이완료되었습니다");
+			</script>	
+		</c:if>
+		<c:if test="${check==0}">
+			<script type="text/javascript">
+				alert("가입에 실패하였습니다.");
 			</script>	
 		</c:if>
 </body>

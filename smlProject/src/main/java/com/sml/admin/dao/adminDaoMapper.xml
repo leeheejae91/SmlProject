@@ -6,17 +6,28 @@
 	
 	
 	<select id="getManageTeamCount" resultType="int">
+		<![CDATA[
 		select count(*) from team
+		]]>
 	</select>	
 	
-	<select id="getManageMap" resultType="java.util.HashMap">
+	<select id="getManageTeam" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		<![CDATA[
-			select * from 
-				(select rownum rnum,a.* from
-					(select * from member order by teamCode desc)a)
-				where rnum>=#{startRow} and rnum<=#{endRow}
+		select * from
+		(select rownum as rnum, c.* from
+			(select a.emblem,a.teamname,a.teamleadername, b.* from team a, teamMember b 
+				where a.teamcode=b.teamcode) c)
+					where rnum>=#{startRow} and rnum<=#{endRow}
 		]]>
 	
-	</select>	
+	</select>
+	
+	<delete id="manageTeamDelete" parameterType="int">
+		DELETE FROM 
+          (SELECT * 
+            FROM team ,teammember
+            WHERE team.teamcode = teammember.teamcode and team.teamcode=#{teamcode}
+          )
+	</delete>
 	
 </mapper>

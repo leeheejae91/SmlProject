@@ -26,37 +26,22 @@ public class AdminDaoImpl implements AdminDao {
 	
 	@Override
 	public int getManageTeamCount() {
-		
 		return sqlSession.selectOne("dao.adminDaoMapper.getManageTeamCount");
 	}
 
 	@Override
-	public List<HashMap<String, Object>> getManageTeam() {
-		
-		return sqlSession.selectList("dao.adminDaoMapper.getManageTeam");
-	}
-
-
-	
-/*	@Override
-	public List<TeamDto> getManageTeamList(int startRow, int endRow) {
-		Map<String,Integer> hMap=new HashMap<String,Integer>();
+	public List<HashMap<String, Object>> getManageTeam(int startRow,int endRow){
+		HashMap<String,Object> hMap=new HashMap<String,Object>();
 		hMap.put("startRow", startRow);
 		hMap.put("endRow", endRow);
-		
-		return sqlSession.selectList("dao.adminDaoMapper.getManageTeamList",hMap);
-	
+		return sqlSession.selectList("dao.adminDaoMapper.getManageTeam",hMap);
 	}
 
 	@Override
-	public List<MemberDto> getManageMemberList(int startRow, int endRow) {
-		Map<String,Integer> hMap=new HashMap<String,Integer>();
-		hMap.put("startRow", startRow);
-		hMap.put("endRow", endRow);
-		
-		return sqlSession.selectList("dao.adminDaoMapper.getManageMemberList",hMap);
-	}*/
-	
+	public int manageTeamDelete(int teamCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("dao.adminDaoMapper.manageTeamDelete",teamCode);
+	}
 
 
 }

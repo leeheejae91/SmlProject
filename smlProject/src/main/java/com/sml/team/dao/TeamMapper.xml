@@ -6,11 +6,17 @@
 <mapper namespace="team.dao.TeamMapper">
 	
 	<select id="loginOk" parameterType="java.util.HashMap" resultType="com.sml.team.dto.TeamDto">
-		select TEAMGRADE,TEAMID from team where TEAMID=#{id} and TEAMPASSWORD=#{password}
+		select * from team where TEAMID=#{id} and TEAMPASSWORD=#{password}
 	</select>
 	
-	<select id="viewTeamBoardList" resultType="com.sml.team.dto.TeamBoardDto">
-		select * from TEAMBOARD
+	<select id="viewTeamBoardList" parameterType="java.util.HashMap" resultType="com.sml.team.dto.TeamBoardDto">
+		<![CDATA[
+			select *  from 
+			(select rownum as rnum, c.* from 
+			(select a.* from TEAMBOARD a, team b where b.teamName=#{teamName} and a.teamcode=b.teamcode order by boardNumber desc) c) d
+			where rnum >= #{startRow} and rnum <=#{endRow}
+		]]>
+
 	</select>
 	
 	<select id="scheduleList" resultType="com.sml.team.dto.ScheduleDto">
@@ -29,6 +35,7 @@
  		select teamName from team where teamId=#{teamName}
  	</select>
  	
+
  	<select id="scheduleTeamid" parameterType="String" resultType="int">
  		select teamCode from TEAMSCHEDULE where teamId=#{teamId}
  	</select>
@@ -36,4 +43,17 @@
 	<insert id="insertSchedule" parameterType="com.sml.team.dto.MatchingDto">
 		insert into TEAMSCHEDULE values(teamschedule_num_sql.nextval,#{teamCode},#{scheduleType},#{scheduleDate},#{scheduleTitle},#{scheduleContent})
 	</insert>
+
+	<select id="getTeamInfo" parameterType="String" resultType="com.sml.team.dto.TeamDto">
+ 		select * from team where teamName=#{teamName}
+ 	</select>
+ 	
+ 	<select id="getTeamMemberList" parameterType="String" resultType="com.sml.member.dto.MemberDto">
+ 		select a.* from teamMember a, team b where b.teamName=#{teamName} and a.teamcode=b.teamcode
+ 	</select>
+ 	
+ 	<select id="getBoardCount" parameterType="String" resultType="int">
+ 		select count(*) from teamBoard a, team b where b.teamName=#{teamName} and a.teamcode=b.teamcode order by boardNumber asc
+ 	</select>
+
 </mapper>

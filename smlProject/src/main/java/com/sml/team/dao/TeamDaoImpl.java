@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.sml.member.dto.MemberDto;
 import com.sml.team.dto.MatchingDto;
 import com.sml.team.dto.ScheduleDto;
 import com.sml.team.dto.TeamBoardDto;
@@ -60,7 +61,7 @@ public class TeamDaoImpl implements TeamDao{
 		
 		TeamDto srt=sqlSession.selectOne("team.dao.TeamMapper.loginOk", hMap);
 				
-		System.out.println("srt"+srt);
+		System.out.println("srt : "+srt.getTeamName());
 		return srt;
 	}
 
@@ -72,8 +73,13 @@ public class TeamDaoImpl implements TeamDao{
 	 * @작성자 : 이한빈
 	 * @설명   : 서비스에서 요청받은 값을 데이터베이스에 연결시켜 팀게시판 목록 리스트를 반환 받는 메소드
 	 */
-	public List<TeamBoardDto> viewTeamBoard() {
-		return sqlSession.selectList("team.dao.TeamMapper.viewTeamBoardList");
+	public List<TeamBoardDto> viewTeamBoard(String teamName,int startRow, int endRow) {
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("teamName", teamName);
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		
+		return sqlSession.selectList("team.dao.TeamMapper.viewTeamBoardList",map);
 	}
 
 	@Override
@@ -100,6 +106,7 @@ public class TeamDaoImpl implements TeamDao{
 		return sqlSession.insert("team.dao.TeamMapper.searchMatching" , matchingDto);
 	}
 
+
 	/**
 	 * @함수명:editSchedule
 	 * @작성일:2015. 6. 25.
@@ -116,6 +123,43 @@ public class TeamDaoImpl implements TeamDao{
 		value=sqlSession.insert("team.dao.TeamMapper.insertSchedule",scheduleDto);
 
 		return value;
+	}
+
+
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 6. 25.
+	 * @author : 이희재
+	 * @description : 팀 정보를 갖고 오기 위한 함수
+	 */
+	@Override
+	public TeamDto getTeamInfo(String teamName) {
+		return sqlSession.selectOne("team.dao.TeamMapper.getTeamInfo",teamName);
+	}
+
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 6. 25.
+	 * @author : 이희재
+	 * @description : 팀 멤버 리스트를 갖고 오기 위한 함수
+	 */
+	@Override
+	public List<MemberDto> getTeamMemberList(String teamName) {
+		
+		return sqlSession.selectList("team.dao.TeamMapper.getTeamMemberList",teamName);
+	}
+
+	
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 6. 25.
+	 * @author : 이희재
+	 * @description : 페이징 기법을 위한 전체 게시물 수 출력
+	 */
+	@Override
+	public int getBoardCount(String teamName) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("team.dao.TeamMapper.getBoardCount",teamName);
 	}
 	
 	

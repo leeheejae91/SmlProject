@@ -9,20 +9,21 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="${root}/js/external/jquery-1.11.3.min.js"></script>
 <body>
-
 	<c:set var="teamGrade" value="${teamGrade}" scope="session"></c:set>
 	<c:set var="teamId" value="${teamId}"  scope="session"></c:set>
+	<c:set var="teamName" value="${teamName}" scope="session"></c:set>
 	
 	<c:if test="${teamGrade!=null}">
 		<script type="text/javascript">
 			alert("환영합니다");
-			$(location).attr("href","${root}/teamPage/teamPageMain.do"); 
+			$(location).attr("href","${root}/teamPage/teamPageMain.do?teamName=${teamName}"); 
 		</script>
 	</c:if>
 	
 	<c:if test="${teamGrade==null}">
 		<script type="text/javascript">
 			alert("아이디및 비밀번호가 잘못되었습니다");
+			$(location).attr("href","${root}/start.jsp"); 
 		</script>
 	</c:if>
 </body>

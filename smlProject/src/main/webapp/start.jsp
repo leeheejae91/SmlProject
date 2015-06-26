@@ -15,12 +15,15 @@
 <link type="text/css" href="${root }/css/external/bootstrap.min.css"/>
 </head>
 <body>
-	<h3>${root }</h3>
 	<div>
-		<a href="${root}/"><img alt="logo" src=""></a>
-		<a href="${root}/">SML Korea</a>
-		<a href="${root }/teamPage.do">teamPage</a>	
+		<a href="${root}/start.jsp"><img alt="logo" src=""></a>
+		<a href="${root}/start.jsp">SML Korea</a>
 	</div>
+	
+	<h5>팀명으로 검색 (팀페이지로 이동)</h5>
+	<form name="form">
+		<input type="text" placeholder="teamName" name="teamName"><input type="button" value="검색" onclick="teamSearch(form,'${root}')"/>
+	</form>
 	
 	<h3>about</h3>
 	<h3>sport</h3>
@@ -49,8 +52,6 @@
 		<h3>전화번호 : 02 - 123 - 4567</h3>
 		<h3>이메일 : smlKorea@sml.com</h3>
 	</div>
-	
-	
 	
 	<div>
 		<a href="${root}/admin/main.do">관리자페이지</a>
