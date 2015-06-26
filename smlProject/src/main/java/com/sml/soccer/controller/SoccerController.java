@@ -111,4 +111,22 @@ public class SoccerController{
 		
 		return mav;
 	}
+	
+	/**
+	 * @name : soccerGameScore
+	 * @date : 2015. 6. 25.
+	 * @author : 변형린
+	 * @description : 축구페이지에서 공지사항 페이지로 이동
+	 */
+	@RequestMapping(value="/soccer/commonBoard.do", method=RequestMethod.GET)
+	public ModelAndView commonBoard(HttpServletRequest request, HttpServletResponse response){
+		logger.info("Controller/commonBoard---------");
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request", request);
+		
+		soccerService.commonBoard(mav);
+		
+		return mav;
+	}
 }

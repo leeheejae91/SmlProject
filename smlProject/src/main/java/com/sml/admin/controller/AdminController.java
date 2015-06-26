@@ -64,6 +64,69 @@ public class AdminController {
 		return "admin/createLeague";
 	}
 	
+	/**
+	 * @name : manageReferee
+	 * @date : 2015. 6. 25.
+	 * @author : 변형린
+	 * @description : 
+	 */
+	@RequestMapping(value="/admin/manageReferee.do",method=RequestMethod.GET)
+	public ModelAndView manageReferee(HttpServletRequest request, HttpServletResponse response){
+		logger.info("manageReferee-------------------");
+		ModelAndView mav=new ModelAndView();
+
+		mav.addObject("request",request);	
+		adminService.manageReferee(mav);		
+		return mav;
+	}
 	
+	
+		/**
+		 * @name : manageReferee
+		 * @date : 2015. 6. 25.
+		 * @author : 변형린
+		 * @description : 심판관리자 페이지에서 심판 삭제
+		 */
+		@RequestMapping(value="/admin/refereeDelete.do",method=RequestMethod.GET)
+	public ModelAndView refereeDelete(HttpServletRequest request, HttpServletResponse response){
+		logger.info("refereeDelete-------------------");
+		ModelAndView mav=new ModelAndView();
+
+		mav.addObject("request",request);	
+		adminService.refereeDelete(mav);		
+		return mav;
+	}
+	
+		/**
+		 * @name : refereeDelete
+		 * @date : 2015. 6. 25.
+		 * @author : 변형린
+		 * @description : 심판 신청 수락
+		 */
+		@RequestMapping(value="/admin/refereeAccept.do",method=RequestMethod.GET)
+		public ModelAndView refereeAccept(HttpServletRequest request, HttpServletResponse response){
+			logger.info("refereeAccept-------------------");
+			ModelAndView mav=new ModelAndView();
+
+			mav.addObject("request",request);	
+			adminService.refereeAccept(mav);		
+			return mav;
+		}
+		
+		/**
+		 * @name : refereeAccept
+		 * @date : 2015. 6. 25.
+		 * @author : 변형린
+		 * @description : 심판 검색
+		 */
+		@RequestMapping(value="/admin/refereeSearch.do",method=RequestMethod.GET)
+		public ModelAndView refereeSearch(HttpServletRequest request, HttpServletResponse response){
+			logger.info("refereeSearch-------------------");
+			ModelAndView mav=new ModelAndView();
+
+			mav.addObject("request",request);	
+			adminService.refereeSearch(mav);		
+			return mav;
+		}
 	
 }
