@@ -3,6 +3,8 @@ package com.sml.admin.controller;
 import java.util.logging.Logger;
 
 
+
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.admin.service.AdminService;
+import com.sml.league.dto.LeagueDto;
 
 
 
@@ -58,18 +61,6 @@ public class AdminController {
 		return mav;
 	}
 	
-	/**
-	 * @함수명: manageTeamDelete
-	 * @작성일: 2015. 6. 25.
-	 * @작성자: 정성남
-	 * @설명 : 리그 개설 페이지
-	 */
-	
-	@RequestMapping(value="/admin/createLeague.do",method=RequestMethod.GET)
-	public String createLeague(){
-		
-		return "admin/createLeague";
-	}
 	
 	/**
 	 * @name : manageReferee
@@ -132,6 +123,30 @@ public class AdminController {
 
 			mav.addObject("request",request);	
 			adminService.refereeSearch(mav);		
+			return mav;
+		}
+		
+		@RequestMapping(value="/admin/createLeague.do",method=RequestMethod.GET)
+		public String createLeague(){
+			
+			return "admin/createLeague";
+		}
+		
+		/**
+		 * @함수명: manageTeamDelete
+		 * @작성일: 2015. 6. 25.
+		 * @작성자: 정성남
+		 * @설명 :
+		 */
+		@RequestMapping(value="/admin/createLeague.do",method=RequestMethod.POST)
+		public ModelAndView createLeague(HttpServletRequest request , LeagueDto leagueDto){
+			ModelAndView mav = new ModelAndView();
+			logger.info("createLeague1-------------------");
+			mav.addObject("request" , request);
+			mav.addObject("leagueDto" , leagueDto);
+			
+			adminService.createLeague(mav);
+			
 			return mav;
 		}
 	

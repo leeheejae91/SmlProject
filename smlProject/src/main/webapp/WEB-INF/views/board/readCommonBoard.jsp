@@ -30,7 +30,7 @@
 	<span>
 	<span>
 			
-		<select name="sportCode" >
+		<select name="sportCode" disabled="disabled" >
 				<option></option>				
 				<option value="0">전체</option>
 				<option value="1">축구</option>
@@ -72,16 +72,16 @@
 		</span>	
 		
 		<span class="">
-			<input type="text" name="boardWriter" value="${commonBoard.boardWriter}"/>
+			<input type="text" name="boardWriter" value="${commonBoard.boardWriter}" disabled="disabled"/>
 		</span>
 		
 		<span class="">
-			<input type="text" name="boardTitle" value="${commonBoard.boardTitle}">	
+			<input type="text" name="boardTitle" value="${commonBoard.boardTitle}" disabled="disabled">	
 		</span>	
 		
 		<br/>			
 				
-		<textarea rows="14" cols="58" name="boardContent">${commonBoard.boardContent}</textarea>
+		<textarea rows="14" cols="58" name="boardContent" disabled="disabled">${commonBoard.boardContent}</textarea>
 		
 		<br/>
 		

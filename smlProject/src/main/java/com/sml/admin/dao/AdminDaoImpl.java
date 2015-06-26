@@ -2,27 +2,14 @@ package com.sml.admin.dao;
 
 import java.util.HashMap;
 import java.util.List;
-
-
-
-
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
-
-
-
-
-
-
-
-import com.sml.member.dto.MemberDto;
+import com.sml.league.dto.LeagueDto;
 import com.sml.referee.dto.RefereeDto;
-import com.sml.team.dto.TeamDto;
 
 @Component
 public class AdminDaoImpl implements AdminDao {
@@ -113,6 +100,18 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public List<RefereeDto> refereeSearch(String refereeName) {
 		return sqlSession.selectList("dao.adminDaoMapper.refereeSearch", refereeName);
+	}
+
+	/**
+	 * @함수명: createLeague
+	 * @작성일: 2015. 6. 26.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public int createLeague(LeagueDto leagueDto) {		
+		
+		return sqlSession.insert("dao.adminDaoMapper.createLeague",leagueDto);
 	}
 
 }
