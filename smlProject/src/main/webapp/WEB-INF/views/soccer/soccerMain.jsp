@@ -80,23 +80,23 @@
 	
 	
 	<div>
-		<h3><a href="">공지사항</a></h3>
+		<h3><a href="${root }/soccer/commonBoard.do">공지사항</a></h3>
 		
 		<ul>
-			<c:forEach var="board" items="${boardList}">					
+			<c:forEach var="commonBoard" items="${commonBoardList}">					
 				<li> 	
 					<span id="date">
-						<fmt:formatDate value="${board.writeDate }" type="date" />
+						<fmt:formatDate value="${commonBoard.boardDate }" type="date" pattern="MM-dd"/>
 					</span>
 					<span id="title">
-						<a href="${root }/board/read.do?boardNumber=${board.boardNumber}">
-							${board.subject }
+						<a href="${root }/board/readCommonBoard.do?boardNumber=${commonBoard.boardNumber}">
+							${commonBoard.boardTitle }
 						</a>
 					</span>
 				</li>								
 			</c:forEach>
 		</ul>	
-	</div>	
+	</div>		
 		
 		
 		

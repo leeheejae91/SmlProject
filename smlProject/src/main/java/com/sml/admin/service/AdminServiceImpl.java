@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.admin.dao.AdminDao;
 import com.sml.member.dto.MemberDto;
+import com.sml.referee.dto.RefereeDto;
 import com.sml.team.dto.TeamDto;
 
 @Component
@@ -77,9 +78,106 @@ public class AdminServiceImpl implements AdminService{
 		mav.setViewName("admin/manageTeamDelete");
 	}
 
-		
-		
-		
 	
+	/**
+	 * @name : manageReferee
+	 * @date : 2015. 6. 25.
+	 * @author : 변형린
+	 * @description : 심판 관리 페이지 이동
+	 */
+	@Override
+	public void manageReferee(ModelAndView mav) {
+		Map<String, Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		
+		String pageNumber=request.getParameter("pageNumber");
+		if(pageNumber==null)pageNumber="1";
+		
+		int boardSize=10;
+		int currentPage=Integer.parseInt(pageNumber);
+		int startRow=(currentPage-1)*boardSize+1;
+		int endRow=currentPage*boardSize;
+		
+		int count=adminDao.refereeCount();
+		logger.info("count:" + count);
+		
+		List<RefereeDto> refereeList=null;
+		if(count>0){
+			refereeList=adminDao.refereeList(startRow, endRow);
+		}
+		logger.info("boardSize:" + refereeList.size());
+		
+		mav.addObject("refereeList", refereeList);
+		mav.addObject("count", count);
+		mav.addObject("boardSize", boardSize);
+		mav.addObject("currentPage", currentPage);
+		
+		mav.setViewName("admin/manageReferee");		
+	}
 
+	/**
+	 * @name : deleteReferee
+	 * @date : 2015. 6. 25.
+	 * @author : 변형린
+	 * @description : 심판 관리목록에서 삭제시
+	 */
+	@Override
+	public void refereeDelete(ModelAndView mav) {
+		Map<String, Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		
+		int refereeNumber=Integer.parseInt(request.getParameter("refereeNumber"));
+		int pageNumber=Integer.parseInt(request.getParameter("pageNumber"));
+		int check=adminDao.refereeDelete(refereeNumber);
+		
+		logger.info("delectcheck:" + check);
+		
+		mav.addObject("check", check);
+		mav.addObject("pageNumber", pageNumber);
+		mav.setViewName("referee/refereeDelete");		
+		
+	}
+
+	/**
+	 * @name : refereeAccept
+	 * @date : 2015. 6. 25.
+	 * @author : 변형린
+	 * @description : 심판 신청 수락
+	 */
+	@Override
+	public void refereeAccept(ModelAndView mav) {
+		Map<String, Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		
+		int refereeNumber=Integer.parseInt(request.getParameter("refereeNumber"));
+		int pageNumber=Integer.parseInt(request.getParameter("pageNumber"));
+		int check=adminDao.refereeAccept(refereeNumber);
+		
+		logger.info("delectcheck:" + check);
+		
+		mav.addObject("check", check);
+		mav.addObject("pageNumber", pageNumber);
+		mav.setViewName("referee/refereeAccept");		
+	}
+
+	/**
+	 * @name : refereeSearch
+	 * @date : 2015. 6. 25.
+	 * @author : 변형린
+	 * @description : 심판 관리페이지에서 심판 검색
+	 */
+	@Override
+	public void refereeSearch(ModelAndView mav) {
+		Map<String, Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		
+		String refereeName=(String)request.getParameter("refereeName");
+		logger.info("refereename:" + refereeName);
+		
+		List<RefereeDto> refereeList=adminDao.refereeSearch(refereeName);
+		logger.info("refereeList:" + refereeList);
+		
+		mav.addObject("refereeList", refereeList);
+		mav.setViewName("admin/manageReferee");	
+	}
 }
