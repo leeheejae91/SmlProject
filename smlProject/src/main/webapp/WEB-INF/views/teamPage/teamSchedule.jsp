@@ -18,19 +18,29 @@
   <tr height="50" bgcolor="#666666">
     <td style="color:#eeff9d;font-size:16;font-weight:bold;padding-left:10;">
       <!-- 헤더 영역 start -->
-    스케쥴 관리
+  		스케쥴관리
       <!-- 헤더 영역 end -->
     </td>
   </tr>
+            <!-- 달력 영역 start -->
+              <tr align="center" valign="bottom" height="40">
+                <td>
+                  <!-- 달력 영역 메뉴 start -->
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom:1px solid #cccccc;">
+                    <tr align="center" height="30">
+                      <td style="font-family:tahoma;font-size:18;font-weight:bold;">
+                        <span style="color:#aaaaaa;">◀</span>
+                        2009.12
+                        <span style="color:#aaaaaa;">▶</span>
+                      </td>
+                    </tr>
+                  </table>
+                  <!-- 달력 영역 메뉴 end -->
+	<!-- 달력 영역 start -->
   <tr align="center">
     <td>
       <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
         <tr align="center">
- 
-          <td width="190" valign="top" id="leftmenutd" style="display:block;">메뉴영역</td>
-          
-          <td width="10" bgcolor="#eeeeee" style="font-family:tahoma;font-size:18;border-left:1px solid #cccccc;border-right:1px solid #cccccc;cursor:hand;"
-            id="leftmenubartd" onclick="HideLeftMenu();" onmouseover="this.style.backgroundColor='#dddddd';" onmouseout="this.style.backgroundColor='';">◀</td>
           <td valign="top">
             <!-- 달력 영역 start -->
             <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
@@ -55,7 +65,7 @@
                         <span style="padding-left:3;color:#bbbbbb;">30</span>
                       </td>
                       <td valign="top" style="padding-top:3;border-top:1px solid #cccccc;border-right:1px solid #cccccc;" onclick="calendar('${root}','${teamId}')">
-                        <span style="padding-left:3;">1</span> 
+                        <span style="apadding-left:3;">1</span> 
 
                       </td>
                       <td valign="top" style="padding-top:3;border-top:1px solid #cccccc;border-right:1px solid #cccccc;" onclick="calendar('${root}','${teamId}')">
