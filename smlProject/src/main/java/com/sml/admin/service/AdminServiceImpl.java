@@ -105,7 +105,7 @@ public class AdminServiceImpl implements AdminService{
 		if(count>0){
 			refereeList=adminDao.refereeList(startRow, endRow);
 		}
-		logger.info("boardSize:" + refereeList.size());
+		//logger.info("boardSize:" + refereeList.size());
 		
 		mav.addObject("refereeList", refereeList);
 		mav.addObject("count", count);

@@ -63,7 +63,7 @@ public class SoccerServiceImpl implements SoccerService {
 		if(count>0){
 			commonBoardList=soccerDao.commonBoard(startRow, endRow, sportCode);
 		}
-		logger.info("boardSize:" + commonBoardList.size());
+		//logger.info("boardSize:" + commonBoardList.size());
 					
 		mav.addObject("boardSize", boardSize);
 		mav.addObject("currentPage", currentPage);		
@@ -196,11 +196,15 @@ public class SoccerServiceImpl implements SoccerService {
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
 		
 		int boardNumber=Integer.parseInt(request.getParameter("boardNumber"));
-		int pageNumber=Integer.parseInt(request.getParameter("pageNumber"));
+		String pageNumber=request.getParameter("pageNumber");
+		
+		if(pageNumber==null){
+			pageNumber="1";
+		}
 		
 		CommonBoardDto commonBoard=commonDao.readCommonBoard(boardNumber);
 		mav.addObject("commonBoard",commonBoard);
-		mav.addObject("pageNumber",pageNumber);
+		mav.addObject("pageNumber",Integer.parseInt(pageNumber));
 		mav.addObject("boardNumber",boardNumber);
 		mav.setViewName("soccer/soccerCommonBoardRead");
 	}

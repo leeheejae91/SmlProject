@@ -131,6 +131,12 @@ public class SoccerController{
 	}
 	
 	
+	/**
+	 * @name : readCommonBoard
+	 * @date : 2015. 6.25
+	 * @author : 변형린
+	 * @description : 축구 공지게시판 읽기
+	 */
 	@RequestMapping(value="/soccer/readCommonBoard.do", method=RequestMethod.GET)
 	public ModelAndView readCommonBoard(HttpServletRequest request, HttpServletResponse response){
 		logger.info("Controller/readCommonBoard---------");

@@ -11,51 +11,53 @@
 </head>
 <body>	
 
-	<div>	
-		<span>종목</span>
-		<span>이름</span>
-		<span>생년월일</span>
-		<span>주소</span>
-		<span>연락처</span>			
-	</div>
+	
 	
 	<c:if test="${refereeList==null }">
 		<div>	
-			<span>검색결과가 없습니다.</span>												
+			<span>심판목록이 없습니다.</span>												
 		</div>
 	</c:if>
 	
 	<c:if test="${refereeList!=null}">
 		<div>	
+			<span>종목</span>
+			<span>이름</span>
+			<span>생년월일</span>
+			<span>주소</span>
+			<span>연락처</span>			
+		</div>
+		<div>	
 			<c:forEach var="referee" items="${refereeList}">				
 				<div>	
-							<span>${referee.refereeSport }</span>
-							<span>${referee.refereeName}</span>
-							<span>${referee.refereeBirth}</span>
-							<span>${referee.refereeAddress}</span>
-							<span>${referee.refereePhoneNumber}</span>
-							<c:if test="${referee.refereeYes==0 }">
-								<input type="button" value="거절" onclick="location.href='${root}/admin/refereeDelete.do?pageNumber=${currentPage}&refereeNumber=${referee.refereeNumber }'"/>
-								<input type="button" value="수락" onclick="location.href='${root}/admin/refereeAccept.do?pageNumber=${currentPage}&refereeNumber=${referee.refereeNumber }'"/>
-								<span></span>	
-							</c:if>
-							<c:if test="${referee.refereeYes==1 }">
-								<input type="button" value="삭제" onclick="location.href='${root}/admin/refereeDelete.do?pageNumber=${currentPage}&refereeNumber=${referee.refereeNumber }'"/>
-								
-							</c:if>												
+					<span>${referee.refereeSport }</span>
+					<span>${referee.refereeName}</span>
+					<span>${referee.refereeBirth}</span>
+					<span>${referee.refereeAddress}</span>
+					<span>${referee.refereePhoneNumber}</span>
+					<c:if test="${referee.refereeYes==0 }">
+						<input type="button" value="거절" onclick="location.href='${root}/admin/refereeDelete.do?pageNumber=${currentPage}&refereeNumber=${referee.refereeNumber }'"/>
+						<input type="button" value="수락" onclick="location.href='${root}/admin/refereeAccept.do?pageNumber=${currentPage}&refereeNumber=${referee.refereeNumber }'"/>
+						<span></span>	
+					</c:if>
+					<c:if test="${referee.refereeYes==1 }">
+						<input type="button" value="삭제" onclick="location.href='${root}/admin/refereeDelete.do?pageNumber=${currentPage}&refereeNumber=${referee.refereeNumber }'"/>
+						
+					</c:if>												
 				</div>
 			</c:forEach>															
 		</div>	
+		
+		<!-- 심판 검색 -->
+		<div>
+			<form action="${root }/admin/refereeSearch.do" method="get" id="search-box" onsubmit="if(this.q.value ==' 심판 검색'){this.q.focus();return false;}">
+				<input type="text" name="refereeName" style="color: #D2D2D2;" value="심판 검색" onfocus="this.value='' "/>
+				<input type="submit" value="검색"/>
+			</form>
+		</div>
 	</c:if>
 	
-	<!-- 심판 검색 -->
-	<div>
-		<form action="${root }/admin/refereeSearch.do" method="get" id="search-box" onsubmit="if(this.q.value ==' 심판 검색'){this.q.focus();return false;}">
-			<input type="text" name="refereeName" style="color: #D2D2D2;" value="심판 검색" onfocus="this.value='' "/>
-			<input type="submit" value="검색"/>
-		</form>
-	</div>
-	
+		
 	<!-- 페이지 번호 -->
 	<center>
 		<c:if test="${count>0 }">
