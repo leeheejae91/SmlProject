@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.sml.member.dto.MemberDto;
+import com.sml.record.dto.RecordDto;
 import com.sml.team.dto.MatchingDto;
 import com.sml.team.dto.ScheduleDto;
 import com.sml.team.dto.TeamBoardDto;
@@ -236,6 +237,32 @@ public class TeamDaoImpl implements TeamDao{
 	@Override
 	public int deleteMember(int memberCode) {
 		return sqlSession.insert("team.dao.TeamMapper.deleteMember", memberCode);
+	}
+
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 해당 팀 기록 출력 
+	 */
+	@Override
+	public List<HashMap<String, Object>> recordList(String teamName, int startRow, int endRow) {
+		HashMap<String, Object> hMap=new HashMap<String, Object>();
+		hMap.put("teamName", teamName);
+		hMap.put("startRow", startRow);
+		hMap.put("endRow", endRow);
+		return sqlSession.selectList("team.dao.TeamMapper.recordList",hMap);
+	}
+
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 해당 팀 전체 기록 수 출력 
+	 */
+	@Override
+	public int getRecordCount(String teamName) {
+		return sqlSession.selectOne("team.dao.TeamMapper.getRecordCount",teamName);
 	}
 	
 	

@@ -471,4 +471,21 @@ public class TeamController {
 		
 		return mav;
 	}
+	
+	/**
+	 * @name : TeamController
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 팀원 삭제 페이지
+	 */
+	@RequestMapping(value="/teamPage/viewTeamRecord.do", method=RequestMethod.GET)
+	 public ModelAndView viewTeamRecord(HttpServletRequest request){
+		logger.info("TeamController viewTeamRecord");
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request",request);
+		service.viewTeamRecord(mav);
+		
+		return mav;
+	}
 }
