@@ -55,8 +55,7 @@ public class TeamDaoImpl implements TeamDao{
 		hMap.put("password", password);
 		
 		TeamDto srt=sqlSession.selectOne("team.dao.TeamMapper.loginOk", hMap);
-				
-		System.out.println("srt : "+srt.getTeamName());
+		
 		return srt;
 	}
 
