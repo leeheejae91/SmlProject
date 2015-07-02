@@ -31,7 +31,6 @@ public class TeamController {
 	 */
 	@RequestMapping(value="/member/registerTeam.do",method=RequestMethod.GET)
 		public String registerTeam(){
-	
 			return "member/registerTeam";
 		}
 
@@ -485,6 +484,36 @@ public class TeamController {
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("request",request);
 		service.viewTeamRecord(mav);
+		
+		return mav;
+	}
+	
+	/**
+	 * @name : TeamController
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 연고지 설정창 띄우기
+	 */
+	@RequestMapping(value="/member/searchHomeGround.do", method=RequestMethod.GET)
+	 public ModelAndView searchHomeGround(HttpServletRequest request){
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("member/searchHomeGround");
+		
+		return mav;
+	}
+	
+	/**
+	 * @name : TeamController
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 시/도에 따른 하위 주소 변경
+	 */
+	@RequestMapping(value="/member/searchRegion.do", method=RequestMethod.GET)
+	 public ModelAndView searchRegion(HttpServletRequest request){
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request",request);
+		service.searchRegion(mav);
 		
 		return mav;
 	}

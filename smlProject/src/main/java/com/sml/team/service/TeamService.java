@@ -25,5 +25,5 @@ public interface TeamService {
 	public void addMember(ModelAndView mav);
 	public void deleteMember(ModelAndView mav);
 	public void viewTeamRecord(ModelAndView mav);
-	
+	public void searchRegion(ModelAndView mav);
 }

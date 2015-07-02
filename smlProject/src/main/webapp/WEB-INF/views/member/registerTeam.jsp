@@ -7,10 +7,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>팀등록</title>
-<script type="text/javascript" src="${root}/js/member/jquery.js"></script>
 <script type="text/javascript" src="${root}/js/member/member.js"></script>
+<script type="text/javascript" src="${root}/js/member/jquery.js"></script>
 </head>
 <body>
+	<div>
+		<a href="${root}/start.jsp"><img alt="logo" src=""></a>
+		<a href="${root}/start.jsp">SML Korea</a>
+	</div>
 	<h3>팀정보입력>>팀장 정보 입력>>회원가입 완료</h3>
 	
 	<div>
@@ -38,7 +42,9 @@
 			</select>
 			
 			<br/>
-			<a>홈구장</a><input type="button" value="검색"> 
+			<a>홈구장</a>
+			<input type="text" name="homeGround">
+			<input type="button" value="지도로 찾기" onclick="searchHomeground(form,'${root}')"> 
 			<br/><br/>
 		</span>
 	

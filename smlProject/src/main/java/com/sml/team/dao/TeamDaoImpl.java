@@ -264,6 +264,22 @@ public class TeamDaoImpl implements TeamDao{
 	public int getRecordCount(String teamName) {
 		return sqlSession.selectOne("team.dao.TeamMapper.getRecordCount",teamName);
 	}
+
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 시/도 에 따른 구/군 출력
+	 */
+	@Override
+	public List<String> getGugunList(String sido) {
+		return sqlSession.selectList("team.dao.TeamMapper.getGugunList",sido);
+	}
+
+	@Override
+	public List<String> getSidoList() {
+		return sqlSession.selectList("team.dao.TeamMapper.getSidoList");
+	}
 	
 	
 	

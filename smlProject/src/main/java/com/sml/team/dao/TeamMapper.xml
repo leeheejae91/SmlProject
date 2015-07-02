@@ -114,4 +114,16 @@
 							order by gameCode desc) d )
 		]]>	
 	</select>
+	
+	<select id="getGugunList" parameterType="String" resultType="String">
+		<![CDATA[
+			select distinct(gugun) from zipcode where sido=#{sido}
+		]]>	
+	</select>
+	
+	<select id="getSidoList" parameterType="String" resultType="String">
+		<![CDATA[
+			select distinct(sido) from zipcode
+		]]>	
+	</select>
 </mapper>

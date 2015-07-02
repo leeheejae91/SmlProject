@@ -30,4 +30,8 @@
 	<insert id="updateTeamReader" parameterType="java.util.HashMap">
 		update team set teamLeaderName=#{teamLeaderName} where TEAMCODE=#{team}
 	</insert>
+	
+	<insert id="insertHomeGround" parameterType="java.util.HashMap">
+		insert into homeGround (teamCode, ground) values (#{team}, #{homeGround})
+	</insert>
 </mapper>  

@@ -31,4 +31,6 @@ public interface TeamDao {
 	public int deleteMember(int memberCode);
 	public List<HashMap<String, Object>> recordList(String teamName, int startRow, int endRow);
 	public int getRecordCount(String teamName);
+	public List<String> getGugunList(String sido);
+	public List<String> getSidoList();
 }

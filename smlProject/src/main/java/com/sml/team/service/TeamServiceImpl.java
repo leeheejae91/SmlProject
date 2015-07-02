@@ -44,11 +44,13 @@ public class TeamServiceImpl implements TeamService{
 		String teamPassword=request.getParameter("teamPassword");
 		String teamName=request.getParameter("teamName");
 		String sportType=request.getParameter("sportType");
+		String homeGround=request.getParameter("homeGround");
 		
 		mav.addObject("teamId",teamId);
 		mav.addObject("teamPassword",teamPassword);
 		mav.addObject("teamName",teamName);
 		mav.addObject("sportType",sportType);
+		mav.addObject("homeGround", homeGround);
 		mav.setViewName("member/registerMember");
 		}
 	
@@ -614,6 +616,29 @@ public class TeamServiceImpl implements TeamService{
 		mav.addObject("currentPage",currentPage);
 		mav.addObject("recordList" , recordList);
 		mav.setViewName("teamPage/teamRecord");
+	}
+
+	/**
+	 * @name : TeamServiceImpl
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 멤버 등록을 위한 지역 추출
+	 */
+	@Override
+	public void searchRegion(ModelAndView mav) {
+		HashMap<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		String sido=null;
+		List<String> list=null;
+		if(request.getParameter("sido")==null){
+			list=dao.getSidoList();
+		}else{
+			sido=request.getParameter("sido");
+			list=dao.getGugunList(sido);
+		}
+		
+		mav.addObject("list",list);
+		mav.setViewName("member/regionOption");
 	}
 	
 }

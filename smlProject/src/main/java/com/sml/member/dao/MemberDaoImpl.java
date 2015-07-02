@@ -2,6 +2,7 @@ package com.sml.member.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public int insertMember(MemberDto memberDto, String teamId,
 							String teamPassword, String teamName, String sportType,
-							String teamGrade,String teamReaderName,String emblem){
+							String teamGrade,String teamReaderName,String emblem, String homeGround){
 
 		HashMap<String,Object> Hmap=new HashMap<String,Object>();
 		Hmap.put("teamId",teamId);
@@ -33,6 +34,7 @@ public class MemberDaoImpl implements MemberDao{
 		Hmap.put("teamGrade",teamGrade);
 		Hmap.put("teamReaderName",teamReaderName);
 		Hmap.put("emblem",emblem);
+		Hmap.put("homeGround", homeGround);
 		
 	    int value=0;
 	   
@@ -50,8 +52,9 @@ public class MemberDaoImpl implements MemberDao{
 	 	    Hmap.put("team", team);
 	 	    Hmap.put("teamLeaderName", memberDto.getMemberName());
 	 	    sqlSession.update("member.dao.MemberMapper.updateTeamReader",Hmap);
-	 		
+	 	    sqlSession.insert("member.dao.MemberMapper.insertHomeGround",Hmap);
 	    }
+	    
 	    return value;
 	   
 	}
