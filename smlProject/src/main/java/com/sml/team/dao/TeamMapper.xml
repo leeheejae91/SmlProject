@@ -37,10 +37,10 @@
  	
 
  	<select id="scheduleTeamid" parameterType="String" resultType="int">
- 		select teamCode from TEAMSCHEDULE where teamId=#{teamId}
+ 		select teamCode from team where teamId=#{teamId}
  	</select>
  	
-	<insert id="insertSchedule" parameterType="com.sml.team.dto.MatchingDto">
+	<insert id="insertSchedule" parameterType="com.sml.team.dto.ScheduleDto">
 		insert into TEAMSCHEDULE values(teamschedule_num_sql.nextval,#{teamCode},#{scheduleType},#{scheduleDate},#{scheduleTitle},#{scheduleContent})
 	</insert>
 

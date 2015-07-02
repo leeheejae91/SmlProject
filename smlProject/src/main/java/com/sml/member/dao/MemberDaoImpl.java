@@ -43,10 +43,18 @@ public class MemberDaoImpl implements MemberDao{
 	    memberDto.setTeamCode(team);	
 	    value=sqlSession.insert("member.dao.MemberMapper.memberInsert",memberDto);
 	   
+	   
 	    if(value==0){
-	    	sqlSession.delete("member.dao.MemberMapper.Teamdelete",team);
+	    	sqlSession.delete("member.dao.MemberMapper.Teamdelete",memberDto);
 	    }
-
+	    
+	    String teamLeaderName= sqlSession.selectOne("member.dao.MemberMapper.teamReader",team);
+	    
+	    Hmap.put("teamLeaderName", teamLeaderName);
+	    Hmap.put("team", team);
+	    if(teamLeaderName!=null){
+	    	sqlSession.update("member.dao.MemberMapper.updateTeamReader",Hmap);
+	    }
 		return value;
 	}
 	

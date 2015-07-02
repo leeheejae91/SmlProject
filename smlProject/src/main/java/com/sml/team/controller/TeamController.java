@@ -28,6 +28,7 @@ public class TeamController {
 	 */
 	@RequestMapping(value="/member/registerTeam.do",method=RequestMethod.GET)
 		public String registerTeam(){
+	
 			return "member/registerTeam";
 		}
 
@@ -252,7 +253,7 @@ public class TeamController {
 		mav.addObject("scheduleDto",scheduleDto);
 		service.editSchedule(mav);
 		
-		return mav;
+		return null;
 	}
 	
 	/**

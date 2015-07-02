@@ -226,11 +226,14 @@ public class TeamServiceImpl implements TeamService{
 		
 		String teamId=request.getParameter("teamId");
 		
-		System.out.println("teamIdteamIdteamId:"+teamId);
 		scheduleDto.setScheduleDate(new Date());
 		
 		int check=dao.editSchedule(scheduleDto,teamId);
-		System.out.println("editCheck::"+check);
+		String title=scheduleDto.getscheduleTitle();
+		
+		mav.addObject("check",check);
+		mav.addObject("title",title);
+		mav.setViewName("teamPage/editScheduleOk");
 	}
 	
 	/**

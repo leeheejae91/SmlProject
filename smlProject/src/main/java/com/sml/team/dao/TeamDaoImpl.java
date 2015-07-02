@@ -111,7 +111,7 @@ public class TeamDaoImpl implements TeamDao{
 	 * @함수명:editSchedule
 	 * @작성일:2015. 6. 25.
 	 * @작성자:조영석
-	 * @설명문:스케쥴 일정값을 데이터베이스에 집어넣는 메소드 
+	 * @설명문:스케쥴일정 값을 데이터베이스에 집어넣는 메소드 
 	 */
 	@Override
 	public int editSchedule(ScheduleDto scheduleDto,String teamId) {
@@ -119,9 +119,13 @@ public class TeamDaoImpl implements TeamDao{
 		
 		int teamCode=sqlSession.selectOne("team.dao.TeamMapper.scheduleTeamid",teamId);
 		scheduleDto.setTeamCode(teamCode);
+<<<<<<< HEAD
 		
 		value=sqlSession.insert("team.dao.TeamMapper.insertSchedule",scheduleDto);
 
+=======
+		value=sqlSession.insert("team.dao.TeamMapper.insertSchedule",scheduleDto);
+>>>>>>> branch 'master' of https://github.com/leeheejae91/SmlProject.git
 		return value;
 	}
 
