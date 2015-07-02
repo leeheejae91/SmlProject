@@ -1,6 +1,7 @@
 package com.sml.member.dto;
 
 public class MemberDto {
+		private int rnum;
 		private int memberCode;
 		private String memberName;
 		private int teamCode;
@@ -10,6 +11,12 @@ public class MemberDto {
 		private String memberPhone;
 		private String memberGender;
 		
+		public int getRnum() {
+			return rnum;
+		}
+		public void setRnum(int rnum) {
+			this.rnum = rnum;
+		}
 		public int getMemberCode() {
 			return memberCode;
 		}

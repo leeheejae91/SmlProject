@@ -528,5 +528,49 @@ public class TeamServiceImpl implements TeamService{
 		mav.addObject("teamMemberList" , teamMemberList);
 		mav.setViewName("teamPage/manageTeamMember");
 	}
+
+	
+	/**
+	 * @name : TeamServiceImpl
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 팀 멤버 페이지로 이동
+	 */
+	
+	@Override
+	public void addMember(ModelAndView mav) {
+		HashMap<String, Object> hMap=mav.getModelMap();
+		MemberDto member=(MemberDto) hMap.get("member");
+		HttpServletRequest request=(HttpServletRequest) hMap.get("request");
+		int currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		String teamName=request.getParameter("teamName");
+		
+		int teamCode=dao.getTeamInfo(teamName).getTeamCode();
+		int memberValue=dao.addMember(member,teamCode);
+		
+		mav.addObject("currentPage",currentPage);
+		mav.addObject("memberValue",memberValue);
+		mav.setViewName("teamPage/okTeamBoard");
+	}
+
+	/**
+	 * @name : TeamServiceImpl
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 팀 멤버 삭제 서비스
+	 */
+	@Override
+	public void deleteMember(ModelAndView mav) {
+		HashMap<String, Object> hMap=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) hMap.get("request");
+		int currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		int memberCode=Integer.parseInt(request.getParameter("memberCode"));
+		
+		int deleteValue=dao.deleteMember(memberCode);
+		
+		mav.addObject("currentPage",currentPage);
+		mav.addObject("deleteMemberValue",deleteValue);
+		mav.setViewName("teamPage/okTeamBoard");
+	}
 	
 }

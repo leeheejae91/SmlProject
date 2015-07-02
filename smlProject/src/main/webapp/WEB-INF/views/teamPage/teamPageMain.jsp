@@ -7,6 +7,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>팀페이지</title>
+<script src="${root }/js/jquery/jquery.js"></script>
+<script src="${root }/js/jquery/jquery-ui.js"></script>
+<script src="${root }/js/teamPage/teamPage.js"></script>
 </head>
 <body>
 	<c:if test="${team!=null}">

@@ -82,4 +82,14 @@
 	<select id="getTeamMemberCount" parameterType="String" resultType="int">
 		select count(*) from teamMember a, team b where b.teamName=#{name} and a.teamcode=b.teamcode
 	</select>
+	
+	<insert id="addMember" parameterType="java.util.HashMap">
+		<![CDATA[
+			insert into teamMember values (teammember_membercode_sql.nextval, #{teamCode}, #{member.memberName}, sysdate, #{member.memberRegion},#{member.memberEmail}, #{member.memberPhone} , #{member.memberGender})
+		]]>	
+	</insert>
+	
+	<delete id="deleteMember" parameterType="int">
+		delete teamMember where memberCode=#{memberCode}
+	</delete>
 </mapper>

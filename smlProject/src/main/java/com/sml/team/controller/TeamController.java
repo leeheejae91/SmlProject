@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sml.member.dto.MemberDto;
 import com.sml.team.dto.MatchingDto;
 import com.sml.team.dto.ScheduleDto;
 import com.sml.team.dto.TeamBoardDto;
@@ -431,6 +432,42 @@ public class TeamController {
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("request",request);
 		service.manageTeamMember(mav);
+		
+		return mav;
+	}
+	
+
+	/**
+	 * @name : TeamController
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 팀원 추가 페이지
+	 */
+	@RequestMapping(value="/teamPage/addMember.do",method=RequestMethod.POST)
+	 public ModelAndView addMember(HttpServletRequest request, MemberDto member){
+		logger.info("TeamController addMember");
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("member",member);
+		mav.addObject("request",request);
+		service.addMember(mav);
+		
+		return mav;
+	}
+	
+	/**
+	 * @name : TeamController
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 팀원 삭제 페이지
+	 */
+	@RequestMapping(value="/teamPage/deleteMember.do",method=RequestMethod.GET)
+	 public ModelAndView deleteMember(HttpServletRequest request){
+		logger.info("TeamController addMember");
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request",request);
+		service.deleteMember(mav);
 		
 		return mav;
 	}

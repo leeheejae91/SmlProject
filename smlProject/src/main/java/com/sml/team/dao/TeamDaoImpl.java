@@ -213,6 +213,31 @@ public class TeamDaoImpl implements TeamDao{
 	public int getTeamMemberCount(String name) {
 		return sqlSession.selectOne("team.dao.TeamMapper.getTeamMemberCount", name);
 	}
+
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 팀 멤버 추가
+	 */
+	@Override
+	public int addMember(MemberDto member, int teamCode) {
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("member", member);
+		map.put("teamCode", teamCode);
+		return sqlSession.insert("team.dao.TeamMapper.addMember",map);
+	}
+
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 팀 멤버 삭제
+	 */
+	@Override
+	public int deleteMember(int memberCode) {
+		return sqlSession.insert("team.dao.TeamMapper.deleteMember", memberCode);
+	}
 	
 	
 	

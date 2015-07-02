@@ -25,4 +25,6 @@ public interface TeamDao {
 	public int deleteTeamBoard(int boardNumber);
 	public int updateTeamBoard(TeamBoardDto board);
 	public int getTeamMemberCount(String name);
+	public int addMember(MemberDto member,int teamCode);
+	public int deleteMember(int memberCode);
 }

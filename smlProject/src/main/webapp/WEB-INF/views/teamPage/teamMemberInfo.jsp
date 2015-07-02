@@ -62,7 +62,7 @@
 	
 	<c:forEach var="member" items="${teamMemberList}">
 		<div>
-			<span>${member.memberCode}</span>
+			<span>${member.rnum}</span>
 			<span>${member.memberName}</span>
 			<span>${member.memberBirth}</span>
 			<span>${member.memberRegion}</span>
