@@ -16,15 +16,15 @@
 	<div>
 	  <form action="${root}/member/registerTeam.do" method="post" name="form" onsubmit="return Check(this)">
 		<span>
-			<input type="text" name="teamId"/>
+			<input placeholder="팀 아이디" type="text" name="teamId"/>
 			<input type="button" value="중복확인" onclick="idCheck(form,'${root}')"/>	
 		</span><br/><br/>
-		<input type="password" name="teamPassword"/><br/>
-		<input type="password" name="teamPassword2"/>
+		<input placeholder="팀 비밀번호" type="password" name="teamPassword"/><br/>
+		<input placeholder="팀 비밀번호 확인" type="password" name="teamPassword2"/>
 	<br/><br/>
 	
 		<span>
-			<input type="text" name="teamName"/>
+			<input placeholder="팀 이름" type="text" name="teamName"/>
 			<input type="button" value="중복확인" onclick="teamIdCheck(form,'${root}')"/>	
 		</span><br/><br/><br/>
 		<span>
