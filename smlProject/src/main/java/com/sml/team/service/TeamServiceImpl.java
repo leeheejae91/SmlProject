@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.member.dto.MemberDto;
-import com.sml.record.dto.RecordDto;
 import com.sml.team.dao.TeamDao;
 import com.sml.team.dto.MatchingDto;
 import com.sml.team.dto.ScheduleDto;
