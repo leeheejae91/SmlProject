@@ -126,7 +126,7 @@
 				      <div class="caption">
 				        <h3>축구</h3>
 				        <p>축구페이지에서의 리그정보 및 경기일정을 확인하세요</p>
-				        <p><a href="#" class="btn btn-primary" role="button">이동</a>
+				        <p><a href="${root}/soccer/soccerMain.do" class="btn btn-primary" role="button">이동</a>
 				      </div>
 				  </div>
  			 </div>
@@ -270,7 +270,17 @@
 		      </div>
 		    </div>
 		  </div>
-	</div>										
+	</div>
 	
+	<!-- Admin Page -->
+	<c:if test="${teamGrade == 'AA' }">
+		<div>
+			<a href="${root}/admin/main.do">관리자페이지</a>
+		</div>
+		
+		<div>
+			<a href="${root}/board/adminBoard.do">공지사항게시판</a>	
+		</div>										
+	</c:if>
 </body>
 </html>
