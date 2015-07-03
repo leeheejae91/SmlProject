@@ -1,5 +1,7 @@
 package com.sml.league.dto;
 
+import java.io.File;
+
 public class LeagueDto {
 	private int leagueCode;
 	private String leagueName;
@@ -11,6 +13,14 @@ public class LeagueDto {
 	private String leagueStartDate;
 	private String leagueEndDate;
 	private String leagueImage;
+	
+	
+	public String getLeagueImage() {
+		return leagueImage;
+	}
+	public void setLeagueImage(String leagueImage) {
+		this.leagueImage = leagueImage;
+	}
 	
 	public int getLeagueCode() {
 		return leagueCode;
@@ -66,14 +76,5 @@ public class LeagueDto {
 	public void setLeagueEndDate(String leagueEndDate) {
 		this.leagueEndDate = leagueEndDate;
 	}
-	public String getLeagueImage() {
-		return leagueImage;
-	}
-	public void setLeagueImage(String leagueImage) {
-		this.leagueImage = leagueImage;
-	}
-	
-	
-	
-	
+
 }

@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.admin.service.AdminService;
@@ -139,7 +141,7 @@ public class AdminController {
 		 * @설명 :
 		 */
 		@RequestMapping(value="/admin/createLeague.do",method=RequestMethod.POST)
-		public ModelAndView createLeague(HttpServletRequest request , LeagueDto leagueDto){
+		public ModelAndView createLeague(MultipartHttpServletRequest request , LeagueDto leagueDto){
 			ModelAndView mav = new ModelAndView();
 			logger.info("createLeague1-------------------");
 			mav.addObject("request" , request);

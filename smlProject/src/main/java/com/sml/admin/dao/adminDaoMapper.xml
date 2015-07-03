@@ -52,8 +52,7 @@
 		insert into leagueinfo(leagueCode,leagueSport,leagueRegion,leagueTeamNumber,leagueDay,leagueTime,leagueStartDate,leagueImage,leagueName,leagueEndDate)
 		values(leagueinfo_leagueCode_sql.nextval,#{leagueSport},#{leagueRegion},#{leagueTeamNumber},#{leagueDay},#{leagueTime},#{leagueStartDate},#{leagueImage},#{leagueName},#{leagueEndDate})
 	</insert>
-	
-	
+
 	
 	
 	

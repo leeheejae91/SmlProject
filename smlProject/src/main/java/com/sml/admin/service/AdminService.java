@@ -11,5 +11,4 @@ public interface AdminService {
 	public void refereeSearch(ModelAndView mav);
 	
 	public void createLeague(ModelAndView mav);
-	
 }
