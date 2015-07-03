@@ -1,3 +1,40 @@
+
+var rroot="/home";
+
+$(document).ready(function(){
+	var url=rroot+"/member/searchRegion.do";
+	
+	sendRequest("GET", url, fromSido, null);
+	
+	function fromSido(){
+		if(xhr.readyState==4&&xhr.status==200){
+			var div=document.getElementById("sido");
+			if(div!=null){
+				div.innerHTML=xhr.responseText;
+			}
+		}
+	}
+});
+
+function regionSido(root){
+	var url=root+"/member/searchRegion.do";
+	
+	if($("#sido").val()!="시/도"){
+		var params="sido="+$("#sido").val();
+		sendRequest("GET", url, fromServer, params);
+	}else{
+		var div=document.getElementById("gugun");
+		div.innerHTML="<option>시/구/군</option><option></option>"
+	}
+}
+
+function fromServer(){
+	if(xhr.readyState==4&&xhr.status==200){
+		var div=document.getElementById("gugun");
+		div.innerHTML=xhr.responseText;
+	}
+}
+
 function Check(form){
 //	if($("input[name='teamId']").val()==""){
 //		alert("아이디를 입력하세요");
@@ -111,76 +148,15 @@ function teamIdCheck(form,root){
 
 function searchHomeground(form, root){
 	var url=root+"/member/searchHomeGround.do";
-	window.open(url,"","width=600,height=400");
+	window.open(url,"","width=900,height=600");
 }
 
 function selectHomeGround(){
-	window.opener.form.homeGround.value=$("#homeGround").text();
+	window.opener.registerModal.homeGround.value=$("#homeGround").text();
 	close();
 }
 
-//$(document).ready(function(){
-//	$("#sido").change(function(){
-////		alert($("#sido").val());
-//		var url=root+"/member/searchRegion.do";
-//		
-//		if($("#sido").val()!="시/도"){
-//			alert(url + ", "+ $("#sido").val());
-//			var params="?sido="+$("#sido").val();
-//			sendRequest("GET", url, fromServer, params);
-//		}
-//	});
-//	
-//	$("#gugun").change(function(){
-//		
-//	});
-//	
-//	function fromServer(){
-//		if(xhr.readyState==4&&xhr.status==200){
-////			var div=document.getElementById("resultDisp");
-////			div.innerHTML=xhr.responseText;
-//			alert("dd");
-//		}
-//	}
-//});
 
-var rroot="/home";
 
-$(document).ready(function(){
-	var url=rroot+"/member/searchRegion.do";
-	
-//		alert(url + ", "+ $("#sido").val());
-	sendRequest("GET", url, fromSido, null);
-	
-	function fromSido(){
-		if(xhr.readyState==4&&xhr.status==200){
-			var div=document.getElementById("sido");
-			div.innerHTML=xhr.responseText;
-//			alert("dd");
-		}
-	}
-	
-});
-
-function regionSido(root){
-	var url=root+"/member/searchRegion.do";
-	
-	if($("#sido").val()!="시/도"){
-//		alert(url + ", "+ $("#sido").val());
-		var params="sido="+$("#sido").val();
-		sendRequest("GET", url, fromServer, params);
-	}else{
-		var div=document.getElementById("gugun");
-		div.innerHTML="<option>시/구/군</option><option></option>"
-	}
-}
-
-function fromServer(){
-	if(xhr.readyState==4&&xhr.status==200){
-		var div=document.getElementById("gugun");
-		div.innerHTML=xhr.responseText;
-//		alert("dd");
-	}
-}
 
 

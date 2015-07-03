@@ -8,20 +8,20 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" src="${root }/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="${root}/js/member/member.js"></script>
+<script type="text/javascript" src="${root }/js/bootstrap.js"></script>
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=1442260e0c6af86974001269a7312e42&libraries=services"></script>
+<script type="text/javascript" src="${root }/js/test.js"></script>
+<script type="text/javascript" src="${root }/js/mainPage.js"></script>
+<script type="text/javascript" src="${root}/js/member/jquery-ui.js"></script>
+<script type="text/javascript" src="${root}/js/xhr/xhr.js"></script>
 
 <link rel="stylesheet" href="${root }/css/sml.css" type="text/css" />
 <link rel="stylesheet" href="${root }/css/bootstrap.css" type="text/css"/>
 <link rel="stylesheet" type="text/css"  href="${root}/css/member/jquery-ui.css"/>
 
-<script src="${root }/js/jquery-1.11.3.min.js"></script>
-<script src="${root }/js/bootstrap.js"></script>
-<script src="${root }/js/sml.js"></script>
-<script src="//apis.daum.net/maps/maps3.js?apikey=1442260e0c6af86974001269a7312e42&libraries=services"></script>
-<script src="${root }/js/test.js"></script>
-<script src="${root }/js/mainPage.js"></script>
-<script type="text/javascript" src="${root}/js/member/jquery-ui.js"></script>
-<script type="text/javascript" src="${root}/js/member/member.js"></script>
-<script type="text/javascript" src="${root}/js/xhr/xhr.js"></script>
+
 <title>SML Project</title>
 </head>
 
@@ -198,7 +198,7 @@
 	</div>
 	
 	<!-- Modal Join -->
-	<form action="${root}/member/registerMember.do" method="post">
+	<form action="${root}/member/registerMember.do" method="post" name="registerModal">
 	<div class="modal fade" id="popupJoin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
@@ -244,26 +244,26 @@
 					    <br/>
 					    
 					    <div class="row">
-					    	<div class="col-xs-8 col-sm-4"></div>
-					    	<div class="col-xs-4 col-sm-6">
-					    		
+					    	<div class="col-xs-8 col-sm-3"></div>
+					    	<div class="col-xs-4 col-sm-6">    		
 								<label>종목</label>
-								<select name="sportType">
-									<option></option>
-									<option value="축구">축구</option>
+								<select class="form-control" name="sportType">
+									<option value="null">종목을 선택해주세요</option>
+								    <option value="축구">축구</option>
 									<option value="야구">야구</option>
 									<option value="족구">족구</option>
 									<option value="풋살">풋살</option>
 								</select>
-			
 								<br/>
-								<a>홈구장</a>
-								<input type="text" name="homeGround">
-								<input type="button" value="지도로 찾기" onclick="searchHomeground(form,'${root}')"> 
-								<br/><br/>
-								
+							   <div class="input-group">
+							      <input type="text" size="20" class="form-control" placeholder="경기장을 입력해주세요." name="homeGround">
+							      <span class="input-group-btn">
+							        <button class="btn btn-default" type="button" onclick="searchHomeground(form,'${root}')">경기장 검색</button>
+							      </span>
+							  </div><!-- /input-group -->
 					    	</div>
 					    </div>
+					    <br/><br/>
 					    
 					    <div class="row">
 					    	<div class="col-xs-8 col-sm-4"></div>
@@ -405,4 +405,5 @@
 		</div>								
 	</c:if>
 </body>
+
 </html>

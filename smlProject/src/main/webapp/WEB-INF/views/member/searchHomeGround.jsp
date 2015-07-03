@@ -7,10 +7,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="${root}/js/member/member.js"></script>
-<script type="text/javascript" src="${root}/js/jquery/jquery.js"></script>
-<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=1442260e0c6af86974001269a7312e42&libraries=services"></script>
-<script type="text/javascript" src="${root}/js/member/map.js"></script>
 <link href="${root}/css/map/map.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
@@ -37,4 +33,10 @@
 	</div>
 	
 </body>
+
+<script type="text/javascript" src="${root}/js/jquery/jquery.js"></script>
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=1442260e0c6af86974001269a7312e42&libraries=services"></script>
+<script type="text/javascript" src="${root}/js/member/map.js"></script>
+<script type="text/javascript" src="${root}/js/member/member.js"></script>
+<script type="text/javascript" src="${root}/js/xhr/xhr.js"></script>
 </html>
