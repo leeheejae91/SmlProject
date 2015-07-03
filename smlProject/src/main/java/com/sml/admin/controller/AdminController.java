@@ -154,9 +154,10 @@ public class AdminController {
 			mav.addObject("request" , request);
 			mav.addObject("leagueDto" , leagueDto);
 			
-			adminService.createLeague(mav);
+			System.out.println("requee:");
+/*			adminService.createLeague(mav);*/
 			
-			return mav;
+			return null;
 		}
 		
 		

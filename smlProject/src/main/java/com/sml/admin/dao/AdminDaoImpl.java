@@ -111,7 +111,8 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public int createLeague(LeagueDto leagueDto) {		
 		
-		return sqlSession.insert("dao.adminDaoMapper.createLeague",leagueDto);
+		// sqlSession.insert("dao.adminDaoMapper.createLeague",leagueDto);
+		return 0;
 	}
 	
 	/**
