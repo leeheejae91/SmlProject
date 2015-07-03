@@ -219,7 +219,7 @@ $(document).ready(function() {
 		<br/><br/>
 		
 		<!-- 문의넣는 div -->
-		<div class="row" id="smlInfo">
+		<div class="row well" id="smlInfo">
 			<div class="col-lg-12">
 				<div class="col-lg-8 col-lg-offset-2 text-center">
                     <h2 class="section-heading">도움이 필요하세요?</h2>
@@ -466,6 +466,13 @@ $(document).ready(function() {
 			<a href="${root}/admin/main.do">관리자페이지</a>
 		</div>								
 	</c:if>
+	<hr/>
+	<div align="center" class="well">
+		SML Project Member : 이희재 정성남 변형린 조영석 이한빈<br/>
+		Address : Kosta 2 Class Room
+		Tel : 010 4646 3522 <br/>	
+		Copyright (C) by SML Member. All rights reserved.
+	</div>
 </body>
 
 </html>
