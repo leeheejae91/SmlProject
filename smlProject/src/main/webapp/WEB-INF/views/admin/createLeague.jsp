@@ -81,8 +81,7 @@
 	<div>
 		<label>파일명</label> 
 		<span> 
-			<input type="file" name="leagueImage"/>
-				
+			<input type="file" name="leagueImage"/>			
 		</span>
 	</div>
 	<br/><br/>	

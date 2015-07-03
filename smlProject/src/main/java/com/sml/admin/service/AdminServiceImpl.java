@@ -212,10 +212,11 @@ public class AdminServiceImpl implements AdminService{
 		
 		MultipartFile upFile=request.getFile("leagueImage");
 		String fileName=upFile.getOriginalFilename();
-
+		long fileSize=upFile.getSize();
 		logger.info("fileName"+fileName);
+		logger.info("fileSize"+fileSize);
 		
-		if(fileName!=null){
+		if(fileSize!=0){
 			try{
 
 //				String dir="C:\\mavenSpring\\workspace\\mavenHomePage\\src\\main\\webapp\\resources";  
