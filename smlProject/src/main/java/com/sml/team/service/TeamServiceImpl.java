@@ -8,7 +8,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
@@ -106,9 +106,9 @@ public class TeamServiceImpl implements TeamService{
 		
 		Map<String , Object> map = mav.getModelMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
-
 		TeamDto team = dao.login(id,password);
 		
 		if(team!=null){

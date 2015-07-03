@@ -192,46 +192,6 @@
 		</div>
 	</div>
 	
-	<!-- Modal Login-->
-	<div class="modal fade" id="popupLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title" id="myModalLabel">로그인</h4>
-		      </div>
-		      
-		      <div class="modal-body">
-		        <div class="row">
-				  	<div class="col-sm-12">
-					    <div class="row">
-					      <div class="col-xs-8 col-sm-3"></div>
-					      <div class="col-xs-8 col-sm-6">
-					        <input type="text" class="form-control" placeholder="Input Id">
-					      </div>
-					    </div>
-					    <br/>
-					    <div class="row">
-					    	<div class="col-xs-8 col-sm-3"></div>
-					    	 <div class="col-xs-4 col-sm-6">
-					        <input type="password" class="form-control" placeholder="Input Password">
-					      </div>
-					    </div>
-					    <br/>
-					    <div class="row">
-					    	<div class="col-xs-8 col-sm-4"></div>
-					    	<div class="col-xs-4 col-sm-6">
-					        <input class="btn btn-default" type="button" value="Login">
-					         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					      </div>
-					    </div>
-				  	</div>
-				</div>
-		      </div>
-		    </div>
-		  </div>
-	</div>
-	
 	<!-- Modal Join -->
 	<div class="modal fade" id="popupJoin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
@@ -265,6 +225,50 @@
 					         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					      </div>
 					    </div>
+				  	</div>
+				</div>
+		      </div>
+		    </div>
+		  </div>
+	</div>
+	
+	<!-- Modal Login-->
+	<div class="modal fade" id="popupLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">로그인</h4>
+		      </div>
+		      
+		      <div class="modal-body">
+		        <div class="row">
+				  	<div class="col-sm-12">
+				  	
+				  	<form action="${root }/teamPage/login.do" method="POST">
+					    <div class="row">
+					      <div class="col-xs-8 col-sm-3"></div>
+					      <div class="col-xs-8 col-sm-6">
+					        <input type="text" class="form-control" placeholder="Input Id" name="id">
+					      </div>
+					    </div>
+					    <br/>
+					    <div class="row">
+					    	<div class="col-xs-8 col-sm-3"></div>
+					    	 <div class="col-xs-4 col-sm-6">
+					        <input type="password" class="form-control" placeholder="Input Password" name="password">
+					      </div>
+					    </div>
+					    <br/>
+					    <div class="row">
+					    	<div class="col-xs-8 col-sm-4"></div>
+					    	<div class="col-xs-4 col-sm-6">
+					        <input class="btn btn-default" type="submit" value="Login">
+					         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					      </div>
+					    </div>
+					    
+					    </form>
 				  	</div>
 				</div>
 		      </div>

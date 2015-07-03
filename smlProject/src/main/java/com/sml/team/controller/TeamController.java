@@ -3,7 +3,7 @@ package com.sml.team.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -95,18 +95,6 @@ public class TeamController {
 //	}
 	
 	/**
-	 * @함수명 : login
-	 * @작성일 : 2015. 6. 25.
-	 * @작성자 : 조영석
-	 * @설명   : 로그인 입력창 이동 메소드
-	 */
-	@RequestMapping(value="/teamPage/login.do" , method=RequestMethod.GET)
-	public String login(HttpServletRequest request){
-	
-		return "teamPage/login";
-	}
-	
-	/**
 	 * @함수명:login
 	 * @작성일:2015. 6. 25.
 	 * @작성자:조영석
@@ -114,7 +102,6 @@ public class TeamController {
 	 */
 	@RequestMapping(value="/teamPage/login.do" , method=RequestMethod.POST)
 	public ModelAndView login(HttpServletRequest request,HttpServletResponse response){
-		
 		ModelAndView mav=new ModelAndView();
 		
 		mav.addObject("request",request);
