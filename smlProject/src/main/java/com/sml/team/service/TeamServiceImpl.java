@@ -3,13 +3,12 @@ package com.sml.team.service;
 
 import java.util.Date;
 import java.util.HashMap;
-
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
@@ -44,11 +43,13 @@ public class TeamServiceImpl implements TeamService{
 		String teamPassword=request.getParameter("teamPassword");
 		String teamName=request.getParameter("teamName");
 		String sportType=request.getParameter("sportType");
+		String homeGround=request.getParameter("homeGround");
 		
 		mav.addObject("teamId",teamId);
 		mav.addObject("teamPassword",teamPassword);
 		mav.addObject("teamName",teamName);
 		mav.addObject("sportType",sportType);
+		mav.addObject("homeGround", homeGround);
 		mav.setViewName("member/registerMember");
 		}
 	
@@ -105,9 +106,9 @@ public class TeamServiceImpl implements TeamService{
 		
 		Map<String , Object> map = mav.getModelMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
-
 		TeamDto team = dao.login(id,password);
 		
 		if(team!=null){
@@ -571,6 +572,72 @@ public class TeamServiceImpl implements TeamService{
 		mav.addObject("currentPage",currentPage);
 		mav.addObject("deleteMemberValue",deleteValue);
 		mav.setViewName("teamPage/okTeamBoard");
+	}
+
+	
+	/**
+	 * @name : TeamServiceImpl
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 팀 기록 출력하기
+	 */
+	@Override
+	public void viewTeamRecord(ModelAndView mav) {
+		HashMap<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		String teamName=request.getParameter("teamName");
+		
+		int count=dao.getRecordCount(teamName);
+		// 팀 멤버 전체 수 출력
+		
+		int boardSize=5;
+		// 한 블록 당 출력될 게시물 수
+		
+		int blockSize=2;
+		// 한 페이지당 들어갈 블록
+		
+		int currentPage=1;
+		if(request.getParameter("currentPage")!=null){
+			currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		int blockCount=count/boardSize + (count%boardSize==0? 0:1);
+		int startRow=(currentPage-1)*boardSize+1;
+		int endRow=startRow+boardSize-1;
+		
+		List<HashMap<String, Object>> recordList = dao.recordList(teamName,startRow,endRow);
+		
+		mav.addObject("blockCount", blockCount);
+		mav.addObject("teamName",teamName);
+		mav.addObject("count", count);
+		mav.addObject("boardSize", boardSize);
+		mav.addObject("blockSize", blockSize);
+		mav.addObject("currentPage",currentPage);
+		mav.addObject("recordList" , recordList);
+		mav.setViewName("teamPage/teamRecord");
+	}
+
+	/**
+	 * @name : TeamServiceImpl
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 멤버 등록을 위한 지역 추출
+	 */
+	@Override
+	public void searchRegion(ModelAndView mav) {
+		HashMap<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		String sido=null;
+		List<String> list=null;
+		if(request.getParameter("sido")==null){
+			list=dao.getSidoList();
+		}else{
+			sido=request.getParameter("sido");
+			list=dao.getGugunList(sido);
+		}
+		
+		mav.addObject("list",list);
+		mav.setViewName("member/regionOption");
 	}
 	
 }

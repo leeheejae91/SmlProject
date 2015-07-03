@@ -206,11 +206,32 @@ public class AdminServiceImpl implements AdminService{
 	 * @설명 :
 	 */
 	public void createLeague(ModelAndView mav){
-		Map<String , Object> map = mav.getModelMap();		
+		Map<String , Object> map = mav.getModelMap();	
+		MultipartHttpServletRequest request=(MultipartHttpServletRequest)map.get("request");
 		LeagueDto leagueDto = (LeagueDto) map.get("leagueDto");
 		logger.info("createLeague---------------------");
 		
+		MultipartFile upFile=request.getFile("leagueImage");
+		String fileName=upFile.getOriginalFilename();
+
+		logger.info("fileName"+fileName);
 		
+		if(fileName!=null){
+			try{
+
+//				String dir="C:\\mavenSpring\\workspace\\mavenHomePage\\src\\main\\webapp\\resources";  
+//				String dir="C:\\Users\\KOSTA\\git\\SmlProject\\smlProject\\src\\main\\webapp\\resources";
+				String dir=request.getSession().getServletContext().getRealPath("/resources");
+				
+				File file=new File(dir);
+				upFile.transferTo(file);//inputStream,outputStream 
+				
+				leagueDto.setLeagueImage(fileName);
+			}catch(Exception e){
+				logger.info("파일 입출력 에러");
+				e.printStackTrace();
+			}
+		}
 		int check = adminDao.createLeague(leagueDto);
 		logger.info("check : " + check);
 		

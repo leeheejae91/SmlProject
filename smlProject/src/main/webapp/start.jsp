@@ -53,12 +53,6 @@
 		<h3>이메일 : smlKorea@sml.com</h3>
 	</div>
 	
-	<div>
-		<a href="${root}/admin/main.do">관리자페이지</a>
-	</div>
 	
-	<div>
-		<a href="${root}/board/adminBoard.do">공지사항게시판</a>	
-	</div>
 </body>
 </html>

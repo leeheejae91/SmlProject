@@ -52,6 +52,7 @@
 		insert into leagueinfo(leagueCode,leagueSport,leagueRegion,leagueTeamNumber,leagueDay,leagueTime,leagueStartDate,leagueImage,leagueName,leagueEndDate)
 		values(leagueinfo_leagueCode_sql.nextval,#{leagueSport},#{leagueRegion},#{leagueTeamNumber},#{leagueDay},#{leagueTime},#{leagueStartDate},#{leagueImage},#{leagueName},#{leagueEndDate})
 	</insert>
+
 	
 	<select id="getManageLeagueCount" resultType="int">
 		<![CDATA[ select count(*) from leagueInfo ]]>
@@ -77,6 +78,7 @@
 		update leagueInfo set leagueSport=#{leagueSport},leagueImage=#{leagueImage},leagueRegion=#{leagueRegion},leagueName=#{leagueName},leagueTeamNumber=#{leagueTeamNumber},leagueDay=#{leagueDay},leagueTime=#{leagueTime},leagueStartDate=#{leagueStartDate},leagueEndDate=#{leagueEndDate} where leagueCode=#{leagueCode}
 	</update>
 	
+
 	
 	
 	

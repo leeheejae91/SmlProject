@@ -3,7 +3,7 @@ package com.sml.team.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +31,6 @@ public class TeamController {
 	 */
 	@RequestMapping(value="/member/registerTeam.do",method=RequestMethod.GET)
 		public String registerTeam(){
-	
 			return "member/registerTeam";
 		}
 
@@ -96,18 +95,6 @@ public class TeamController {
 //	}
 	
 	/**
-	 * @함수명 : login
-	 * @작성일 : 2015. 6. 25.
-	 * @작성자 : 조영석
-	 * @설명   : 로그인 입력창 이동 메소드
-	 */
-	@RequestMapping(value="/teamPage/login.do" , method=RequestMethod.GET)
-	public String login(HttpServletRequest request){
-	
-		return "teamPage/login";
-	}
-	
-	/**
 	 * @함수명:login
 	 * @작성일:2015. 6. 25.
 	 * @작성자:조영석
@@ -115,7 +102,6 @@ public class TeamController {
 	 */
 	@RequestMapping(value="/teamPage/login.do" , method=RequestMethod.POST)
 	public ModelAndView login(HttpServletRequest request,HttpServletResponse response){
-		
 		ModelAndView mav=new ModelAndView();
 		
 		mav.addObject("request",request);
@@ -468,6 +454,53 @@ public class TeamController {
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("request",request);
 		service.deleteMember(mav);
+		
+		return mav;
+	}
+	
+	/**
+	 * @name : TeamController
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 팀원 삭제 페이지
+	 */
+	@RequestMapping(value="/teamPage/viewTeamRecord.do", method=RequestMethod.GET)
+	 public ModelAndView viewTeamRecord(HttpServletRequest request){
+		logger.info("TeamController viewTeamRecord");
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request",request);
+		service.viewTeamRecord(mav);
+		
+		return mav;
+	}
+	
+	/**
+	 * @name : TeamController
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 연고지 설정창 띄우기
+	 */
+	@RequestMapping(value="/member/searchHomeGround.do", method=RequestMethod.GET)
+	 public ModelAndView searchHomeGround(HttpServletRequest request){
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("member/searchHomeGround");
+		
+		return mav;
+	}
+	
+	/**
+	 * @name : TeamController
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 시/도에 따른 하위 주소 변경
+	 */
+	@RequestMapping(value="/member/searchRegion.do", method=RequestMethod.GET)
+	 public ModelAndView searchRegion(HttpServletRequest request){
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request",request);
+		service.searchRegion(mav);
 		
 		return mav;
 	}

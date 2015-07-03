@@ -36,12 +36,13 @@ public class MemberServiceImpl implements MemberService{
 		String teamPassword=request.getParameter("teamPassword");
 		String teamName=request.getParameter("teamName");
 		String sportType=request.getParameter("sportType");
+		String homeGround=request.getParameter("homeGround");
 		String teamReaderName="";
 		String emblem="";
 		String teamGrade="AA";
 		
-		int check=dao.insertMember(memberDto,teamId,teamPassword,teamName,sportType,teamGrade,teamReaderName,emblem);
-		mav.addObject("check"+check);
+		int check=dao.insertMember(memberDto,teamId,teamPassword,teamName,sportType,teamGrade,teamReaderName,emblem,homeGround);
+		mav.addObject("check",check);
 		mav.setViewName("member/registerResult");
 	}
 	

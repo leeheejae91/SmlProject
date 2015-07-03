@@ -92,4 +92,38 @@
 	<delete id="deleteMember" parameterType="int">
 		delete teamMember where memberCode=#{memberCode}
 	</delete>
+	
+	<select id="recordList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		<![CDATA[
+			select * from (
+				select rownum as rnum, d.* from
+				(select a.*, b.teamName as team1, c.teamName as team2 
+					from gameRecord a, team b, team c 
+						where a.teamcode=b.teamcode and a.teamcode2=c.teamcode and (b.teamName=#{teamName} or c.teamName=#{teamName}) 
+							order by gameCode desc) d ) where rnum >= #{startRow} and rnum <= #{endRow}
+		]]>	
+	</select>
+	
+	<select id="getRecordCount" parameterType="String" resultType="int">
+		<![CDATA[
+			select count(*) from (
+				select rownum as rnum, d.* from
+				(select a.*, b.teamName as team1, c.teamName as team2 
+					from gameRecord a, team b, team c 
+						where a.teamcode=b.teamcode and a.teamcode2=c.teamcode and (b.teamName=#{teamName} or c.teamName=#{teamName}) 
+							order by gameCode desc) d )
+		]]>	
+	</select>
+	
+	<select id="getGugunList" parameterType="String" resultType="String">
+		<![CDATA[
+			select distinct(gugun) from zipcode where sido=#{sido}
+		]]>	
+	</select>
+	
+	<select id="getSidoList" parameterType="String" resultType="String">
+		<![CDATA[
+			select distinct(sido) from zipcode
+		]]>	
+	</select>
 </mapper>
