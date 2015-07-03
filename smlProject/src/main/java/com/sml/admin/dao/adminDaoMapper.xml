@@ -53,6 +53,29 @@
 		values(leagueinfo_leagueCode_sql.nextval,#{leagueSport},#{leagueRegion},#{leagueTeamNumber},#{leagueDay},#{leagueTime},#{leagueStartDate},#{leagueImage},#{leagueName},#{leagueEndDate})
 	</insert>
 	
+	<select id="getManageLeagueCount" resultType="int">
+		<![CDATA[ select count(*) from leagueInfo ]]>
+	</select>
+	
+	<select id="manageLeagueList" parameterType="java.util.HashMap" resultType="com.sml.league.dto.LeagueDto">
+		<![CDATA[ select * from (select rownum rnum, a.* from (select * from leagueInfo order by leagueStartDate asc)a) where rnum >=#{startRow} and rnum <=#{endRow} ]]>
+	</select>
+	
+	<delete id="leagueDelete" parameterType="int">
+		delete from leagueInfo where leagueCode=#{leagueCode} 
+	</delete>
+	
+	<select id="leagueInfo" parameterType="int" resultType="com.sml.league.dto.LeagueDto">
+		select * from leagueInfo where leagueCode=#{leagueCode}
+	</select>
+	
+	<select id="leagueUpdate" parameterType="int" resultType="com.sml.league.dto.LeagueDto">
+		select * from leagueInfo where leagueCode=#{leagueCode}
+	</select>
+	
+	<update id="leagueUpdateOk" parameterType="com.sml.league.dto.LeagueDto">
+		update leagueInfo set leagueSport=#{leagueSport},leagueImage=#{leagueImage},leagueRegion=#{leagueRegion},leagueName=#{leagueName},leagueTeamNumber=#{leagueTeamNumber},leagueDay=#{leagueDay},leagueTime=#{leagueTime},leagueStartDate=#{leagueStartDate},leagueEndDate=#{leagueEndDate} where leagueCode=#{leagueCode}
+	</update>
 	
 	
 	

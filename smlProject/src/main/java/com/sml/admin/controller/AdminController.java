@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,10 +16,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.admin.service.AdminService;
+import com.sml.common.dto.CommonBoardDto;
 import com.sml.league.dto.LeagueDto;
 
 
 
+/**
+ * @함수명: manageTeamDelete
+ * @작성일: 2015. 6. 25.
+ * @작성자: 정성남
+ * @설명 : 팀관리 페이지호출
+ */
 @Controller
 
 public class AdminController {
@@ -149,5 +157,99 @@ public class AdminController {
 			
 			return mav;
 		}
+		
+		
+		/**
+		 * @함수명: manageLeague
+		 * @작성일: 2015. 7. 02
+		 * @작성자: 정성남
+		 * @설명 : 리그관리 페이지호출
+		 */
+		
+		@RequestMapping(value="/admin/manageLeague.do",method=RequestMethod.GET)
+		public ModelAndView manageLeague(HttpServletRequest request , LeagueDto leagueDto){
+			logger.info("manageLeague-----------");
+			ModelAndView mav=new ModelAndView();
+			mav.addObject("request",request);
+			mav.addObject("leagueDto",leagueDto);
+			
+			adminService.manageLeague(mav);
+			
+			return mav;
+		}
+		
+		/**
+		 * @함수명: manageTeamDelete
+		 * @작성일: 2015. 7. 02
+		 * @작성자: 정성남
+		 * @설명 : 리그관리 삭제 기능
+		 */
+		
+		@RequestMapping(value="/admin/leagueDelete.do",method=RequestMethod.GET)
+		
+		public ModelAndView leagueDelete(HttpServletRequest request, HttpServletResponse response){
+			logger.info("leagueDelete-------------------");
+			ModelAndView mav=new ModelAndView();
+
+			mav.addObject("request",request);	
+			adminService.leagueDelete(mav);		
+			return mav;
+		}
+		
+		/**
+		 * @함수명: leagueInfo
+		 * @작성일: 2015. 7. 02
+		 * @작성자: 정성남
+		 * @설명 : 리그관리 읽기 기능
+		 */
+		
+		@RequestMapping(value="/admin/leagueInfo.do",method=RequestMethod.GET)
+		public ModelAndView leagueInfo(HttpServletRequest request, HttpServletResponse response){
+			logger.info("leagueInfo-------------------");
+			ModelAndView mav=new ModelAndView();
+			mav.addObject("request",request);			
+			adminService.leagueInfo(mav);		
+			
+			return mav;
+		}
+		
+		/**
+		 * @함수명: leagueUpdate
+		 * @작성일: 2015. 7. 02
+		 * @작성자: 정성남
+		 * @설명 : 리그관리 삭제 기능
+		 */
+		
+		
+		@RequestMapping(value="/admin/leagueUpdate.do",method=RequestMethod.GET)
+		public ModelAndView leagueUpdate(HttpServletRequest request, HttpServletResponse response,LeagueDto leagueDto){
+			logger.info("leagueUpdate-----------");
+			ModelAndView mav=new ModelAndView();
+			mav.addObject("request",request);
+			mav.addObject("leagueDto",leagueDto);
+			adminService.leagueUpdate(mav);
+			
+			return mav;
+		}
+		
+		/**
+		 * @함수명: leagueUpdateOk
+		 * @작성일: 2015. 7. 02
+		 * @작성자: 정성남
+		 * @설명 : 리그관리 삭제 기능
+		 */
+		
+		
+		@RequestMapping(value="/admin/leagueUpdate.do",method=RequestMethod.POST)
+		public ModelAndView leagueUpdateOk(HttpServletRequest request, LeagueDto leagueDto){
+			logger.info("leagueUpdateOk-----------");
+			ModelAndView mav=new ModelAndView();
+			mav.addObject("request",request);
+			mav.addObject("leagueDto",leagueDto);
+
+			adminService.leagueUpdateOk(mav);
+			return mav;
+		}		
+		
 	
 }

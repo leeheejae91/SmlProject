@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.admin.dao.AdminDao;
+import com.sml.common.dto.CommonBoardDto;
 import com.sml.league.dto.LeagueDto;
 import com.sml.member.dto.MemberDto;
 import com.sml.referee.dto.RefereeDto;
@@ -215,5 +216,130 @@ public class AdminServiceImpl implements AdminService{
 		
 		mav.addObject("check" , check);
 		mav.setViewName("admin/createLeagueOk");
+	}
+
+	/**
+	 * @함수명: manageLeague
+	 * @작성일: 2015. 7. 2.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public void manageLeague(ModelAndView mav) {
+		Map<String,Object> map=mav.getModelMap();
+		
+		HttpServletRequest request=(HttpServletRequest) map.get("request");			
+		
+		String pageNumber=request.getParameter("pageNumber");
+		if(pageNumber==null) pageNumber="1";
+		
+		int boardSize=5;		
+		int currentPage=Integer.parseInt(pageNumber);
+		int startRow=(currentPage-1)*boardSize+1;
+		int endRow=currentPage*boardSize;
+		
+		int count=adminDao.getManageLeagueCount();
+		logger.info("count:"+count);
+		logger.info("currentPage"+currentPage);
+		logger.info("startRow"+startRow);
+		logger.info("endRow"+endRow);		
+		
+		List<LeagueDto> manageLeagueList=null;	
+		
+		manageLeagueList=adminDao.manageLeagueList(startRow,endRow);
+		
+		mav.addObject("count",count);
+		mav.addObject("manageLeagueList",manageLeagueList);		
+		mav.addObject("boardSize",boardSize);
+		mav.addObject("currentPage",currentPage);
+		mav.addObject("pageNumber",pageNumber);
+		
+		mav.setViewName("admin/manageLeague");		
+	}
+
+	/**
+	 * @함수명: leagueDelete
+	 * @작성일: 2015. 7. 2.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public void leagueDelete(ModelAndView mav) {
+		Map<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		
+		int leagueCode=Integer.parseInt(request.getParameter("leagueCode"));
+		int check=adminDao.leagueDelete(leagueCode);
+		
+		mav.addObject("check",check);
+		mav.setViewName("admin/leagueDelete");
+		
+	}
+
+	/**
+	 * @함수명: leagueInfo
+	 * @작성일: 2015. 7. 2.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public void leagueInfo(ModelAndView mav) {
+		Map<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		
+		int leagueCode=Integer.parseInt(request.getParameter("leagueCode"));
+		int pageNumber=Integer.parseInt(request.getParameter("pageNumber"));
+		
+		
+		LeagueDto leagueDto=adminDao.leagueInfo(leagueCode);
+		mav.addObject("leagueDto",leagueDto);
+		
+		mav.addObject("pageNumber",pageNumber);
+		mav.addObject("leagueCode",leagueCode);
+		mav.setViewName("admin/leagueInfo");
+		
+	}
+
+	/**
+	 * @함수명: leagueUpdate
+	 * @작성일: 2015. 7. 2.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public void leagueUpdate(ModelAndView mav) {
+		Map<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		
+		int leagueCode=Integer.parseInt(request.getParameter("leagueCode"));
+		int pageNumber=Integer.parseInt(request.getParameter("pageNumber"));
+		
+		LeagueDto leagueDto=adminDao.leagueUpdate(leagueCode);
+		
+		mav.addObject("leagueDto",leagueDto);		
+		mav.addObject("leagueCode",leagueCode);
+		mav.addObject("pageNumber",pageNumber);
+		mav.setViewName("admin/leagueUpdate");
+		
+	}
+
+	/**
+	 * @함수명: leagueUpdateOk
+	 * @작성일: 2015. 7. 2.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public void leagueUpdateOk(ModelAndView mav) {
+		logger.info("UpdateOKOKOKOKOK---------");
+		Map<String,Object> map=mav.getModelMap();
+
+		LeagueDto leagueDto=(LeagueDto) map.get("leagueDto");	
+		System.out.println(leagueDto.getLeagueImage()+"|"+leagueDto);
+		int check=adminDao.leagueUpdateOk(leagueDto);
+		
+		mav.addObject("check",check);
+		mav.setViewName("admin/leagueUpdateOk");
+		
 	}
 }

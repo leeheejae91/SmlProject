@@ -113,5 +113,83 @@ public class AdminDaoImpl implements AdminDao {
 		
 		return sqlSession.insert("dao.adminDaoMapper.createLeague",leagueDto);
 	}
+	
+	/**
+	 * @함수명: getManageLeagueCount
+	 * @작성일: 2015. 7. 2.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public int getManageLeagueCount() {
+		
+		return sqlSession.selectOne("dao.adminDaoMapper.getManageLeagueCount");
+	}
+	
+
+	/**
+	 * @함수명: manageLeague
+	 * @작성일: 2015. 7. 2.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public List<LeagueDto> manageLeagueList(int startRow,int endRow){
+		HashMap<String,Object> map=new HashMap<String,Object>();
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		
+		return sqlSession.selectList("dao.adminDaoMapper.manageLeagueList",map);
+	}
+
+	/**
+	 * @함수명: leagueDelete
+	 * @작성일: 2015. 7. 2.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public int leagueDelete(int leagueCode) {
+		
+		return sqlSession.delete("dao.adminDaoMapper.leagueDelete",leagueCode);
+	}
+
+	/**
+	 * @함수명: leagueInfo
+	 * @작성일: 2015. 7. 2.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public LeagueDto leagueInfo(int leagueCode) {
+		
+		return sqlSession.selectOne("dao.adminDaoMapper.leagueInfo",leagueCode);
+	}
+
+	/**
+	 * @함수명: leagueUpdate
+	 * @작성일: 2015. 7. 2.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public LeagueDto leagueUpdate(int leagueCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("dao.adminDaoMapper.leagueUpdate",leagueCode);
+	}
+
+	/**
+	 * @함수명: leagueUpdateOk
+	 * @작성일: 2015. 7. 2.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public int leagueUpdateOk(LeagueDto leagueDto) {
+		
+		return sqlSession.update("dao.adminDaoMapper.leagueUpdateOk",leagueDto);
+	}
+
+	
 
 }
