@@ -12,8 +12,13 @@ $(document).ready(function(){
 			if(div!=null){
 				div.innerHTML=xhr.responseText;
 			}
+			if($("#sido").val()=="서울"){
+				var params="sido=서울";
+				sendRequest("GET", url, fromServer, params);
+			}
 		}
 	}
+
 });
 
 function regionSido(root){
@@ -129,7 +134,8 @@ function teamCheck(form){
 //	}
 //
 	$("input[name='memberGender']").attr("value",sex);
-	
+	$("input[name='memberRegion']").attr("value",$("#sido").val()+" "+$("#gugun").val());
+	alert($("input[name='memberRegion']").val());
 }
 
 function teamIdCheck(form,root){

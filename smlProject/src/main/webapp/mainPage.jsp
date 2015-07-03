@@ -21,6 +21,45 @@
 <link rel="stylesheet" href="${root }/css/bootstrap.css" type="text/css"/>
 <link rel="stylesheet" type="text/css"  href="${root}/css/member/jquery-ui.css"/>
 
+<style>
+.ui-autocomplete { 
+    overflow-y: scroll; 
+    overflow-x: hidden;}
+</style>
+<script>
+$(document).ready(function() {
+
+	$("#searchTeamName").autocomplete({
+		
+		source : function(request, response) {
+
+			$.ajax({
+
+				url : "${root}/autocomplete",
+				type : "post",
+				dataType : "json",
+				data: { term : request.term, param1 : "param1 Value", param2 : "param2 Value"},
+				contentType: "application/x-www-form-urlencoded; charset=UTF-8",  
+				data : request,
+
+				success : function(data) {
+					
+					var result = data;
+					
+					response(result);
+
+				},
+
+				error : function(data) {
+
+					alert("에러가 발생하였습니다.")
+
+				}
+			});
+		}
+	});
+});
+</script>
 
 <title>SML Project</title>
 </head>
@@ -56,9 +95,9 @@
   			
   			<!-- 팀명검색 -->
   			<div class="col-md-3">
-  				<form class="form-inline">
+  				<form class="form-inline" id="searchForm" name="searchForm">
   					<div class="form-group">
-					    <input type="text" class="form-control" id="searchTeamName" placeholder="search">
+					    <input type="text" class="form-control" id="searchTeamName" placeholder="팀명을 검색해보세요">
  				   </div>
   					<button type="submit" class="btn btn-default">찾기</button>
   				</form>
@@ -188,9 +227,11 @@
                     <p>저희 홈페이지에 대한 사용문의 및 건의사항은 아래로 연락주세요!</p>
                 </div>
                 <div class="col-lg-4 col-lg-offset-2 text-center">
+                <img src="${root }/img/phoneIcon.jpg" alt="phoneIcon" class="img-circle">
                     <p>02 - 135 - 2468</p>
                 </div>
-                <div class="col-lg-4 text-center">
+                <div class="col-lg-4  text-center">
+                <img src="${root }/img/emailIcon.png" alt="emailIcon" class="img-circle">
                     <p>smlKorea@smlKorea.com</p>
                 </div>
 			</div>
@@ -198,7 +239,7 @@
 	</div>
 	
 	<!-- Modal Join -->
-	<form action="${root}/member/registerMember.do" method="post" name="registerModal">
+	<form action="${root}/member/registerMember.do" method="post" name="registerModal" onsubmit="return teamCheck(this)">
 	<div class="modal fade" id="popupJoin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
@@ -213,6 +254,7 @@
 					    <div class="row">
 					      <div class="col-xs-8 col-sm-3"></div>
 					      <div class="col-xs-8 col-sm-6">
+					      	<label>팀아이디</label>
 					        <div class="input-group">
 							      <input type="text" class="form-control" placeholder="팀아이디를 적어주세요." name="teamId">
 							      <span class="input-group-btn">
@@ -224,7 +266,8 @@
 					    <br/>
 					    <div class="row">
 					    	<div class="col-xs-8 col-sm-3"></div>
-					    	 <div class="col-xs-4 col-sm-6">
+					    	<div class="col-xs-4 col-sm-6">
+					    	<label>팀 비밀번호</label>
 					        <input type="password" class="form-control" placeholder="팀 비밀번호를 적어주세요." name="teamPassword">
 					        <input type="password" class="form-control" placeholder="비밀번호를 한번더 적어주세요." name="teamPassword2">
 					      </div>
@@ -233,6 +276,7 @@
 					     <div class="row">
 					    	<div class="col-xs-8 col-sm-3"></div>
 					    	 <div class="col-xs-4 col-sm-6">
+					    	 	<label>팀 이름</label>
 						        <div class="input-group">
 							      <input type="text" class="form-control" placeholder="팀이름을 적어주세요." name="teamName">
 							      <span class="input-group-btn">
@@ -255,6 +299,7 @@
 									<option value="풋살">풋살</option>
 								</select>
 								<br/>
+							   <label>팀 주 경기장</label>
 							   <div class="input-group">
 							      <input type="text" size="20" class="form-control" placeholder="경기장을 입력해주세요." name="homeGround">
 							      <span class="input-group-btn">
@@ -268,8 +313,8 @@
 					    <div class="row">
 					    	<div class="col-xs-8 col-sm-4"></div>
 					    	<div class="col-xs-4 col-sm-6">
-					        <input class="btn btn-default" type="button" value="다음단계" data-toggle="modal" data-target="#popupJoin2" id="step2">
-					         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					        <input class="btn btn-info" type="button" value="다음단계로" data-toggle="modal" data-target="#popupJoin2" id="step2">
+					         <button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
 					      </div>
 					    </div>
 				  	</div>
@@ -296,33 +341,36 @@
 					      <div class="col-xs-8 col-sm-6">
 					      	<label>이름</label>
 					        <input type="text" class="form-control" placeholder="팀장님 이름을 적어주세요" name="memberName">
+					        
 					        <label>생년월일</label>
-					        <input type="text" class="form-control" placeholder="팀장님 생일을 선택해주세요" id="date1" name="memberBirth">
+							<input type="text" class="form-control" placeholder="팀장님 생일을 선택해주세요"  id="date1"name="memberBirth" />
 					      </div>
 					    </div>
 					    <br/>
+					    
 					    <div class="row">
 					    	<div class="col-xs-8 col-sm-3"></div>
 					    	 <div class="col-xs-4 col-sm-6">
-					    	 	<label>지역:</label>
-								<select id="sido" onchange="regionSido('${root }')">
+					    	 	<label>지역</label>
+								<select id="sido" class="form-control" onchange="regionSido('${root }')">
 									<option>시/도</option>
 								</select>
-								<select id="gugun">
+								<br/>
+								<select id="gugun" class="form-control">
 									<option>시/구/군</option>
 									<option></option>
-								</select>		       	  
+								</select>
+								<input type="hidden" name="memberRegion">		       	  
 					      	</div>
 					    </div>
 					    <br/>
 					    <div class="row">
 					    	<div class="col-xs-8 col-sm-3"></div>
 					    	 <div class="col-xs-4 col-sm-6">
-					    	 		<label>이메일:</label>
-									<input type="text" name="memberEmail"/>
-									<label>연락처:</label>
-									<input type="text" name="memberPhone"/>
-									"-"는 생략하고 적어주십시요
+					    	 		<label>이메일</label>
+									<input type="text" name="memberEmail" class="form-control" placeholder="이메일을 입력하세요"/>
+									<label>연락처</label>
+									<input type="text" name="memberPhone" class="form-control" placeholder="'-'는 생략하고 적어주세요."/>
 					    	 </div>
 					    </div>
 					    <br/>
@@ -331,8 +379,15 @@
 					    	 <div class="col-xs-4 col-sm-6">
 						    <label>성별</label>
 							<span>
-								<input type="radio" name="sexValue" value="남"/>남
-								<input type="radio" name="sexValue" value="여"/>여
+								<label class="radio-inline">
+							  	<input type="radio" name="sexValue" id="inlineRadio1" value="남">남
+								</label>
+								<label class="radio-inline">
+								  <input type="radio" name="sexValue" id="inlineRadio2" value="여">여
+								</label>
+								<label class="radio-inline">
+								  <input type="radio" name="sexValue" id="inlineRadio3" value="비밀">비밀
+								</label>
 								<input type="hidden" name="memberGender"/>
 							</span>
 							</div>
@@ -341,8 +396,8 @@
 					    <div class="row">
 					    	<div class="col-xs-8 col-sm-4"></div>
 					    	<div class="col-xs-4 col-sm-6">
-					        <input class="btn btn-default" type="submit" value="가입요청" data-toggle="modal">
-					        <button type="button" class="btn btn-default" data-dismiss="modal"  id="prevStep1">이전단계로</button>
+					        <input class="btn btn-success" type="submit" value="가입요청" data-toggle="modal">
+					        <button type="button" class="btn btn-warning" data-dismiss="modal"  id="prevStep1">이전단계로</button>
 					      </div>
 					    </div>
 					 
@@ -371,22 +426,29 @@
 					    <div class="row">
 					      <div class="col-xs-8 col-sm-3"></div>
 					      <div class="col-xs-8 col-sm-6">
-					        <input type="text" class="form-control" placeholder="Input Id" name="id">
+					        <input type="text" class="form-control" placeholder="아이디를 입력하세요" name="id">
 					      </div>
 					    </div>
 					    <br/>
 					    <div class="row">
 					    	<div class="col-xs-8 col-sm-3"></div>
 					    	 <div class="col-xs-4 col-sm-6">
-					        <input type="password" class="form-control" placeholder="Input Password" name="password">
+					        <input type="password" class="form-control" placeholder="비밀번호를 입력하세요" name="password">
+					      </div>
+					    </div>
+					    <br/>
+					     <div class="row">
+					    	<div class="col-xs-8 col-sm-3"></div>
+					    	 <div class="col-xs-4 col-sm-6">
+					         <a href="#">아이디 or 비밀번호 찾기</a>
 					      </div>
 					    </div>
 					    <br/>
 					    <div class="row">
 					    	<div class="col-xs-8 col-sm-4"></div>
 					    	<div class="col-xs-4 col-sm-6">
-					        <input class="btn btn-default" type="submit" value="Login">
-					         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					        <input class="btn btn-default" type="submit" value="로그인">
+					         <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 					      </div>
 					    </div>
 					 </form>

@@ -54,4 +54,12 @@ public class CommonDaoImpl implements CommonDao {
 	public int updateCommonBoardOk(CommonBoardDto commonBoard) {
 		return sqlSession.update("dao.BoardMapper.updateCommonBoardOk",commonBoard);
 	}
+
+	@Override
+	public List<String> autoSearch(String result) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("dao.BoardMapper.autoSearch",result);
+	}
+	
+	
 }

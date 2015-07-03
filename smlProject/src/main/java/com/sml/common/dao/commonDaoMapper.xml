@@ -36,4 +36,9 @@
 	<update id="updateCommonBoardOk" parameterType="com.sml.common.dto.CommonBoardDto">
 		update board set sportCode=#{sportCode},boardWriter=#{boardWriter},boardTitle=#{boardTitle},boardContent=#{boardContent} where boardNumber=#{boardNumber}
 	</update>
+	
+	<select id="autoSearch" parameterType="String" resultType="String">
+		select teamname from team where teamname like concat('%',concat(UPPER(#{result}),'%')) or 
+								teamname like concat('%',concat(LOWER(#{result}),'%'))
+	</select>
 </mapper>
