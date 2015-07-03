@@ -402,11 +402,7 @@
 	<c:if test="${teamGrade == 'AA' }">
 		<div>
 			<a href="${root}/admin/main.do">관리자페이지</a>
-		</div>
-		
-		<div>
-			<a href="${root}/board/adminBoard.do">공지사항게시판</a>	
-		</div>										
+		</div>								
 	</c:if>
 </body>
 </html>
