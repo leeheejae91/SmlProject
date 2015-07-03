@@ -8,20 +8,20 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>리그삭제</title>
+	<title>팀삭제</title>
 </head>
 <body>
 	<c:if test="${check>0}">
 		<script type="text/javascript">
 			alert("삭제완료");
-			location.href="${root}/admin/manageTeam.do";
+			location.href="${root}/admin/manageLeague.do";
 		</script>	
 	</c:if>
 	
 	<c:if test="${check==0}">
 		<script type="text/javascript">
 			alert("삭제미완료");
-			location.href="${root}/admin/manageTeam.do";
+			location.href="${root}/admin/manageLeague.do";
 		</script>	
 	</c:if>
 	

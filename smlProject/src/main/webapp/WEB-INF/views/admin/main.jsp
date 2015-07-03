@@ -22,6 +22,10 @@
 	</span>
 	
 	<span style="font-size:20pt;">	
+		<a href="${root}/admin/manageLeague.do">리그관리</a>
+	</span>
+	
+	<span style="font-size:20pt;">	
 		<a href="${root}/admin/manageReferee.do">심판관리</a>
 	</span>
 	
