@@ -8,6 +8,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="${root }/js/jquery/jquery.js"></script>
+<script src="${root }/js/jquery/jquery-ui.js"></script>
+<script src="${root }/js/teamPage/teamPage.js"></script>
 </head>
 <body>
 	<div>
@@ -41,7 +44,7 @@
 	
 	<h1>팀원 소개</h1>
 	<br/>
-	<input type="button" value="팀원 추가"/>
+	
 	<div>
 		<span>번호</span>
 		<span>이름</span>
@@ -63,19 +66,19 @@
 	<br/>
 	<c:forEach var="member" items="${teamMemberList}">
 		<div>
-			<span>${member.memberCode}</span>
+			<span>${member.rnum}</span>
 			<span>${member.memberName}</span>
 			<span>${member.memberBirth}</span>
 			<span>${member.memberRegion}</span>
 			<span>${member.memberEmail}</span>
 			<span>${member.memberPhone}</span>
 			<span>${member.memberGender}</span>
-			<span><input type="button" value="삭제" onclick=""/></span>
+			<span><input type="button" value="삭제" onclick="return deleteMember('${root }','${currentPage}','${member.memberCode}')"/></span>
 		</div>
 	</c:forEach>
 	
 	<c:if test="${startBlock>blockSize}">
-		<a href="${root }/teamPage/teamMemberInfo.do?teamName=${teamName}&currentPage=${startBlock-blockSize}">[이전]</a>
+		<a href="${root }/teamPage/manageTeamMember.do?teamName=${teamName}&currentPage=${startBlock-blockSize}">[이전]</a>
 	</c:if>
 	
 	<c:if test="${endBlock>blockCount}">
@@ -83,12 +86,38 @@
 	</c:if>
 	
 	<c:forEach var="blockNumber" begin="${startBlock}" end="${endBlock}">
-		<a href="${root }/teamPage/teamMemberInfo.do?teamName=${teamName}&currentPage=${blockNumber}">[${blockNumber}]</a>
+		<a href="${root }/teamPage/manageTeamMember.do?teamName=${teamName}&currentPage=${blockNumber}">[${blockNumber}]</a>
 	</c:forEach>
 	
 	<c:if test="${endBlock<blockCount}">
-		<a href="${root }/teamPage/teamMemberInfo.do?teamName=${teamName}&currentPage=${startBlock+blockSize}">[다음]</a>
+		<a href="${root }/teamPage/manageTeamMember.do?teamName=${teamName}&currentPage=${startBlock+blockSize}">[다음]</a>
 	</c:if>
+	<br/>
+	
+	<input type="button" value="팀원 추가" id="addMember"/>
+	
+	<form action="${root}/teamPage/addMember.do" id="addMemberForm" method="post" onsubmit="return addMember(this)">
+		<input placeholder="이름" type="text" name="memberName">
+		<br/>
+		<input placeholder="생일" type="text" name="memberBirth">
+		<br/>
+		<input placeholder="지역" type="text" name="memberRegion">
+		<br/>
+		<input placeholder="번호" type="text" name="memberPhone">
+		<br/>
+		<input placeholder="이메일" type="text" name="memberEmail">
+		<br/>
+		<select id="gender">
+			<option>남</option>
+			<option>여</option>
+		</select>
+		<input type="hidden" name="memberGender">
+		<input type="hidden" name="teamName" value="${teamName}">
+		<input type="hidden" name="currentPage" value="${currentPage}">
+		<br/>
+		<input type="submit" value="등록">
+		<input type="button" value="취소">
+	</form>
 	
 	
 </body>

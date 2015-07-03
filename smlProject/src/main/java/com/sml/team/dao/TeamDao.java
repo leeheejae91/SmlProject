@@ -1,8 +1,10 @@
 package com.sml.team.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.sml.member.dto.MemberDto;
+import com.sml.record.dto.RecordDto;
 import com.sml.team.dto.MatchingDto;
 import com.sml.team.dto.ScheduleDto;
 import com.sml.team.dto.TeamBoardDto;
@@ -25,4 +27,10 @@ public interface TeamDao {
 	public int deleteTeamBoard(int boardNumber);
 	public int updateTeamBoard(TeamBoardDto board);
 	public int getTeamMemberCount(String name);
+	public int addMember(MemberDto member,int teamCode);
+	public int deleteMember(int memberCode);
+	public List<HashMap<String, Object>> recordList(String teamName, int startRow, int endRow);
+	public int getRecordCount(String teamName);
+	public List<String> getGugunList(String sido);
+	public List<String> getSidoList();
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.sml.member.dto.MemberDto;
+import com.sml.record.dto.RecordDto;
 import com.sml.team.dto.MatchingDto;
 import com.sml.team.dto.ScheduleDto;
 import com.sml.team.dto.TeamBoardDto;
@@ -55,8 +56,7 @@ public class TeamDaoImpl implements TeamDao{
 		hMap.put("password", password);
 		
 		TeamDto srt=sqlSession.selectOne("team.dao.TeamMapper.loginOk", hMap);
-				
-		System.out.println("srt : "+srt.getTeamName());
+		
 		return srt;
 	}
 
@@ -212,6 +212,73 @@ public class TeamDaoImpl implements TeamDao{
 	@Override
 	public int getTeamMemberCount(String name) {
 		return sqlSession.selectOne("team.dao.TeamMapper.getTeamMemberCount", name);
+	}
+
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 팀 멤버 추가
+	 */
+	@Override
+	public int addMember(MemberDto member, int teamCode) {
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("member", member);
+		map.put("teamCode", teamCode);
+		return sqlSession.insert("team.dao.TeamMapper.addMember",map);
+	}
+
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 팀 멤버 삭제
+	 */
+	@Override
+	public int deleteMember(int memberCode) {
+		return sqlSession.insert("team.dao.TeamMapper.deleteMember", memberCode);
+	}
+
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 해당 팀 기록 출력 
+	 */
+	@Override
+	public List<HashMap<String, Object>> recordList(String teamName, int startRow, int endRow) {
+		HashMap<String, Object> hMap=new HashMap<String, Object>();
+		hMap.put("teamName", teamName);
+		hMap.put("startRow", startRow);
+		hMap.put("endRow", endRow);
+		return sqlSession.selectList("team.dao.TeamMapper.recordList",hMap);
+	}
+
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 해당 팀 전체 기록 수 출력 
+	 */
+	@Override
+	public int getRecordCount(String teamName) {
+		return sqlSession.selectOne("team.dao.TeamMapper.getRecordCount",teamName);
+	}
+
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 시/도 에 따른 구/군 출력
+	 */
+	@Override
+	public List<String> getGugunList(String sido) {
+		return sqlSession.selectList("team.dao.TeamMapper.getGugunList",sido);
+	}
+
+	@Override
+	public List<String> getSidoList() {
+		return sqlSession.selectList("team.dao.TeamMapper.getSidoList");
 	}
 	
 	

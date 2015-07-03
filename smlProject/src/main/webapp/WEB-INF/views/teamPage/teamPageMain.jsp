@@ -7,6 +7,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>팀페이지</title>
+<script src="${root }/js/jquery/jquery.js"></script>
+<script src="${root }/js/jquery/jquery-ui.js"></script>
+<script src="${root }/js/teamPage/teamPage.js"></script>
 </head>
 <body>
 	<c:if test="${team!=null}">
@@ -38,8 +41,8 @@
 				<li><a href="${root }/teamPage/teamPageMain.do?teamName=${team.teamName}">메인</a></li>
 				<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${team.teamName}">팀 공지사항</a></li>
 				<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}">팀원소개</a></li>
-				<li><a href="${root }/teamPage/teamSchedule.do">팀 스케쥴</a></li>
-				<li><a href="${root }/viewTeamRecord">팀 기록</a></li>
+				<li><a href="${root }/teamPage/teamSchedule.do?teamName=${team.teamName}">팀 스케쥴</a></li>
+				<li><a href="${root }/teamPage/viewTeamRecord.do">팀 기록</a></li>
 
 				<li>----------</li>
 				<li><a href="${root }/teamPage/manageTeamBoard.do?teamName=${team.teamName}">공지사항관리</a></li>
@@ -54,7 +57,7 @@
 				<li><a href="${root }/teamPage/teamPageMain.do?teamName=${team.teamName}">메인</a></li>
 				<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${team.teamName}">팀 공지사항</a></li>
 				<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}">팀원소개</a></li>
-				<li><a href="${root }/viewSchedule.do">팀 기록</a></li>
+				<li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${team.teamName}">팀 기록</a></li>
 				<li><a href="${root }/viewSchedule.do">팀 스케쥴</a></li>
 			</c:if>
 

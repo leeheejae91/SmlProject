@@ -10,11 +10,13 @@
 <script type="text/javascript" src="${root}/js/member/jquery.js"></script>
 <script type="text/javascript" src="${root}/js/member/member.js"></script>
 <script type="text/javascript" src="${root}/js/member/jquery-ui.js"></script>
+<script type="text/javascript" src="${root}/js/xhr/xhr.js"></script>
 <link rel="stylesheet" type="text/css"  href="${root}/css/member/jquery-ui.css"/>
 <script type="text/javascript">
  	$(function(){
 		$("#date1").datepicker({
 			dateFormat:"yy-mm-dd",
+			yearRange: "1950:2015",
 			monthNames:["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
 			dayNamesMin:["일","월","화","수","목","금","토"],
 			showOn:"button",
@@ -22,17 +24,25 @@
 			buttonImageOnly:true,
 			changeYear:true,
 			changeMonth:true
+			
 		});
 	}); 
 </script>
 </head>
 <body>
-	<h3>ㅎㅇ</h3>
+	<div>
+		<a href="${root}/start.jsp"><img alt="logo" src=""></a>
+		<a href="${root}/start.jsp">SML Korea</a>
+	</div>
+	
+	<h3>팀정보입력>>팀장 정보 입력>>회원가입 완료</h3>
+	
 	<form action="${root}/member/registerMember.do" method="post" onsubmit="return teamCheck(this)">
-		<input type="hidden" name="teamId" value="${teamId}"/>${teamId}
-		<input type="hidden" name="teamPassword" value="${teamPassword}"/>${teamPassword}
-		<input type="hidden" name="sportType" value="${sportType}"/>${sportType}
-		<input type="hidden" name="teamName" value="${teamName}"/>${teamName}
+		<input type="hidden" name="teamId" value="${teamId}"/>
+		<input type="hidden" name="teamPassword" value="${teamPassword}"/>
+		<input type="hidden" name="sportType" value="${sportType}"/>
+		<input type="hidden" name="teamName" value="${teamName}"/>
+		<input type="hidden" name="homeGround" value="${homeGround }">
 		<div>
 			<label>이름</label>
 			<input type="text" name="memberName"/><br/>
@@ -43,7 +53,13 @@
 		
 		<div>
 			<label>지역:</label>
-			<input type="text" name="memberRegion"/>
+			<select id="sido" onchange="regionSido('${root }')">
+				<option>시/도</option>
+			</select>
+			<select id="gugun">
+				<option>시/구/군</option>
+				<option></option>
+			</select>
 			<br/><br/>
 		</div>
 		

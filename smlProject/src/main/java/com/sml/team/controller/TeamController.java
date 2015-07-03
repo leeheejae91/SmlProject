@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sml.member.dto.MemberDto;
 import com.sml.team.dto.MatchingDto;
 import com.sml.team.dto.ScheduleDto;
 import com.sml.team.dto.TeamBoardDto;
@@ -30,7 +31,6 @@ public class TeamController {
 	 */
 	@RequestMapping(value="/member/registerTeam.do",method=RequestMethod.GET)
 		public String registerTeam(){
-	
 			return "member/registerTeam";
 		}
 
@@ -431,6 +431,89 @@ public class TeamController {
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("request",request);
 		service.manageTeamMember(mav);
+		
+		return mav;
+	}
+	
+
+	/**
+	 * @name : TeamController
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 팀원 추가 페이지
+	 */
+	@RequestMapping(value="/teamPage/addMember.do",method=RequestMethod.POST)
+	 public ModelAndView addMember(HttpServletRequest request, MemberDto member){
+		logger.info("TeamController addMember");
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("member",member);
+		mav.addObject("request",request);
+		service.addMember(mav);
+		
+		return mav;
+	}
+	
+	/**
+	 * @name : TeamController
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 팀원 삭제 페이지
+	 */
+	@RequestMapping(value="/teamPage/deleteMember.do",method=RequestMethod.GET)
+	 public ModelAndView deleteMember(HttpServletRequest request){
+		logger.info("TeamController addMember");
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request",request);
+		service.deleteMember(mav);
+		
+		return mav;
+	}
+	
+	/**
+	 * @name : TeamController
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 팀원 삭제 페이지
+	 */
+	@RequestMapping(value="/teamPage/viewTeamRecord.do", method=RequestMethod.GET)
+	 public ModelAndView viewTeamRecord(HttpServletRequest request){
+		logger.info("TeamController viewTeamRecord");
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request",request);
+		service.viewTeamRecord(mav);
+		
+		return mav;
+	}
+	
+	/**
+	 * @name : TeamController
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 연고지 설정창 띄우기
+	 */
+	@RequestMapping(value="/member/searchHomeGround.do", method=RequestMethod.GET)
+	 public ModelAndView searchHomeGround(HttpServletRequest request){
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("member/searchHomeGround");
+		
+		return mav;
+	}
+	
+	/**
+	 * @name : TeamController
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 시/도에 따른 하위 주소 변경
+	 */
+	@RequestMapping(value="/member/searchRegion.do", method=RequestMethod.GET)
+	 public ModelAndView searchRegion(HttpServletRequest request){
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request",request);
+		service.searchRegion(mav);
 		
 		return mav;
 	}

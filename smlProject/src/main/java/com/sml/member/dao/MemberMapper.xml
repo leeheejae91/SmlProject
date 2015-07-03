@@ -23,11 +23,15 @@
 		insert into TeamMember values(TEAMMEMBER_MEMBERCODE_SQL.nextval,#{teamCode},#{memberName},#{memberBirth},#{memberRegion},#{memberEmail},#{memberPhone},#{memberGender})
 	</insert> 
 	
-	<select id="teamReader" parameterType="com.sml.member.dto.MemberDto">
-		select teamLeaderName from team where TEAMCODE=#{TeamCode}
+	<select id="teamReader" parameterType="int" resultType="String">
+		select teamLeaderName from team where TEAMCODE=#{team}
 	</select>
 	
 	<insert id="updateTeamReader" parameterType="java.util.HashMap">
-		update team from set teamLeaderName=#{teamLeaderName} where TEAMCODE=#{team}
+		update team set teamLeaderName=#{teamLeaderName} where TEAMCODE=#{team}
+	</insert>
+	
+	<insert id="insertHomeGround" parameterType="java.util.HashMap">
+		insert into homeGround (teamCode, ground) values (#{team}, #{homeGround})
 	</insert>
 </mapper>  

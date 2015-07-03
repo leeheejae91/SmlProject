@@ -57,7 +57,7 @@
 		<ul>				
 			<li> 	
 				<span id="teamCode">
-					<a href=""><img alt="팀엠블럼1:${todayMatch.EMBLEM1 }" src="${todayMatch.EMBLEM1 }"/></a>
+					<a href="${root}/teamPage/teamPageMain.do?teamName=${todayMatch.TEAMNAME1}"><img alt="팀엠블럼1:${todayMatch.EMBLEM1 }" src="${todayMatch.EMBLEM1 }"/></a>
 				</span>
 				<span>${todayMatch.TEAMNAME1 }</span>
 				
@@ -66,7 +66,7 @@
 				</span>
 				
 				<span id="teamcode2">
-					<a href=""><img alt="팀엠블럼2:${todayMatch.EMBLEM2 }" src="${todayMatch.EMBLEM2 }"/></a>
+					<a href="${root}/teamPage/teamPageMain.do?teamName=${todayMatch.TEAMNAME2}"><img alt="팀엠블럼2:${todayMatch.EMBLEM2 }" src="${todayMatch.EMBLEM2 }"/></a>
 				</span>
 				<span>${todayMatch.TEAMNAME2 }</span>
 				

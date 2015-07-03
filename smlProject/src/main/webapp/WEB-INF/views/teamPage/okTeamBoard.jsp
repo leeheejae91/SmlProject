@@ -56,5 +56,37 @@
 			</script>
 		</c:if>
 	</c:if>
+	
+	<c:if test="${memberValue!=null}">
+		<c:if test="${memberValue>0}">
+			<script type="text/javascript">
+				alert("멤버가 추가되었습니다.");
+				$(location).attr("href","${root }/teamPage/manageTeamMember.do?teamName=${teamName}&currentPage=${currentPage}"); 
+			</script>
+		</c:if>
+		
+		<c:if test="${memberValue==0}">
+			<script type="text/javascript">
+				alert("멤버 추가에 실패하였습니다.");
+				$(location).attr("href","${root }/teamPage/manageTeamMember.do?teamName=${teamName}&currentPage=${currentPage}"); 
+			</script>
+		</c:if>
+	</c:if>
+	
+	<c:if test="${deleteMemberValue!=null}">
+		<c:if test="${deleteMemberValue>0}">
+			<script type="text/javascript">
+				alert("멤버가 삭제되었습니다.");
+				$(location).attr("href","${root }/teamPage/manageTeamMember.do?teamName=${teamName}&currentPage=${currentPage}"); 
+			</script>
+		</c:if>
+		
+		<c:if test="${deleteMemberValue==0}">
+			<script type="text/javascript">
+				alert("멤버 삭제에 실패하였습니다.");
+				$(location).attr("href","${root }/teamPage/manageTeamMember.do?teamName=${teamName}&currentPage=${currentPage}"); 
+			</script>
+		</c:if>
+	</c:if>
 </body>
 </html>

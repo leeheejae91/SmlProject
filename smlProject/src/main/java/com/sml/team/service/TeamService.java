@@ -22,4 +22,8 @@ public interface TeamService {
 	public void updateTeamBoard(ModelAndView mav);
 	public void updateOkTeamBoard(ModelAndView mav);
 	public void manageTeamMember(ModelAndView mav);
+	public void addMember(ModelAndView mav);
+	public void deleteMember(ModelAndView mav);
+	public void viewTeamRecord(ModelAndView mav);
+	public void searchRegion(ModelAndView mav);
 }
