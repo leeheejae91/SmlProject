@@ -28,7 +28,7 @@
 	<form action="${root }/teamPage/searchMatching.do" name="matchingForm" method="POST" onsubmit="return matching(this,'${root}')"> 
 		<input type="hidden" name="teamCode" value="${teamCode }"/>
 		<input type="hidden" name="teamName" value="${teamName }">
-		<input type="hidden" name="matchingLatLng">
+		<input type="hidden" name="matchingLatlng">
 		<div id="matchingIntro">
 			이곳에 매칭에 관한 소개 및 설명을 작성
 			매칭은<br/>

@@ -24,19 +24,9 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		int i=0;
-		while(true){
-        	System.out.println(i++);
-        	if(i==10) break;
-        	
-        	try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-        }
 		
-		return "redirect:mainPage.jsp";
+		
+		return "/home";
 	}
 	
 }

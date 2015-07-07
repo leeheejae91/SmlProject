@@ -674,6 +674,7 @@ public class TeamServiceImpl implements TeamService{
 		
 		matchingDto.setMatchingSport(dao.getTeamInfo(teamName).getSportType());
 		matchingDto.setMatchingState("전");
+		System.out.println(matchingDto.getMatchingLatlng());
 		
 		int check = dao.searchMatching(matchingDto);
 		mav.addObject("teamName",teamName);

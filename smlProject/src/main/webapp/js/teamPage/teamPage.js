@@ -1,6 +1,7 @@
 /**
  * 
  */
+var latLng;
 
 function deleteBoard(root, teamName, currentPage, boardNumber){
 	var value=confirm("정말로 삭제하시겠습니까?");
@@ -174,10 +175,7 @@ function createMap(homeGround){
 		        var marker = addMarker(placePosition, i);
 		        var itemEl = getListItem(i, places[i], marker); // 검색 결과 항목 Element를 생성합니다
 		        
-		        var latLng=marker.getPosition().getLat()+","+places[i].longitude;
-		        $("input[name='matchingLatlng']").attr("value",latLng);
-		        alert(latLng);
-
+		       latLng=marker.getPosition().getLat()+","+marker.getPosition().getLng();
 		        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
 		        // LatLngBounds 객체에 좌표를 추가합니다
 		        bounds.extend(placePosition);
@@ -623,6 +621,7 @@ function matching(form, root){
 //	alert(matchingTime);
 	
 	form.matchingTime.value=matchingTime;
+	form.matchingLatlng.value=latLng;
 	
 	 $.ajax ({
 	      type: 'get', // POST 로 전송
