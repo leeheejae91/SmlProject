@@ -14,6 +14,7 @@ import com.sml.team.dto.ScheduleDto;
 import com.sml.team.dto.TeamBoardDto;
 import com.sml.team.dto.TeamDto;
 
+
 @Component
 public class TeamDaoImpl implements TeamDao{
 	@Autowired
@@ -276,9 +277,48 @@ public class TeamDaoImpl implements TeamDao{
 		return sqlSession.selectList("team.dao.TeamMapper.getGugunList",sido);
 	}
 
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 시/도 출력
+	 */
 	@Override
 	public List<String> getSidoList() {
 		return sqlSession.selectList("team.dao.TeamMapper.getSidoList");
+	}
+
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 팀 코드에 따른 팀 ground 출력
+	 */
+	@Override
+	public String getTeamGround(int teamCode) {
+		return sqlSession.selectOne("team.dao.TeamMapper.getTeamGround", teamCode);
+	}
+
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 7. 6.
+	 * @author : 이희재
+	 * @description : 해당 팀에 대한 매칭 등록 정보가 있는지 확인
+	 */
+	@Override
+	public MatchingDto getTeamMatchingInfo(int teamCode) {
+		return sqlSession.selectOne("team.dao.TeamMapper.getTeamMatchingInfo", teamCode);
+	}
+
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 7. 6.
+	 * @author : 이희재
+	 * @description : 매칭 정보 삭제
+	 */
+	@Override
+	public int deleteMatching(int matchingCode) {
+		return sqlSession.delete("team.dao.TeamMapper.deleteMatching", matchingCode);
 	}
 	
 	

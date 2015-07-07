@@ -33,4 +33,7 @@ public interface TeamDao {
 	public int getRecordCount(String teamName);
 	public List<String> getGugunList(String sido);
 	public List<String> getSidoList();
+	public String getTeamGround(int teamCode);
+	public MatchingDto getTeamMatchingInfo(int teamCode);
+	public int deleteMatching(int matchingCode);
 }

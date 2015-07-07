@@ -21,7 +21,7 @@
 		<li><a href="${root }/teamPage/teamPageMain.do?teamName=${teamName}">메인</a></li>
 		<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}">팀 공지사항</a></li>
 		<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${teamName}">팀원소개</a></li>
-		<li><a href="${root }/viewTeamRecord">팀 기록</a></li>
+		<li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${teamName}">팀 기록</a></li>
 		<li><a href="${root }/viewSchedule.do">팀 스케쥴</a></li>
 		<li>----------</li>
 		<li><a href="${root }/teamPage/manageTeamBoard.do?teamName=${teamName}">공지사항관리</a></li>
@@ -36,7 +36,7 @@
 		<li><a href="${root }/teamPage/teamPageMain.do?teamName=${teamName}">메인</a></li>
 		<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}">팀 공지사항</a></li>
 		<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${teamName}">팀원소개</a></li>
-		<li><a href="${root }/viewSchedule.do">팀 기록</a></li>
+		<li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${teamName}">팀 기록</a></li>
 		<li><a href="${root }/viewSchedule.do">팀 스케쥴</a></li>
 	</c:if>
 	

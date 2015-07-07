@@ -25,7 +25,7 @@
 	</select>
 	
 	<insert id="searchMatching" parameterType="com.sml.team.dto.MatchingDto">
-		insert into MATCHING values (matching_matchingcode_sql.nextval , #{teamCode} , #{matchingSport} , #{matchingDistance} , #{matchingTime} , #{matchingState})
+		insert into MATCHING values (matching_matchingcode_sql.nextval , #{teamCode} , #{matchingSport} , #{matchingDistance} , #{matchingTime} , #{matchingState}, #{matchingDay}, #{matchingPlace}, #{matchingLatlng})
 	</insert>
 	
  	<select id="idCheckSelect" parameterType="String" resultType="String">
@@ -126,4 +126,18 @@
 			select distinct(sido) from zipcode
 		]]>	
 	</select>
+	
+	<select id="getTeamGround" parameterType="int" resultType="String">
+		<![CDATA[
+			select ground from homeGround where teamCode=#{teamCode}
+		]]>	
+	</select>
+	
+	<select id="getTeamMatchingInfo" parameterType="int" resultType="com.sml.team.dto.MatchingDto">
+		select * from matching where teamCode=#{teamCode}
+	</select>
+	
+	<delete id="deleteMatching" parameterType="int">
+		delete matching where matchingCode=#{matchingCode}
+	</delete>
 </mapper>

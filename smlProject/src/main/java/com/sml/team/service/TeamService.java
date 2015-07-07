@@ -26,4 +26,7 @@ public interface TeamService {
 	public void deleteMember(ModelAndView mav);
 	public void viewTeamRecord(ModelAndView mav);
 	public void searchRegion(ModelAndView mav);
+	public void matching(ModelAndView mav);
+	public void deleteMatching(ModelAndView mav);
+	public void searching(ModelAndView mav);
 }

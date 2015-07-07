@@ -92,7 +92,8 @@ function teamCheck(form){
 //	}
 //
 	$("input[name='memberGender']").attr("value",sex);
-	
+	$("input[name='memberRegion']").attr("value",$("#sido").val()+" "+$("#gugun").val());
+	alert($("input[name='memberRegion']").val());
 }
 
 function teamIdCheck(form,root){
@@ -119,44 +120,22 @@ function selectHomeGround(){
 	close();
 }
 
-//$(document).ready(function(){
-//	$("#sido").change(function(){
-////		alert($("#sido").val());
-//		var url=root+"/member/searchRegion.do";
-//		
-//		if($("#sido").val()!="시/도"){
-//			alert(url + ", "+ $("#sido").val());
-//			var params="?sido="+$("#sido").val();
-//			sendRequest("GET", url, fromServer, params);
-//		}
-//	});
-//	
-//	$("#gugun").change(function(){
-//		
-//	});
-//	
-//	function fromServer(){
-//		if(xhr.readyState==4&&xhr.status==200){
-////			var div=document.getElementById("resultDisp");
-////			div.innerHTML=xhr.responseText;
-//			alert("dd");
-//		}
-//	}
-//});
-
 var rroot="/home";
 
 $(document).ready(function(){
 	var url=rroot+"/member/searchRegion.do";
 	
-//		alert(url + ", "+ $("#sido").val());
 	sendRequest("GET", url, fromSido, null);
 	
 	function fromSido(){
 		if(xhr.readyState==4&&xhr.status==200){
 			var div=document.getElementById("sido");
 			div.innerHTML=xhr.responseText;
-//			alert("dd");
+			
+			if($("#sido").val()=="서울"){
+				var params="sido=서울";
+				sendRequest("GET", url, fromServer, params);
+			}
 		}
 	}
 	
@@ -166,7 +145,6 @@ function regionSido(root){
 	var url=root+"/member/searchRegion.do";
 	
 	if($("#sido").val()!="시/도"){
-//		alert(url + ", "+ $("#sido").val());
 		var params="sido="+$("#sido").val();
 		sendRequest("GET", url, fromServer, params);
 	}else{
@@ -179,7 +157,6 @@ function fromServer(){
 	if(xhr.readyState==4&&xhr.status==200){
 		var div=document.getElementById("gugun");
 		div.innerHTML=xhr.responseText;
-//		alert("dd");
 	}
 }
 

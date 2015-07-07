@@ -42,13 +42,13 @@
 				<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${team.teamName}">팀 공지사항</a></li>
 				<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}">팀원소개</a></li>
 				<li><a href="${root }/teamPage/teamSchedule.do?teamName=${team.teamName}">팀 스케쥴</a></li>
-				<li><a href="${root }/teamPage/viewTeamRecord.do">팀 기록</a></li>
+				<li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${team.teamName}">팀 기록</a></li>
 
 				<li>----------</li>
 				<li><a href="${root }/teamPage/manageTeamBoard.do?teamName=${team.teamName}">공지사항관리</a></li>
 				<li><a href="${root }/teamPage/manageTeamMember.do?teamName=${team.teamName}">팀원관리</a></li>
 				<li><a href="${root }/teamPage/teamScheduleEdit.do">스케쥴관리</a></li>
-				<li><a href="${root }/startMatching.do">매칭관리</a></li>
+				<li><a href="${root }/teamPage/matching.do?teamName=${team.teamName}">매칭관리</a></li>
 				<li>-----------</li>
 				<li><a href="${root}/teamPage/logout.do?teamId='${teamId}'">로그아웃</a></li>
 		  	</c:if>
@@ -67,7 +67,7 @@
 	<div>
 		<img alt="팀 로고 이미지 넣어야함" src=""/>
 		<h3>팀 이름 : ${team.teamName}</h3>
-		<input type="button" value="매칭대기중">
+		<input id="teamState" style="color: gray;"type="button" value="매칭대기중">
 	</div>
 	
 	<div>

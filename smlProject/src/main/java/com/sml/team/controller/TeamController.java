@@ -185,23 +185,6 @@ public class TeamController {
 		return "teamPage/matching";
 	}
 	
-	/**
-	 * 
-	 * @함수명 : searchMatching
-	 * @작성일 : 2015. 6. 23.
-	 * @작성자 : 이한빈
-	 * @설명   :  JSP페이지에서 매칭시작누르면 값을 받아와서 서비스클래스에 값을 보내는 메소드
-	 */
-	@RequestMapping(value="/searchMatching.do" , method=RequestMethod.POST)
-	public ModelAndView searchMatching(HttpServletRequest request , MatchingDto matchingDto){
-		logger.info("TeamController searchMatching");
-		ModelAndView mav = new ModelAndView("teamPage/teamPageMain");
-		mav.addObject("request" , request);
-		mav.addObject("matchingDto" , matchingDto);
-		
-		service.searchMatching(mav);
-		return mav;
-	}
 	
 	
 	/**
@@ -504,4 +487,73 @@ public class TeamController {
 		
 		return mav;
 	}
+	
+	/**
+	 * @name : TeamController
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 매칭 페이지로 이동
+	 */
+	@RequestMapping(value="/teamPage/matching.do", method=RequestMethod.GET)
+	 public ModelAndView matching(HttpServletRequest request){
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request",request);
+		service.matching(mav);
+		
+		return mav;
+	}
+	
+
+	/**
+	 * 
+	 * @함수명 : searchMatching
+	 * @작성일 : 2015. 7. 6.
+	 * @작성자 : 이희재
+	 * @설명   :  매칭 시작과 동시에 매칭 정보를 매칭 테이블에 입력
+	 */
+	@RequestMapping(value="/teamPage/searchMatching.do" , method=RequestMethod.POST)
+	public ModelAndView searchMatching(HttpServletRequest request , MatchingDto matchingDto){
+		logger.info("TeamController searchMatching");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request" , request);
+		mav.addObject("matchingDto" , matchingDto);
+		
+		service.searchMatching(mav);
+		return mav;
+	}
+	
+	/**
+	 * 
+	 * @함수명 : searchMatching
+	 * @작성일 : 2015. 7. 6.
+	 * @작성자 : 이희재
+	 * @설명   :  매칭 취소하기 
+	 */
+	@RequestMapping(value="/teamPage/deleteMatching.do" , method=RequestMethod.GET)
+	public ModelAndView deleteMatching(HttpServletRequest request){
+		logger.info("TeamController searchMatching");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request" , request);
+		
+		service.deleteMatching(mav);
+		return mav;
+	}
+	
+	/**
+	 * 
+	 * @함수명 : searchMatching
+	 * @작성일 : 2015. 7. 6.
+	 * @작성자 : 이희재
+	 * @설명   :  매칭 시작하기
+	 */
+	@RequestMapping(value="/teamPage/searching.do" , method=RequestMethod.GET)
+	public ModelAndView searching(HttpServletRequest request){
+		logger.info("TeamController searchMatching");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request" , request);
+		
+		service.searching(mav);
+		return mav;
+	}
+	
 }

@@ -60,6 +60,7 @@
 				<option>시/구/군</option>
 				<option></option>
 			</select>
+			<input type="hidden" name="memberRegion">
 			<br/><br/>
 		</div>
 		

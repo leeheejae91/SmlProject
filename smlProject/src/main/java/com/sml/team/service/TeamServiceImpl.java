@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import java.util.logging.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
@@ -199,22 +200,7 @@ public class TeamServiceImpl implements TeamService{
 		logger.info("Service viewRecord");
 	}
 
-	@Override
-	/**
-	 * 
-	 * @함수명 : searchMatching
-	 * @작성일 : 2015. 6. 23.
-	 * @작성자 : 이한빈
-	 * @설명   :  매칭시작을 누르면 데이터값을 처리하는 메소드
-	 */
-	public void searchMatching(ModelAndView mav) {
-		Map<String , Object> map = mav.getModelMap();
-		//HttpServletRequest request = (HttpServletRequest) map.get("request");
-		MatchingDto matchingDto = (MatchingDto) map.get("matchingDto");
-		
-		int check = dao.searchMatching(matchingDto);
-		mav.addObject("check" , check);
-	}
+	
 
 	/**
 	 * @함수명:editSchedule
@@ -639,5 +625,94 @@ public class TeamServiceImpl implements TeamService{
 		mav.addObject("list",list);
 		mav.setViewName("member/regionOption");
 	}
+
+	/**
+	 * @name : TeamServiceImpl
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 매칭을 위한 페이지 이동
+	 */
 	
+	@Override
+	public void matching(ModelAndView mav) {
+		HashMap<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		String teamName=request.getParameter("teamName");
+		int teamCode=dao.getTeamInfo(teamName).getTeamCode();
+		
+		MatchingDto matchingDto=dao.getTeamMatchingInfo(teamCode);
+		
+		if(matchingDto==null){
+			String homeGround=dao.getTeamGround(teamCode);
+			
+			mav.addObject("teamCode", teamCode);
+			mav.addObject("homeGround", homeGround);
+			mav.addObject("teamName",teamName);
+			mav.setViewName("teamPage/matching");
+		}else if(matchingDto!=null){
+			mav.addObject("matchingDto", matchingDto);
+			mav.addObject("teamCode", teamCode);
+			mav.addObject("teamName",teamName);
+			mav.setViewName("teamPage/matching");
+		}
+		
+	}
+	
+	
+	/**
+	 * @name : TeamServiceImpl
+	 * @date : 2015. 7. 6.
+	 * @author : 이희재
+	 * @description : 매칭과 동시에 매칭 정보를 매칭 테이블에 입력.
+	 */
+	@Override
+	public void searchMatching(ModelAndView mav) {
+		Map<String , Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		MatchingDto matchingDto = (MatchingDto) map.get("matchingDto");
+		String teamName=request.getParameter("teamName");
+		
+		matchingDto.setMatchingSport(dao.getTeamInfo(teamName).getSportType());
+		matchingDto.setMatchingState("전");
+		
+		int check = dao.searchMatching(matchingDto);
+		mav.addObject("teamName",teamName);
+		mav.addObject("matchingCheck" , check);
+		mav.setViewName("teamPage/okTeamBoard");
+	}
+
+	/**
+	 * @name : TeamServiceImpl
+	 * @date : 2015. 7. 6.
+	 * @author : 이희재
+	 * @description : 해당 매칭 정보 삭제
+	 */
+	@Override
+	public void deleteMatching(ModelAndView mav) {
+		Map<String , Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		String teamName=request.getParameter("teamName");
+		int matchingCode=Integer.parseInt(request.getParameter("matchingCode"));
+		
+		int matchingDelete=dao.deleteMatching(matchingCode);
+		
+		mav.addObject("teamName", teamName);
+		mav.addObject("matchingDelete",matchingDelete);
+		mav.setViewName("teamPage/okTeamBoard");
+	}
+
+	/**
+	 * @name : TeamServiceImpl
+	 * @date : 2015. 7. 6.
+	 * @author : 이희재
+	 * @description : 매칭 정보를 기반으로 서칭하기
+	 */
+	@Override
+	public void searching(ModelAndView mav) {
+		Map<String , Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		int teamCode=Integer.parseInt(request.getParameter("teamCode"));
+		
+		mav.addObject("check", 1);
+	}
 }

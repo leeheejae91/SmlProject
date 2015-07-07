@@ -88,5 +88,37 @@
 			</script>
 		</c:if>
 	</c:if>
+	
+	<c:if test="${matchingCheck!=null}">
+		<c:if test="${matchingCheck>0}">
+			<script type="text/javascript">
+				alert("매칭이 등록되었습니다.");
+				$(location).attr("href","${root }/teamPage/teamPageMain.do?teamName=${teamName}"); 
+			</script>
+		</c:if>
+		
+		<c:if test="${matchingCheck==0}">
+			<script type="text/javascript">
+				alert("매칭 등록에 실패하였습니다.");
+				$(location).attr("href","${root }/teamPage/teamPageMain.do?teamName=${teamName}"); 
+			</script>
+		</c:if>
+	</c:if>
+	
+	<c:if test="${matchingDelete!=null}">
+		<c:if test="${matchingDelete>0}">
+			<script type="text/javascript">
+				alert("매칭이 취소되었습니다.");
+				$(location).attr("href","${root }/teamPage/teamPageMain.do?teamName=${teamName}"); 
+			</script>
+		</c:if>
+		
+		<c:if test="${matchingDelete==0}">
+			<script type="text/javascript">
+				alert("매칭 취소에 실패하였습니다.");
+				$(location).attr("href","${root }/teamPage/teamPageMain.do?teamName=${teamName}"); 
+			</script>
+		</c:if>
+	</c:if>
 </body>
 </html>

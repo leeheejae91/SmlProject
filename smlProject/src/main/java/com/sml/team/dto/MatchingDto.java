@@ -7,7 +7,28 @@ public class MatchingDto {
 	private int matchingDistance;
 	private String matchingTime;
 	private String matchingState;
+	private String matchingDay;
+	private String matchingPlace;
+	private String matchingLatlng;
 	
+	public String getMatchingLatlng() {
+		return matchingLatlng;
+	}
+	public void setMatchingLatlng(String matchingLatlng) {
+		this.matchingLatlng = matchingLatlng;
+	}
+	public String getMatchingDay() {
+		return matchingDay;
+	}
+	public void setMatchingDay(String matchingDay) {
+		this.matchingDay = matchingDay;
+	}
+	public String getMatchingPlace() {
+		return matchingPlace;
+	}
+	public void setMatchingPlace(String matchingPlace) {
+		this.matchingPlace = matchingPlace;
+	}
 	public int getMatchingCode() {
 		return matchingCode;
 	}

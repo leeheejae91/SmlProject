@@ -404,5 +404,7 @@
 			<a href="${root}/admin/main.do">관리자페이지</a>
 		</div>								
 	</c:if>
+	
+	<a href="${root}/aa">시작</a>
 </body>
 </html>
