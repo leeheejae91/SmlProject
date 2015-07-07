@@ -1,16 +1,24 @@
 package com.sml.common.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.URLEncoder;
+import java.util.List;
+import java.util.Locale;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sml.common.dao.CommonDao;
 import com.sml.common.dto.CommonBoardDto;
 import com.sml.common.service.CommonService;
 
@@ -20,6 +28,8 @@ public class CommonController {
 	
 	@Autowired
 	private CommonService commonService;
+	@Autowired
+	private CommonDao dao;
 
 	/**
 	 * @함수명: addCommonBoard
@@ -135,5 +145,28 @@ public class CommonController {
 
 		commonService.updateCommonBoardOk(mav);
 		return mav;
-	}		
+	}
+	
+	@RequestMapping(value="/autocomplete" ,method=RequestMethod.POST)
+	public void autoTeamname(Locale locale, Model model, HttpServletRequest request,
+			HttpServletResponse resp, String teamName) throws IOException {
+		logger.info("##########autoTeamname##############");
+		String result = request.getParameter("term");
+		System.out.println("result : " + result);
+		
+		// 한글깨짐 방지를 위해 인코딩하기
+       // URLEncoder.encode(result , "UTF-8");
+		
+		List<String> list = dao.autoSearch(result);
+		JSONArray ja = new JSONArray();
+		for (int i = 0; i < list.size(); i++) {
+			ja.put(list.get(i));
+		}
+		resp.setCharacterEncoding("UTF-8");
+		
+		PrintWriter out = resp.getWriter();
+
+		out.print(ja.toString());
+
+	} 
 }

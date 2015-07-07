@@ -1,3 +1,45 @@
+
+var rroot="/home";
+
+$(document).ready(function(){
+	var url=rroot+"/member/searchRegion.do";
+	
+	sendRequest("GET", url, fromSido, null);
+	
+	function fromSido(){
+		if(xhr.readyState==4&&xhr.status==200){
+			var div=document.getElementById("sido");
+			if(div!=null){
+				div.innerHTML=xhr.responseText;
+			}
+			if($("#sido").val()=="서울"){
+				var params="sido=서울";
+				sendRequest("GET", url, fromServer, params);
+			}
+		}
+	}
+
+});
+
+function regionSido(root){
+	var url=root+"/member/searchRegion.do";
+	
+	if($("#sido").val()!="시/도"){
+		var params="sido="+$("#sido").val();
+		sendRequest("GET", url, fromServer, params);
+	}else{
+		var div=document.getElementById("gugun");
+		div.innerHTML="<option>시/구/군</option><option></option>"
+	}
+}
+
+function fromServer(){
+	if(xhr.readyState==4&&xhr.status==200){
+		var div=document.getElementById("gugun");
+		div.innerHTML=xhr.responseText;
+	}
+}
+
 function Check(form){
 //	if($("input[name='teamId']").val()==""){
 //		alert("아이디를 입력하세요");
@@ -112,16 +154,21 @@ function teamIdCheck(form,root){
 
 function searchHomeground(form, root){
 	var url=root+"/member/searchHomeGround.do";
-	window.open(url,"","width=600,height=400");
+	window.open(url,"","width=900,height=600");
 }
 
 function selectHomeGround(){
-	window.opener.form.homeGround.value=$("#homeGround").text();
+	window.opener.registerModal.homeGround.value=$("#homeGround").text();
 	close();
 }
 
+<<<<<<< HEAD
 var rroot="/home";
+=======
 
+>>>>>>> branch 'master' of https://github.com/leeheejae91/SmlProject.git
+
+<<<<<<< HEAD
 $(document).ready(function(){
 	var url=rroot+"/member/searchRegion.do";
 	
@@ -159,5 +206,7 @@ function fromServer(){
 		div.innerHTML=xhr.responseText;
 	}
 }
+=======
+>>>>>>> branch 'master' of https://github.com/leeheejae91/SmlProject.git
 
 

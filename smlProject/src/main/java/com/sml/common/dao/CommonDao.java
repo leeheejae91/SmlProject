@@ -12,4 +12,5 @@ public interface CommonDao {
 	public CommonBoardDto readCommonBoard(int boardNumber);
 	public CommonBoardDto updateCommonBoardSelect(int boardNumber);
 	public int updateCommonBoardOk(CommonBoardDto commonBoard);
+	public List<String> autoSearch(String result);
 }
